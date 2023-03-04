@@ -1,7 +1,27 @@
 {% extends "main.html" %}
 
 {% block content %}
-    <h1>Project Template</h1>
+    <h1>Projects</h1>
+
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Project</th>
+            <th>Positive Votes</th>
+            <th>Votes</th>
+            <th></th>
+        </tr>
+        {% for project in projects %}
+            <tr>
+                <td>{{ project.id }}</td>
+                <td>{{ project.title }}</td>
+                <td>{{ project.voteTotal }}</td>
+                <td>{{ project.voteRatio }}%</td>
+                <td>{{ project.createdAt }}</td>
+                <td><a href="project/{{project.id}}">View</a></td>
+            </tr>
+        {% endfor %}
+    </table>
 
     <ul>
         {% for project in projects %}
