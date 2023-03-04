@@ -23,11 +23,15 @@ projectsList = [
 # Create your views here.
 def projects(request):
     projects = Project.objects.all()
-    context = {'projects' : projects}
+    context = {
+        'projects': projects
+    }
     return render(request, 'projects/projects.html', context)
 
-def project(request, pk):
+def project(request, pk:str):
     project = Project.objects.get(id=pk)
-    tags = project.tags.all()
-    context = {'project' : project, 'tags' : tags}
+    context = {
+        'project': project,
+        'tags' : project.tags.all()
+    }
     return render(request, 'projects/single-project.html', context)
