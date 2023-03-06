@@ -5,6 +5,7 @@ import uuid
 class Project(models.Model):
     title = models.CharField(max_length=255)
     description = models.TextField(null=True, blank=True)
+    featuredImage = models.ImageField(null=True, blank=True, default='default.jpg')
     demoLink = models.CharField(max_length=2000, null=True, blank=True)
     sourceLink = models.CharField(max_length=2000, null=True, blank=True)
     tags = models.ManyToManyField('Tag', blank=True)

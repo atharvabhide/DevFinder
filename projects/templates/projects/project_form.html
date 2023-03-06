@@ -4,7 +4,7 @@
 
 <h1>Project Form</h1>
 
-<form action="" method="POST">
+<form action="" method="POST" enctype="multipart/form-data">
     {% csrf_token %}
     
     {% for field in form %}
