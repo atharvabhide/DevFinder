@@ -2,15 +2,96 @@
 
 {% block content %}
 
-    <img style="max-width: 500px;" src="{{ project.featuredImage.url }}">
+<main class="singleProject my-md">
+    <div class="container">
+        <div class="layout">
+            <div class="column column--1of3">
+                <h3 class="singleProject__subtitle">Tools & Stacks</h3>
+                <div class="singleProject__toolStack">
+                    {% for tag in tags %}
+                        <span class="tag tag--pill tag--sub tag--lg">
+                            <small>{{ tag }}</small>
+                        </span>
+                    {% endfor %}
+                </div>
 
-    <h1>Single Project Template</h1>
-    <h1>Title : {{ project.title }}</h1>
+                <a class="singleProject__liveLink" href="#" target="_blank"><i class="im im-external-link"></i>Source
+                    Code
+                </a>
 
-    {% for tag in tags %}
-        <span style="border: 1px solid grey;">{{ tag }}</span>
-    {% endfor %}
+                {% if project.demoLink %}
+                    <a class="singleProject__liveLink" href="#" target="_blank"><i class="im im-external-link"></i>Live
+                        Link
+                    </a>
+                {% endif %}
+            </div>
+            <div class="column column--2of3">
+                <img class="singleProject__preview" src="{{ project.featuredImage.url }}" alt="portfolio thumbnail" />
+                <a href="profile.html" class="singleProject__developer">Md. Shahriar Parvez</a>
+                <h2 class="singleProject__title">{{ project.title }}</h2>
+                <h3 class="singleProject__subtitle">About the Project</h3>
+                <div class="singleProject__info">
+                    {{ project.description }}
+                </div>
 
-    <p>{{ project.description }}</p>
-    
+                <div class="comments">
+                    <h3 class="singleProject__subtitle">Feedback</h3>
+                    <h5 class="project--rating">
+                        {{ project.voteRatio }}% Postitive Feedback 
+                        {% if project.voteTotal > 1 %}
+                            ({{ project.voteTotal }} Votes)
+                        {% else %}
+                            ({{ project.voteTotal }} Vote)
+                        {% endif %}
+                    </h5>
+
+                    <form class="form" action="#" method="POST">
+                        <!-- Textarea -->
+                        <div class="form__field">
+                            <label for="formInput#textarea">Comments: </label>
+                            <textarea class="input input--textarea" name="message" id="formInput#textarea"
+                                placeholder="Write your comments here..."></textarea>
+                        </div>
+                        <input class="btn btn--sub btn--lg" type="submit" value="Comments" />
+                    </form>
+                    <div class="commentList">
+                        <div class="comment">
+                            <a href="profile.html">
+                                <img class="avatar avatar--md"
+                                    src="https://avatars.githubusercontent.com/u/33843378"
+                                    alt="user" />
+                            </a>
+                            <div class="comment__details">
+                                <a href="profile.html" class="comment__author">Sulamita Ivanov</a>
+                                <p class="comment__info">
+                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit alias numquam
+                                    perferendis
+                                    mollitia minus minima exercitationem possimus ab deserunt qui, soluta iusto
+                                    doloribus eveniet
+                                    similique consequuntur ratione, dignissimos ut magni laborum quo.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="comment">
+                            <a href="profile.html">
+                                <img class="avatar avatar--md" src="https://avatars.githubusercontent.com/u/33843378"
+                                    alt="user" />
+                            </a>
+                            <div class="comment__details">
+                                <a href="profile.html" class="comment__author">Dennis Ivanov</a>
+                                <p class="comment__info">
+                                    Consectetur adipisicing elit. Reprehenderit alias numquam perferendis mollitia minus
+                                    minima
+                                    exercitationem possimus ab deserunt qui, ratione, dignissimos ut magni laborum quo.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+</main>
+
 {% endblock %}
