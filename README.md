@@ -1,5 +1,5 @@
 # DevFinder
-A mini social media but for developers :)
+A mini social media for developers :)
 
 ## Clone the repository
 ```
