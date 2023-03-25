@@ -3,9 +3,12 @@ from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.models import User
 from django.contrib import messages
 from .models import Profile
+from .forms import CustomUserCreationForm
 
 def loginUser(request):
-
+    # gets page name for login_register.html
+    page = 'login'
+    context = {'page' : page}
     # if user is already logged in, redirect to profiles page
     if request.user.is_authenticated:
         return redirect('profiles')
@@ -29,13 +32,37 @@ def loginUser(request):
         else:
             messages.error(request, "Username or Password is incorrect!")
         
-    return render(request, 'users/login_register.html')
+    return render(request, 'users/login_register.html', context)
 
 def logoutUser(request):
     # logs out user
     logout(request)
     messages.success(request, "User has been logged out!")
     return redirect('login')
+
+def registerUser(request):
+    # gets page name for login_register.html
+    page = 'register'
+    form = CustomUserCreationForm()
+    if (request.method == 'POST'):
+        form = CustomUserCreationForm(request.POST)
+        if form.is_valid():
+            # creates user
+            user = form.save(commit=False)
+            # sets username to lowercase
+            user.username = user.username.lower()
+            # saves user
+            user.save() 
+            # send success message
+            messages.success(request, "User account was created!")
+            # log in the user
+            login(request, user)
+            return redirect('profiles')
+        else:
+            messages.error(request, "An error has occured during registration!")
+           
+    context = {'page' : page, 'form' : form}
+    return render(request, 'users/login_register.html', context)
 
 def profiles(request):
     # gets all profiles from database

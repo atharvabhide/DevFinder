@@ -10,10 +10,7 @@ class ProjectForm(ModelForm):
             'tags'  : forms.CheckboxSelectMultiple(),
         }
     
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.fields['title'].widget.attrs.update({'class': 'input'})
-        self.fields['description'].widget.attrs.update({'class': 'input'})
-        self.fields['demoLink'].widget.attrs.update({'class': 'input'})
-        self.fields['sourceLink'].widget.attrs.update({'class': 'input'})
-        self.fields['tags'].widget.attrs.update({'class': 'input'})
+    def __init__(self, *args, **kwargs) -> None:
+        super(ProjectForm).__init__(*args, **kwargs)
+        for name,field in self.fields.items():
+            field.widget.attrs.update({'class':'input'})
