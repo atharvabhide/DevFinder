@@ -10,7 +10,7 @@ A mini social media for developers :)
   <li> Javascript </li>
 </ul>    
 
-# Functionality:
+# Current functionality:
 
 - User log in and sign up
 - CRUD for user's profile, projects, skills
