@@ -10,6 +10,13 @@ A mini social media for developers :)
   <li> Javascript </li>
 </ul>    
 
+# Functionality:
+
+- User log in and sign up
+- CRUD for user's profile, projects, skills
+- Messaging between users
+- Searching other users
+- Recommendation system for showing users with similar interests
 
 ## Clone the repository
 ```
