@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from .models import Profile
-from .forms import CustomUserCreationForm
+from .forms import CustomUserCreationForm, ProfileForm
 
 def loginUser(request):
     # gets page name for login_register.html
@@ -58,7 +58,7 @@ def registerUser(request):
             messages.success(request, "User account was created!")
             # log in the user
             login(request, user)
-            return redirect('profiles')
+            return redirect('edit-account')
         else:
             messages.error(request, "An error has occured during registration!")
            
@@ -84,7 +84,7 @@ def userProfile(request, pk):
 
 @login_required(login_url='login')
 def userAccount(request):
-
+    # gets user profile
     profile = request.user.profile
 
     topSkills = profile.skills.exclude(description__exact="")
@@ -93,3 +93,15 @@ def userAccount(request):
 
     context = {'user' : profile, 'topSkills' : topSkills, 'otherSkills' : otherSkills, 'projects' : projects}
     return render(request, 'users/user-account.html', context=context)
+
+@login_required(login_url='login')
+def editAccount(request):
+    # edits user profile
+    form = ProfileForm(instance=request.user.profile)
+    if (request.method == 'POST'):
+        form = ProfileForm(request.POST, request.FILES, instance=request.user.profile)
+        if form.is_valid():
+            form.save()
+            return redirect('user-account')
+    context = {'form' : form}
+    return render(request, 'users/profile_form.html', context=context)
