@@ -1,0 +1,73 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat+Alternates&family=Mulish:wght@300&family=Poppins:wght@300&display=swap');
+
+:root{
+  --header-height: 3.5rem;
+  --nav-width: 219px;
+
+  --first-color: #3858d6;
+  --first-color-alt:	#2948c7;
+  --first-color-light: #5670d7;
+  --first-color-lighten: #f0f3ff;
+  --second-color: #eb7724;
+  --title-color: #1f2f70;
+  --text-color:	#6c7493;
+  --text-color-light: 	#b8bbc7;
+  --border-color: 	#f5f7ff;
+  --body-color: #fff;
+  --container-color: #fff;
+
+  --hero-font: 'Montserrat Alternates', sans-serif; 
+  --header-font: 'Poppins', sans-serif;
+  --body-font: 'Mulish', sans-serif;
+  --biggest-font-size: 2.25rem;
+  --h1-font-size: 1.5rem;
+  --h2-font-size: 1.25rem;
+  --h3-font-size: 1rem;
+  --normal-font-size: .938rem;
+  --small-font-size: .813rem;
+  --smaller-font-size: .75rem;
+  --font-medium: 500;
+  --font-semi-bold: 600;
+
+  --z-tooltip: 10;
+  --z-fixed: 100;
+}
+
+@media screen and (min-width: 1024px) {
+  :root{
+    --biggest-font-size: 4rem;
+    --h1-font-size: 2.25rem;
+    --h2-font-size: 1.5rem;
+    --h3-font-size: 1.25rem;
+    --normal-font-size: 1rem;
+    --small-font-size: 0.875rem;
+    --smaller-font-size: 0.813rem;
+  }
+}
+
+*, ::before, ::after{
+  box-sizing: border-box;
+}
+
+body{
+  margin: var(--header-height) 0 0 0;
+  padding: 1rem 1rem 0;
+  font-family: var(--body-font);
+  font-size: var(--normal-font-size);
+  background-color: var(--body-color);
+  color: var(--text-color);
+}
+
+h1, h2, h3{
+  margin: 0;
+  color: var(--title-color);
+  font-weight: var(--font-semi-bold);
+}
+
+a{
+  text-decoration: none;
+}
+img{
+  max-width: 100%;
+  height: auto;
+}
