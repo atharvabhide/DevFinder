@@ -1,4 +1,5 @@
 {% extends 'main.html' %}
+{% load static %}
 
 {% block content %}
 
@@ -8,12 +9,15 @@
             <a class="backButton" href="{% url 'user-account' %}"><i class="im im-angle-left"></i></a>
             <br>
 
-            <form action="" class="form" method="POST">
+            <form method="POST" action="">
                 {% csrf_token %}
-                <p>Are you sure you want to delete this project?</p>
-                <a class="btn btn--sub btn--lg my-md" href="{% url 'projects' %}">Go Back</a>
-                <input class="btn btn--sub btn--lg  my-md" type="submit" value="Confirm">
+                {% for field in form %}
+                    <label for="formInput#text">{{ field.label }}</label>
+                    {{ field }}
+                {% endfor %}
+                <input class="btn btn--sub btn--lg  my-md" type="submit" value="Submit">
             </form>
+
         </div>
     </div>
 </main>

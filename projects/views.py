@@ -33,7 +33,7 @@ def createProject(request):
             project = form.save(commit=False)
             project.owner = profile
             project.save()
-            return redirect('projects')
+            return redirect('user-account')
     context = {
         'form': form,   
     }
@@ -43,14 +43,14 @@ def createProject(request):
 def updateProject(request, pk):
     profile = request.user.profile
     # updates a project
-    project = profile.project_set.get(id=pk)
+    project = profile.projects.get(id=pk)
     form = ProjectForm(instance=project)
 
     if (request.method == 'POST'):
         form = ProjectForm(request.POST, request.FILES, instance=project)
         if (form.is_valid()):
             form.save()
-            return redirect('projects')
+            return redirect('user-account')
     context = {
         'form': form,   
     }
@@ -60,11 +60,11 @@ def updateProject(request, pk):
 def deleteProject(request, pk):
     profile = request.user.profile
     # deletes a project
-    project = profile.project_set.get(id=pk)
+    project = profile.projects.get(id=pk)
 
     if (request.method == 'POST'):
         project.delete()
-        return redirect('projects')
+        return redirect('user-account')
     context = {
         'project' : project
     }

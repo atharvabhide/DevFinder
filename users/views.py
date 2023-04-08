@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from .models import Profile
-from .forms import CustomUserCreationForm, ProfileForm
+from .forms import CustomUserCreationForm, ProfileForm, SkillForm
 
 def loginUser(request):
     # gets page name for login_register.html
@@ -105,3 +105,47 @@ def editAccount(request):
             return redirect('user-account')
     context = {'form' : form}
     return render(request, 'users/profile_form.html', context=context)
+
+@login_required(login_url='login')
+def createSkill(request):
+    # creates skill
+    form = SkillForm()
+    if (request.method == 'POST'):
+        form = SkillForm(request.POST)
+        if form.is_valid():
+            skill = form.save(commit=False)
+            skill.owner = request.user.profile
+            skill.save()
+            messages.success(request, "Skill was added successfully!")
+            return redirect('user-account')
+    context = {'form' : form}
+    return render(request, 'users/skill_form.html', context=context)
+
+@login_required(login_url='login')
+def editSkill(request, pk):
+    # edits skill
+    profile = request.user.profile
+    skill = profile.skills.get(id=pk)
+    form = SkillForm(instance=skill)
+    if (request.method == 'POST'):
+        form = SkillForm(request.POST, instance=skill)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Skill was updated successfully!")
+            return redirect('user-account')
+    context = {'form' : form}
+    return render(request, 'users/skill_form.html', context=context)
+
+@login_required(login_url='login')
+def deleteSkill(request, pk):
+    # deletes a project
+    profile = request.user.profile
+    skill = profile.skills.get(id=pk)
+
+    if (request.method == 'POST'):
+        skill.delete()
+        return redirect('user-account')
+    context = {
+        'skill' : skill
+    }
+    return render(request, 'users/delete_skill.html', context)

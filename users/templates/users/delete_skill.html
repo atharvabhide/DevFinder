@@ -10,8 +10,8 @@
 
             <form action="" class="form" method="POST">
                 {% csrf_token %}
-                <p>Are you sure you want to delete this project?</p>
-                <a class="btn btn--sub btn--lg my-md" href="{% url 'projects' %}">Go Back</a>
+                <p>Are you sure you want to delete this skill?</p>
+                <a class="btn btn--sub btn--lg my-md" href="{% url 'user-account' %}">Go Back</a>
                 <input class="btn btn--sub btn--lg  my-md" type="submit" value="Confirm">
             </form>
         </div>
