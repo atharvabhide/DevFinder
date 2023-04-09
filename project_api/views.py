@@ -1,60 +1,42 @@
 from .models import Project, Review, Tag
 from .serializers import ProjectSerializer, ReviewSerializer, TagSerializer
-from rest_framework.generics import ListAPIView, CreateAPIView, RetrieveUpdateDestroyAPIView
 from rest_framework.permissions import IsAuthenticated
+from rest_framework import generics
 
-class ProjectListView(ListAPIView):
+class ProjectListView(generics.ListAPIView):
     queryset = Project.objects.all()
     serializer_class = ProjectSerializer
-    def get(self, request, *args, **kwargs):
-        return self.list(request, *args, **kwargs)
 
-class ProjectCreateRetrieveUpdateDestroyView(CreateAPIView, RetrieveUpdateDestroyAPIView):
+    def get(self, request, *args, **kwargs):
+        return super().get(request, *args, **kwargs)
+
+class ProjectRetrieveView(generics.RetrieveAPIView):
     queryset = Project.objects.all()
     serializer_class = ProjectSerializer
-    permission_classes = [IsAuthenticated]
-
-    def post(self, request, *args, **kwargs):
-        return self.create(request, *args, **kwargs)
-    def put(self, request, *args, **kwargs):
-        return self.update(request, *args, **kwargs)
-    def delete(self, request, *args, **kwargs):
-        return self.destroy(request, *args, **kwargs)
-    
-class ReviewListView(ListAPIView):
-    queryset = Review.objects.all()
-    serializer_class = ReviewSerializer
 
     def get(self, request, *args, **kwargs):
-        return self.list(request, *args, **kwargs)
+        return super().get(request, *args, **kwargs)
 
-class ReviewCreateRetrieveUpdateDestroyView(CreateAPIView, RetrieveUpdateDestroyAPIView):
-    queryset = Review.objects.all()
-    serializer_class = ReviewSerializer
+class ProjectCreateView(generics.CreateAPIView):
     permission_classes = [IsAuthenticated]
+    queryset = Project.objects.all()
+    serializer_class = ProjectSerializer
 
     def post(self, request, *args, **kwargs):
-        return self.create(request, *args, **kwargs)
-    def put(self, request, *args, **kwargs):
-        return self.update(request, *args, **kwargs)
-    def delete(self, request, *args, **kwargs):
-        return self.destroy(request, *args, **kwargs)
-    
-class TagListView(ListAPIView):
-    queryset = Tag.objects.all()
-    serializer_class = TagSerializer
+        return super().post(request, *args, **kwargs)
 
-    def get(self, request, *args, **kwargs):
-        return self.list(request, *args, **kwargs)
-
-class TagCreateRetrieveUpdateDestroyView(CreateAPIView, RetrieveUpdateDestroyAPIView):
-    queryset = Tag.objects.all()
-    serializer_class = TagSerializer
+class ProjectUpdateView(generics.UpdateAPIView):
     permission_classes = [IsAuthenticated]
+    queryset = Project.objects.all()
+    serializer_class = ProjectSerializer
 
-    def post(self, request, *args, **kwargs):
-        return self.create(request, *args, **kwargs)
     def put(self, request, *args, **kwargs):
-        return self.update(request, *args, **kwargs)
+        return super().put(request, *args, **kwargs)
+
+class ProjectDestroyView(generics.DestroyAPIView):
+    permission_classes = [IsAuthenticated]
+    queryset = Project.objects.all()
+    serializer_class = ProjectSerializer
+
     def delete(self, request, *args, **kwargs):
-        return self.destroy(request, *args, **kwargs)
+        return super().delete(request, *args, **kwargs)

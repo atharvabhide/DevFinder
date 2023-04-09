@@ -1,11 +1,46 @@
-from rest_framework.authtoken.views import ObtainAuthToken
-from rest_framework.response import Response
-from rest_framework import status
+from .models import Profile, Skill
+from .serializers import ProfileSerializer, SkillSerializer
+from rest_framework.generics import ListAPIView, RetrieveUpdateDestroyAPIView
+from rest_framework.permissions import IsAuthenticated
 
-class LoginView(ObtainAuthToken):
-    def post(self, request, *args, **kwargs):
-        serializer = self.serializer_class(data=request.data, context={'request': request})
-        serializer.is_valid(raise_exception=True)
-        user = serializer.validated_data['user']
-        token, created = Token.objects.get_or_create(user=user)
-        return Response({'token': token.key})
+class ProfileListView(ListAPIView):
+    queryset = Profile.objects.all()
+    serializer_class = ProfileSerializer
+    
+    def get(self, request, *args, **kwargs):
+        return self.list(request, *args, **kwargs)
+
+class ProfileRetrieveUpdateDestroyView(RetrieveUpdateDestroyAPIView):
+    queryset = Profile.objects.all()
+    serializer_class = ProfileSerializer
+    permission_classes = [IsAuthenticated]
+    
+    def get(self, request, *args, **kwargs):
+        return self.retrieve(request, *args, **kwargs)
+    
+    def put(self, request, *args, **kwargs):
+        return self.update(request, *args, **kwargs)
+    
+    def delete(self, request, *args, **kwargs):
+        return self.destroy(request, *args, **kwargs)
+
+class SkillListView(ListAPIView):
+    queryset = Skill.objects.all()
+    serializer_class = SkillSerializer
+    
+    def get(self, request, *args, **kwargs):
+        return self.list(request, *args, **kwargs)
+    
+class SkillRetrieveUpdateDestroyView(RetrieveUpdateDestroyAPIView):
+    queryset = Skill.objects.all()
+    serializer_class = SkillSerializer
+    permission_classes = [IsAuthenticated]
+    
+    def get(self, request, *args, **kwargs):
+        return self.retrieve(request, *args, **kwargs)
+    
+    def put(self, request, *args, **kwargs):
+        return self.update(request, *args, **kwargs)
+    
+    def delete(self, request, *args, **kwargs):
+        return self.destroy(request, *args, **kwargs)

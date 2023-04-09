@@ -1,11 +1,10 @@
 from django.urls import path
-from .views import ProjectListView, ProjectCreateRetrieveUpdateDestroyView, ReviewListView, ReviewCreateRetrieveUpdateDestroyView, TagListView, TagCreateRetrieveUpdateDestroyView
+from . import views
 
 urlpatterns = [
-    path('projects/', ProjectListView.as_view(), name='project-list'),
-    path('projects/<str:pk>/', ProjectCreateRetrieveUpdateDestroyView.as_view(), name='project-detail'),
-    path('projects/<str:pk>/reviews/', ReviewListView.as_view(), name='review-list'),
-    path('projects/<str:pk>/reviews/<str:review_pk>/', ReviewCreateRetrieveUpdateDestroyView.as_view(), name='review-detail'),
-    path('tags/', TagListView.as_view(), name='tag-list'),
-    path('tags/<str:pk>/', TagCreateRetrieveUpdateDestroyView.as_view(), name='tag-detail'),
+    path('projects/', views.ProjectListView.as_view(), name='project-list'),
+    path('projects/create/', views.ProjectCreateView.as_view(), name='project-list'),
+    path('projects/<str:pk>/', views.ProjectRetrieveView.as_view(), name='project-detail'),
+    path('projects/<str:pk>/update/', views.ProjectUpdateView.as_view(), name='project-update'),
+    path('projects/<str:pk>/delete/', views.ProjectDestroyView.as_view(), name='project-delete'),
 ]
