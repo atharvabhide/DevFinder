@@ -28,18 +28,24 @@ class ProjectCreateView(generics.CreateAPIView, ProjectListView):
     def get(self, request, *args, **kwargs):
         return super().get(request, *args, **kwargs)
 
-class ProjectUpdateView(generics.UpdateAPIView):
+class ProjectUpdateView(generics.UpdateAPIView, ProjectRetrieveView):
     permission_classes = [IsAuthenticated]
     queryset = Project.objects.all()
     serializer_class = ProjectSerializer
 
     def put(self, request, *args, **kwargs):
         return super().put(request, *args, **kwargs)
+    
+    def get(self, request, *args, **kwargs):
+        return super().get(request, *args, **kwargs)
 
-class ProjectDestroyView(generics.DestroyAPIView):
+class ProjectDestroyView(generics.DestroyAPIView, ProjectRetrieveView):
     permission_classes = [IsAuthenticated]
     queryset = Project.objects.all()
     serializer_class = ProjectSerializer
 
     def delete(self, request, *args, **kwargs):
         return super().delete(request, *args, **kwargs)
+    
+    def get(self, request, *args, **kwargs):
+        return super().get(request, *args, **kwargs)
