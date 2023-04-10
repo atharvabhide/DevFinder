@@ -8,6 +8,7 @@ import {MdOutlineLogin} from 'react-icons/md'
 import {TbMessageCircle} from 'react-icons/tb'
 import {FiUsers} from 'react-icons/fi'
 import {MdClose} from 'react-icons/md'
+import Logo from '../../assets/Logo.png'
 
 
 const Navbar = () => {
@@ -20,19 +21,17 @@ const Navbar = () => {
         console.log("click ho gaya");
     }
 
-
-    
-  return (
+    return (
     <>
         <header className="header">
             <div className="headerContainer">
-                
-                <h3>DevFinder</h3>
+               
+                {/* <h3>DevFinder</h3> */}
+                <img className="logo" src={Logo} alt="" />
 
                 <div className="headerSearch">
                     <input type="text" placeholder='Search' className="headerInput" />
                     <GoSearch style={IconStyle} />
-
                 </div>
 
                 {/* <img Logo idhar** /> */}
@@ -41,7 +40,7 @@ const Navbar = () => {
 
                     {navbarOpen ? <MdClose style={IconstyleMenu} size={25} /> : <HiMenuAlt3 style={IconstyleMenu} size={25} />}
                 </button>
-                
+
             </div>
         </header>
         <div className="nav" >
@@ -54,27 +53,27 @@ const Navbar = () => {
                         <div className="navItems"  >
                             <h3 className="navSubTitle">Menu</h3>
 
-                            <Link className="navLink ">
+                            <Link to="/" className="navLink ">
                                 <HiOutlineHome className="navIcon"/>
                                 <span className="navName">Home</span>
                             </Link>
 
-                            <Link className="navLink">
+                            <Link to="/developers" className="navLink">
                                 <FiUsers className="navIcon" />
                                 <span className="navName">Developers</span>
                             </Link>
 
-                            <Link className="navLink">
+                            <Link to="/projects" className="navLink">
                                 <HiCode className="navIcon"/>
                                 <span className="navName">Projects</span>
                             </Link>
 
-                            <Link className="navLink">
+                            <Link to="/inbox" className="navLink">
                                 <TbMessageCircle className="navIcon" />
                                 <span className="navName">Inbox</span>
                             </Link>
 
-                            <Link className="navLink">
+                            <Link to="/login" className="navLink">
                                 <MdOutlineLogin className="navIcon" />
                                 <span className="navName">Login/Signup</span>
                             </Link> 

@@ -101,9 +101,18 @@ nav::-webkit-scrollbar{
     font-weight: var(--font-medium);
     white-space: nowrap;
 }
+.logo{
+  height: 11rem;
+  margin-top: 1.8rem;
+  margin-left: -2rem;
+  
+}
 .navLink{
     display: flex;
     align-items: center;
+}
+.navLink:active{
+  color: blue;
 }
 .hello{
   color: red;
@@ -114,6 +123,8 @@ nav::-webkit-scrollbar{
 .navClosed{
   display: none;
 }
+
+
 
 
 @media screen and (max-width: 320px) {
