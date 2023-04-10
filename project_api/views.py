@@ -17,13 +17,16 @@ class ProjectRetrieveView(generics.RetrieveAPIView):
     def get(self, request, *args, **kwargs):
         return super().get(request, *args, **kwargs)
 
-class ProjectCreateView(generics.CreateAPIView):
+class ProjectCreateView(generics.CreateAPIView, ProjectListView):
     permission_classes = [IsAuthenticated]
     queryset = Project.objects.all()
     serializer_class = ProjectSerializer
 
     def post(self, request, *args, **kwargs):
         return super().post(request, *args, **kwargs)
+    
+    def get(self, request, *args, **kwargs):
+        return super().get(request, *args, **kwargs)
 
 class ProjectUpdateView(generics.UpdateAPIView):
     permission_classes = [IsAuthenticated]
