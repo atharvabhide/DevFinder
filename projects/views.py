@@ -2,23 +2,26 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q
-from .models import Project
+from .models import Project, Tag
 from .forms import ProjectForm
+from .utils import *
 
 def projects(request):
     # gets all projects from database
-    projects = Project.objects.all()
+    projects, search_query = searchProjects(request)
     context = {
         'projects': projects,
+        'search_query' : search_query
     }
     return render(request, 'projects/projects.html', context)
 
 def project(request, pk:str):
     # gets particular project from database
     project = Project.objects.get(id=pk)
+  
     context = {
         'project': project,
-        'tags' : project.tags.all()
+        'tags' : project.tags.all(),
     }
     return render(request, 'projects/single-project.html', context)
 
