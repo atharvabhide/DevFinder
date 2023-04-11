@@ -5,9 +5,7 @@ A mini social media for developers :)
 
 <ul>
   <li> Django </li>
-  <li> HTML </li>
-  <li> CSS </li>
-  <li> Javascript </li>
+  <li> React Framework </li>
 </ul>    
 
 # Current functionality:
