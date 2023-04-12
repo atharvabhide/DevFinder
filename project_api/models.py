@@ -21,21 +21,17 @@ class Project(models.Model):
     def __str__(self):
         return self.title
 
-@receiver(pre_save, sender=Profile)
-def pre_save_image(sender, instance, *args, **kwargs):
-    """ instance old image file will delete from os """
-    try:
-        old_img = instance.__class__.objects.get(id=instance.id).featuredImage.path
+@receiver(models.signals.pre_save, sender=Project)
+def delete_file_on_change_extension(sender, instance, **kwargs):
+    if instance.pk:
         try:
-            new_img = instance.featuredImage.path
-        except:
-            new_img = None
-        if new_img != old_img:
-            import os
-            if os.path.exists(old_img):
-                os.remove(old_img)
-    except:
-        pass
+            old_avatar = Project.objects.get(pk=instance.pk).featuredImage
+        except Project.DoesNotExist:
+            return
+        else:
+            new_avatar = instance.featuredImage
+            if old_avatar and old_avatar.url != new_avatar.url:
+                old_avatar.delete(save=False)
 
 @receiver(post_delete, sender=Project)
 def post_save_image(sender, instance, *args, **kwargs):
