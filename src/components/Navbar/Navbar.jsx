@@ -53,7 +53,7 @@ const Navbar = () => {
                         <div className="navItems"  >
                             <h3 className="navSubTitle">Menu</h3>
 
-                            <Link to="/" className="navLink ">
+                            <Link to="/" className="navLink " >
                                 <HiOutlineHome className="navIcon"/>
                                 <span className="navName">Home</span>
                             </Link>

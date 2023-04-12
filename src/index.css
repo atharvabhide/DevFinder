@@ -66,8 +66,13 @@ h1, h2, h3{
 
 a{
   text-decoration: none;
+  cursor: pointer;
 }
 img{
   max-width: 100%;
   height: auto;
+}
+html{
+  scroll-behavior: smooth;
+  scroll-padding-top: 5rem;
 }

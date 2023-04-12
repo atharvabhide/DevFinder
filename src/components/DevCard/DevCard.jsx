@@ -1,14 +1,13 @@
 import React from 'react'
 import styles from './DevCard.module.css';
-import Hero from '../../assets/Home_Animation.gif'
-import ProfileImg from '../../assets/nalla.jpg'
+
 
 export const DevCard = (props) => {
   return (
     <>
         <div className={styles.profile}>
           <div className={styles.profileHeader}>
-            <img src={ProfileImg} className={styles.profileImg} alt="" />
+            <img src={props.imagePath} className={styles.profileImg} alt="" />
             <div className={styles.profileInfo}>
                 <h2 className={styles.profileName}>
                   {props.name}

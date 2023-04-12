@@ -92,12 +92,18 @@ nav::-webkit-scrollbar{
     color: var(--text-color-light);
     font-weight: var(--font-semi-bold);
 }
+.navLink:hover{
+  color: blue;
+}
+.navlink.active{
+  color: var(--second-color);
+}
 .navIcon {
     font-size: 1.2rem;
     margin-right: .5rem;
 }
 .navName{
-    font-size: var(--small-font-size);
+    font-size: var(--normal-font-size);
     font-weight: var(--font-medium);
     white-space: nowrap;
 }
@@ -185,6 +191,7 @@ nav::-webkit-scrollbar{
   .navSubTitle {
     opacity: 0;
     transition: .3s;
+
   }
   
   /* Navbar expanded */

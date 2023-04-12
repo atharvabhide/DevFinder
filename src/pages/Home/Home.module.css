@@ -1,10 +1,14 @@
 .hero{
     display: flex;
     align-items: center;
-    justify-content: center;
-    height: 80vh;
+    justify-content: space-between;
+    height: 84vh;
     /* background: #333; */
     margin-bottom: 2em;
+}
+.heroPage{
+    position: relative;
+    
 }
 .heroGIF{
     width: 34vw;
@@ -13,48 +17,66 @@
     background: none;
     outline: none;
     padding: 18px 34px;
+    cursor: pointer;
+    font-size: var(--small-font-size);
+}
+.heroButton:hover{
+    background: var(--first-color-alt);
+    color: aliceblue;
+
 }
 .devProfiles{
-    display: grid;
-    grid-template-columns: auto auto auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    /* grid-template-columns: auto auto auto; */
     /* border: 1px solid #333; */
-    gap: 10px;
-}
-.profile{
-    border: 1px solid #333;
-    padding: 0.7rem;
-    width: 28vw;
+    gap: 2rem;
     
+    /* background: red; */
 }
-.profileImg{
-    height: 3.4em;
-    border: 4px solid lightseagreen;
-    border-radius: 50%;
-}
-.profileHeader{
+.scroll{
+    /* background-color: red; */
+    width: 100%;
     display: flex;
-    /* justify-content: space-between; */
     align-items: center;
-    margin-bottom: 1em;
+    justify-content: center;
+    position: absolute;
+    bottom: 0;
+    padding: 1rem 0;
+    
+   
 }
-.profileName{
-    font-weight: bolder;
+.about{
+    /* background-color: var(--first-color-light); */
+    margin: 2rem 0;
+    /* height: 90vh; */
+    
+    /* background-position: bottom; */
+}
+.aboutHeader{
+    text-align: center;
+    padding: 1rem 0;
+    
     
 }
-.profileInfo{
+.aboutBackground{
+    position: absolute;
+    right: 0;
+    min-width: 40rem;
+    height: auto;
+    opacity: 0.1   ;
+    z-index: -4;
+}
+.aboutInfo{
+    padding: 0.5rem 2rem;
+    text-align: justify;
+    color: #333;
+    margin-bottom: 3rem;
+    font-weight: var(--font-medium);
+}
+.contributers{
+    text-align: center;
+    margin: 3rem 0;
+}
     
-    margin-left: 1em;
-}
-.profileBio{
-    margin-bottom: 1rem;
-}
-
-.profileSkills{
-    display: flex;
-    gap: 20px;
-    margin-bottom: 1rem;
-    
-}
-#buttonSkills{
-    padding: 0 0.5rem;
-}
