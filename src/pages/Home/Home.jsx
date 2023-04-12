@@ -2,11 +2,12 @@ import React from 'react'
 import styles from './Home.module.css'
 import Hero from '../../assets/Home_Animation.gif'
 import ProfileImg from '../../assets/nalla.jpg'
+import { DevCard } from '../../components/DevCard/DevCard'
 
 export const Home = () => {
   return (
     <>
-      <div className={styles.hero}>
+      {/* <div className={styles.hero}>
         <div className={styles.header}>
           <h1>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Laudantium, adipisci.</h1><br /><br />
           <button className={styles.heroButton}>
@@ -95,7 +96,19 @@ export const Home = () => {
 
         </div>
          
-      </div>
+      </div> */}
+
+      <DevCard
+        name="Atharva Bhide"
+        position="Backend developer"
+        bio="xxxxxxxxxxxxxxxxxxxxxxxx"
+        skill1="python"
+        skill2="python"
+        skill3="python"
+        skill4="python"
+        skill5="python"
+
+      />
 
 
    

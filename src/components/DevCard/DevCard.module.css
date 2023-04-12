@@ -1,25 +1,3 @@
-.hero{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 80vh;
-    /* background: #333; */
-    margin-bottom: 2em;
-}
-.heroGIF{
-    width: 34vw;
-}
-.heroButton{
-    background: none;
-    outline: none;
-    padding: 18px 34px;
-}
-.devProfiles{
-    display: grid;
-    grid-template-columns: auto auto auto;
-    /* border: 1px solid #333; */
-    gap: 10px;
-}
 .profile{
     border: 1px solid #333;
     padding: 0.7rem;
@@ -48,13 +26,10 @@
 .profileBio{
     margin-bottom: 1rem;
 }
-
+    
 .profileSkills{
     display: flex;
-    gap: 20px;
     margin-bottom: 1rem;
+    gap: 10px;
+}
     
-}
-#buttonSkills{
-    padding: 0 0.5rem;
-}
