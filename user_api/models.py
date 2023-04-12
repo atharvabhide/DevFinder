@@ -1,5 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.db.models.signals import post_save, post_delete
+from django.dispatch import receiver
 import uuid
 
 class Profile(models.Model):
@@ -10,7 +12,7 @@ class Profile(models.Model):
     location = models.CharField(max_length=200, null=True, blank=True)
     shortIntro = models.CharField(max_length=200, null=True, blank=True)
     bio = models.TextField(null=True, blank=True)
-    profileImage = models.ImageField(null=True, blank=True, upload_to='profiles/', default='profiles/user-default.png')
+    profileImage = models.ImageField(null=True, blank=True, upload_to='profile_images/')
     socialGithub = models.CharField(max_length=200, null=True, blank=True)
     socialLinkedIn = models.CharField(max_length=200, null=True, blank=True)
     socialTwitter = models.CharField(max_length=200, null=True, blank=True)
@@ -21,6 +23,34 @@ class Profile(models.Model):
 
     def __str__(self):
         return str(self.username)
+
+@receiver(post_save, sender=User)
+def createProfile(sender, instance, created, **kwargs):
+    print("Profile signal triggered")
+    if (created == True):
+        user = instance
+        profile = Profile.objects.create(
+            user=user,
+            username=user.username,
+            email=user.email,
+            name=user.first_name,
+        )
+
+@receiver(post_delete, sender=Profile)
+def profileDeleted(sender, instance, **kwargs):
+    print("Deleting user...")
+    user = instance.user
+    user.delete()
+
+@receiver(post_save, sender=Profile)
+def profileUpdated(sender, instance, created, **kwargs):
+    print("Updating user...")
+    user = instance.user
+    if (created == False):
+        user.firstName = instance.name
+        user.username = instance.username
+        user.email = instance.email
+        user.save()
 
 class Skill(models.Model):
     owner = models.ForeignKey(to=Profile, on_delete=models.CASCADE, null=True, blank=True, related_name="skills")

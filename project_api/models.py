@@ -4,7 +4,6 @@ from user_api.models import Profile
 from django.db.models.signals import pre_save, post_delete
 from django.dispatch import receiver
 
-# Create your models here.
 class Project(models.Model):
     owner = models.ForeignKey(to=Profile, on_delete=models.SET_NULL, related_name='projects', null=True, blank=True)
     title = models.CharField(max_length=255)
