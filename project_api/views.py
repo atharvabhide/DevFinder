@@ -2,8 +2,10 @@ from .models import Project, Review, Tag
 from .serializers import ProjectSerializer, ReviewSerializer, TagSerializer
 from rest_framework.permissions import IsAuthenticated
 from rest_framework import generics
+from rest_framework.pagination import PageNumberPagination
 
 class ProjectListView(generics.ListAPIView):
+    pagination_class = PageNumberPagination
     queryset = Project.objects.all()
     serializer_class = ProjectSerializer
 
