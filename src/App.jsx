@@ -1,17 +1,21 @@
 import './App.css'
 import { Layout } from './components/Layout/Layout'
-import Navbar from './components/Navbar/Navbar'
-import { ManageRoutes } from './components/ManageRoutes'
 
-function App() {
+
+import { ManageRoutes } from './components/ManageRoutes'
+import { Navbar } from './components/Navbar/Navbar'
+
+export default function App() {
   return (
     <>
-    <Navbar />
-    <Layout>
+      
+      <Layout>
+    
       <ManageRoutes />
-    </Layout>
+      </Layout>
+    
     </>
   )
 }
 
-export default App
+

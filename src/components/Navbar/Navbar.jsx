@@ -11,7 +11,7 @@ import {MdClose} from 'react-icons/md'
 import Logo from '../../assets/Logo.png'
 
 
-const Navbar = () => {
+export const Navbar = () => {
     const IconStyle = {color: "white"}
     const IconstyleMenu = {color: "#333"}
 
@@ -87,4 +87,3 @@ const Navbar = () => {
   )
 }
 
-export default Navbar

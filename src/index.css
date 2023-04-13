@@ -50,7 +50,7 @@
 }
 
 body{
-  margin: var(--header-height) 0 0 0;
+  margin: 3.05rem 0 0 0;
   padding: 1rem 1rem 0;
   font-family: var(--body-font);
   font-size: var(--normal-font-size);

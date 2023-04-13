@@ -1,10 +1,20 @@
+.wrapper{
+    /* padding: 1.8rem 4.7rem; */
+    /* width: 93vw; */
+    /* height: 100%; */
+    /* background: red; */
+    
+}
+
+
 .hero{
     display: flex;
     align-items: center;
     justify-content: space-between;
     height: 84vh;
+    margin: 0 4.7rem;
     /* background: #333; */
-    margin-bottom: 2em;
+    margin-bottom: 1em;
 }
 .heroPage{
     position: relative;
@@ -43,13 +53,15 @@
     justify-content: center;
     position: absolute;
     bottom: 0;
-    padding: 1rem 0;
+    
+    padding-top: 3rem;
     
    
 }
 .about{
-    /* background-color: var(--first-color-light); */
+    /* background-color: #b9bdeb; */
     margin: 2rem 0;
+   
     /* height: 90vh; */
     
     /* background-position: bottom; */
