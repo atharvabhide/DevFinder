@@ -34,7 +34,7 @@ export const Login = () => {
           <form action="#">
             <h2>Log In</h2> <br />
             
-            <input className={styles.inputField} type="email" placeholder='Email' />
+            <input className={styles.inputField} type="text" placeholder='Username' />
             <input className={styles.inputField} type="password" placeholder='Password' />
             <Link to="#" className={styles.link}>Forgot your password?</Link>
             <button className={styles.button}>Sign In</button>

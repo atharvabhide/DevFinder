@@ -54,13 +54,13 @@
     position: absolute;
     bottom: 0;
     
-    padding-top: 3rem;
+    margin-bottom: -1.3rem;
     
    
 }
 .about{
     /* background-color: #b9bdeb; */
-    margin: 2rem 0;
+    margin: 4rem 0;
    
     /* height: 90vh; */
     
