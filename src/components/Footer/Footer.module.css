@@ -29,7 +29,8 @@ ul{
     margin-bottom: 30px;
     font-weight: 500;
 }
-.footerCol h4::before{
+/* Added for browser support */
+.footerCol h4::before{ 
     content: '';
     position: absolute;
     left: 0;
@@ -44,12 +45,11 @@ ul{
 }
 .footerCol ul li a{
     font-size: 16px;
-    /* text-transform: capitalize; */
     color: #fff;
     text-decoration: underline;
     font-weight: 300;
     color: #bbb;
-    display: block;
+    /* display: block; */
     /* justify-content: left; */
     transition: 0.1s;
 }
@@ -71,6 +71,7 @@ ul{
     color: #fff;
     font-weight: 900;
     font-size: 1.3rem;
+    width: 100%;
 }
 .mailInfo{
     margin-left: 2rem;

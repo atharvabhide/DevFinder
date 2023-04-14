@@ -63,6 +63,9 @@ h1, h2, h3{
   color: var(--title-color);
   font-weight: var(--font-semi-bold);
 }
+li{
+  list-style-type: none;
+}
 
 a{
   text-decoration: none;

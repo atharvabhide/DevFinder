@@ -1,0 +1,14 @@
+.header{
+    background-color: #05445E;
+    height: 40vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: aliceblue;
+    font-weight: 900;
+}
+.developers{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(18.2em, 1fr));
+    
+}

@@ -1,0 +1,60 @@
+.profile{
+    padding: 1.2rem 1rem;
+    width: 20em;
+    border-radius: 12px;
+    background: #191c29;
+    position: relative;
+    border-width: 5px;
+    border-style: solid;
+    border-image: 
+    linear-gradient(
+      to bottom, 
+      var(--first-color), 
+      rgba(100, 100, 100, 0)
+    ) 0.5 10%;
+    
+}
+
+.profileImg{
+    height: 3.7em;
+    border: 4px solid lightseagreen;
+    border-radius: 50%;
+}
+.profileHeader{
+    display: flex;
+    /* justify-content: space-between; */
+    align-items: center;
+    margin-bottom: 1em;
+}
+.profileName{
+    font-weight: bolder;
+    color: aliceblue;
+    font-size: var(--h3-font-size);
+    
+}
+.profileInfo{
+    margin-left: 1em;
+    font-weight: 900;
+}
+.profileBio{
+    color: var(--text-color-light);
+
+    margin-bottom: 1rem;
+    font-size: var(--small-font-size);
+}
+    
+.profileSkills{
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 1rem;
+    gap: 10px;
+}
+#buttonSkills{
+    background: var(--first-color);
+    outline: none;
+    border: 2px solid var(--title-color);
+    padding: 8px 12px;
+    border-radius: 2em;
+    color: #fff;
+}
+

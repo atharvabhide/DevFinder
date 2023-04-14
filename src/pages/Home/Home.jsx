@@ -10,7 +10,7 @@ import Dhanya from '../../assets/dhanya2.jpg'
 import Typed from 'react-typed'
 
 
-import { DevCard } from '../../components/DevCard/DevCard'
+import { SpecialCard } from '../../components/SpecialCard/SpecialCard'
 import { Layout } from '../../components/Layout/Layout'
 import { Footer } from '../../components/Footer/Footer'
 
@@ -48,8 +48,8 @@ export const Home = () => {
       <h1 className={styles.contributers}>Project Maintainers</h1>
         <div className={styles.devProfiles}>
           
-        <DevCard
-          imagePath = {Atharva}
+        <SpecialCard
+          image = {Atharva}
           name="Atharva Bhide"
           position="ML/Backend Engineer"
           bio="The sun was setting behind the mountains, casting a warm orange glow nt, letting the peace and tranquility of the moment wash over me. When I opened them again, I saw a deer grazing nearby, looking up at me curiously before bounding away into the woods. It was a moment of pure magic, one that I would never forget."
@@ -60,8 +60,8 @@ export const Home = () => {
           skill5="SQL"
 
         />
-        <DevCard
-        imagePath={Ak}
+        <SpecialCard
+        image={Ak}
           name="Aakash Kasabekar"
           position="Frontend Engineer"
           bio="The sun was setting behind the mountains, casting a warm orange glow nt, letting the peace and tranquility of the moment wash over me. When I opened them again, I saw a deer grazing nearby, looking up at me curiously before bounding away into the woods. It was a moment of pure magic, one that I would never forget."
@@ -72,8 +72,8 @@ export const Home = () => {
           skill5="Node"
 
         />
-        <DevCard
-        imagePath={Dhanya}
+        <SpecialCard
+        image={Dhanya}
           name="Dhananjay Deshmukh"
           position="ML/Backend Engineer"
           bio="The sun was setting behind the mountains, casting a warm orange glow nt, letting the peace and tranquility of the moment wash over me. When I opened them again, I saw a deer grazing nearby, looking up at me curiously before bounding away into the woods. It was a moment of pure magic, one that I would never forget."

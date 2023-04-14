@@ -1,34 +1,40 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styles from './DevCard.module.css';
-
+import { Link } from 'react-router-dom';
+import {FaLinkedinIn} from 'react-icons/fa'
+import {SiGmail} from 'react-icons/si'
+import {GoMarkGithub} from 'react-icons/go'
+import {FiUser} from 'react-icons/fi'
+import Banner from '../../assets/banner4.jpg'
+import Dp from '../../assets/nalla.jpg'
 
 export const DevCard = (props) => {
+    
+
   return (
     <>
-        <div className={styles.profile}>
-          <div className={styles.profileHeader}>
-            <img src={props.imagePath} className={styles.profileImg} alt="" />
-            <div className={styles.profileInfo}>
-                <h2 className={styles.profileName}>
-                  {props.name}
-                </h2>
-                <div className={styles.profileShortBio}>
-                  {props.position}
-                </div>
+        <div className={styles.card}>
+            <div className={styles.banner}>
+                {/* <img src={Banner} className={styles.bannerImg} alt="" /> */}
             </div>
-
-          </div>
-          <div className={styles.profileBio}>
-            {props.bio}
-          </div>
-          <div className={styles.profileSkills}>
-            <button id={styles.buttonSkills}>{props.skill1} </button>
-            <button id={styles.buttonSkills}>{props.skill2}</button>
-            <button id={styles.buttonSkills}>{props.skill3}</button>
-            <button id={styles.buttonSkills}>{props.skill4}</button>
-            <button id={styles.buttonSkills}>{props.skill5}</button>
-          </div>
-
+            <div className={styles.photo}>
+                <img src={props.image} className={styles.profileImg} alt="" />
+                <div className={styles.defaultImage}><FiUser size={50} /></div>
+                
+            </div>
+            
+            <div className={styles.profileInfo}>
+                <li className={styles.profileName}><b>{props.name}</b></li>
+                <li className={styles.profilePosition}>{props.position}</li>
+            </div>
+            <p className={styles.profileBio}>{props.bio}</p>
+            <button className={styles.contact} >PROFILE</button>
+            <div className={styles.socialLinks}>
+                <Link to="#" className={styles.link}><FaLinkedinIn size={23} /></Link>
+                <Link to="#" className={styles.link}><SiGmail size={23} /></Link>
+                <Link to="#" className={styles.link}><GoMarkGithub size={23} /></Link>
+            </div>
+           
         </div>
     </>
   )
