@@ -100,6 +100,17 @@ ul{
     display: flex;
 
 }
+@media(max-width: 767px){
+    .footerCol{
+      width: 50%;
+      margin-bottom: 30px;
+  }
+  }
+  @media(max-width: 574px){
+    .footerCol{
+      width: 100%;
+  }
+  }
 
 
 
