@@ -1,124 +1,86 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styles from './Login.module.css'
 import { Link } from 'react-router-dom'
 import Logo from '../../assets/Logo.png'
 import { useEffect } from 'react'
+import {FcGoogle} from 'react-icons/fc'
 
 export const Login = () => {
 
+  const [signIn, toggle] = useState(true);
+
   return (
+    
+    <>
     <div className={styles.wrapper}>
-      <div className={styles.box}>
-        <div className={styles.innerBox}>
-          <div className={styles.formsWrap}>
-            <form action="#" className={styles.signInForm}>
-              <div className={styles.logo}>
-                <img src={Logo} alt="" />
-                {/* <h3>DevFinder</h3> */}
-              </div>
+      <div className={styles.container}>
+        <div className={styles.signUpContainer}  style={signIn !== true ? { 
+    transform: 'translateX(100%)',
+    opacity: 1,
+    zIndex: 5
+  } : null}>
+          <form action="#">
+            <h2>Create Account</h2><br />
+            <input className={styles.inputField} type="text" placeholder='Name' />
+            <input className={styles.inputField} type="email" placeholder='Email' />
+            <input className={styles.inputField} type="password" placeholder='Password' /><br />
+            <button className={styles.button}>Sign Up</button>
+          </form>
+        </div>
 
-              <div className={styles.heading}>
-                <h2>Welcome Back!</h2>
-                <h6>Not registered yet?</h6>
-                <Link to="#" className={styles.toggle}>Sign up</Link>
-              </div>
-
-              <div className={styles.actualform}>
-                <div className={styles.inputWrap}>
-                  <input 
-                    type="text"
-                    minLength={4}
-                    className={styles.inputField}
-                    autoComplete='off'
-              
-                    required 
-                  />
-                  <label>Name</label>
-                  </div>
-
-                  <div className={styles.inputWrap}>
-                  <input 
-                    type="password"
-                    minLength={4}
-                    className={styles.inputField}
-                    autoComplete='off'
-                    
-                    required 
-                  />
-                  <label>Password</label>
-                </div>
-
-                <input type="submit" value="Sign In" className={styles.signBtn} />
-
-                <p className={styles.text}>Forgotten your password or your login details?
-                <Link to="#">Get help</Link> Signing In
-                </p>
-              </div>
-            </form>
-
-            <form action="#" className={styles.signUpForm}>
-              <div className={styles.logo}>
-                <img src={Logo} alt="" />
-                {/* <h3>DevFinder</h3> */}
-              </div>
-
-              <div className={styles.heading}>
-                <h2>Get Started</h2>
-                <h6>Already have an account?</h6>
-                <Link to="#" className={styles.toggle}>Log in</Link>
-              </div>
-
-              <div className={styles.actualform}>
-                <div className={styles.inputWrap}>
-                  <input 
-                    type="text"
-                    minLength={4}
-                    className={styles.inputField}
-                    autoComplete='off'
-              
-                    required 
-                  />
-                  <label>Name</label>
-                  </div>
-
-                  <div className={styles.inputWrap}>
-                  <input 
-                    type="password"
-                    minLength={4}
-                    className={styles.inputField}
-                    autoComplete='off'
-                    
-                    required 
-                  />
-                  <label>Password</label>
-                </div>
-
-                <div className={styles.inputWrap}>
-                  <input 
-                    type="email"
-                    minLength={4}
-                    className={styles.inputField}
-                    autoComplete='off'
-              
-                    required 
-                  />
-                  <label>Email</label>
-                  </div>
-
-                <input type="submit" value="Sign Up" className={styles.signBtn} />
-
-                <p className={styles.text}>By signing up, I agree to the 
-                <Link to="#">Terms and services</Link> and<Link to="#">Privacy Policy</Link>
-                </p>
-              </div>
-            </form>
-          </div>
-          <div className={styles.carousel}>
+        <div className={styles.signInContainer}  style={signIn !== true ? { 
+    transform: 'translateX(100%)'
+  } : null}>
+          <form action="#">
+            <h2>Log In</h2> <br />
             
+            <input className={styles.inputField} type="email" placeholder='Email' />
+            <input className={styles.inputField} type="password" placeholder='Password' />
+            <Link to="#" className={styles.link}>Forgot your password?</Link>
+            <button className={styles.button}>Sign In</button>
+            <div  className={styles.paragraph}>
+                OR
+            </div>
+            <button className={styles.googleBtn}>
+              <FcGoogle size={22} style={{margin: '0 10px 0 0'}} />
+              <p>Continue with Google</p>
+            </button>
+          </form>
+        </div>
+
+        <div className={styles.overlayContainer} style={signIn !== true ? { 
+    transform: 'translateX(-100%)'
+  } : null}>
+          <div className={styles.overlay} style={signIn !== true ? { 
+    transform: 'translateX(50%)'
+  } : null}>
+            <div className={styles.leftOverlayPanel}  style={signIn !== true ? { 
+    transform: 'translateX(0)'
+  } : null}>
+              <div className={styles.title}>
+                Welcome Back!
+              </div>
+              <div className={styles.paragraph}>To keep connected with us please login  </div>
+              <div className={styles.ghostButton} onClick={() => toggle(true)}>Sign In</div>
+            </div>
+
+            <div className={styles.rightOverlayPanel}  style={signIn !== true ? { 
+    transform: 'translateX(20%)'
+  } : null}>
+              <div className={styles.title}>
+                Hello, Developer!
+              </div>
+              <div className={styles.paragraph}>Enter your details and start your journey with us</div>
+              <div className={styles.ghostButton} onClick={() => toggle(false)}>Sign Up</div>
+            </div>
+
+
           </div>
         </div>
 
+
       </div>
-    </div>
+      </div>
+    </>
   )
 }

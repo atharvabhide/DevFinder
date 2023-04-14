@@ -1,164 +1,205 @@
 .wrapper{
     width: 100%;
-    min-height: 90vh;
-    overflow: hidden;
-    background-color: #2B3467;
-    /* padding: 2rem; */
+    height: 90vh;
     display: flex;
-    align-items: center;
-    justify-content: center;
+    background-color: #D4F1F4;
 }
-.box{
-    position: relative;
-    width: 100%;
-    max-width: 1024px;
-    height: 500px;
+.container{
     background-color: #fff;
-    border-radius: 2rem;
-    box-shadow: 0 60px 40px -30px rgba(0,0,0,0.27);
-}
-.innerBox{
-    position: absolute;
-    width: calc(100% - 4.1rem);
-    height: calc(100% - 4.1rem);
-    transform: translate(-50%, -50%);
-    top: 50%;
-    left: 50%;
-}
-.formsWrap{
-    position: absolute;
-    height: 100%;
-    width: 45%;
-    top: 0;
+ border-radius: 10px;
+ box-shadow: 0 7px 7px rgba(0, 0, 0, 0.25), 0 5px 5px rgba(0, 0, 0, 0.22);
+ position: relative;
+ top:0;
+    bottom: 0;
     left: 0;
+    right: 0;
     
+    margin: auto;
+ overflow: hidden;
+ width: 70%;
+ /* max-width: 100%; */
+ /* min-height: 400px; */
+ height: 80vh;
 }
-.carousel{
+.signUpContainer{
     position: absolute;
-    height: 100%;
-    width: 55%;
-    left: 45%;
-    top: 0;
-    background-color: #B6EADA;
-    border-radius: 1.5rem;
+  top: 0;
+  height: 100%;
+  transition: all 0.6s ease-in-out;
+  left: 0;
+  width: 50%;
+  opacity: 0;
+  z-index: 1;
+}
+.signInContainer{
+    position: absolute;
+ top: 0;
+ height: 100%;
+ transition: all 0.6s ease-in-out;
+ left: 0;
+ width: 50%;
+ z-index: 2;
 }
 form{
-    max-width: 260px;
-    width: 100%;
-    margin: 0 auto;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly; 
+    background-color: #ffffff;
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ flex-direction: column;
+ padding: 0 50px;
+ height: 100%;
+ text-align: center;
 }
-
-form.signInForm{
-    display: none;
-}
-
-.logo{
-    display: flex;
-    align-items: center;
-    
-}
-.logo img{
-    width: 10rem;
-    margin: -3rem 0.3rem;
-}
-.logo h4{
-    font-size: 1.1rem;
-    margin-top: -9px;
-    letter-spacing: -0.5px;
-    color: #151111;
-}
-.heading h2{
-    font-size: 2.1rem;
-    font-weight: 600;
-    color: #151111;
-}
-.heading h6{
-    color: #bababa;
-    font-weight: 400;
-    font-size: 0.75rem;
-    display: inline;
-}
-.toggle{
-    color: #151111;
-    text-decoration: none;
-    font-size: 0.75rem;
-    font-weight: 500;
-    transition: 0.3s;
-}
-.toggle:hover{
-    color: #8371fd;
-
-}
-.inputWrap{
-    position: relative;
-    height: 37px;
-    margin-bottom: 2rem;
+.title{
+    font-weight: bold;
+    margin: 0;
 }
 .inputField{
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background: none;
+    background-color: #eee;
+ border: none;
+ padding: 12px 15px;
+ margin: 8px 0;
+ width: 100%;
+}
+.button{
+    border-radius: 20px;
     border: none;
     outline: none;
-    border-bottom: 1px solid #bbb;
-    padding: 0;
-    font-size: 0.95rem;
-    color: #151111;
-}
-label{
-    order: -1;
-    position: absolute;
-    left: 0;
-    top: 0%;
-    transform: translateY(50%);
-    font-size: 0.95rem;
-    color: #bbb;
-    pointer-events: none;
-    transition: 0.4s;
+    background-color: #05445E;
+    color: #ffffff;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 12px 45px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: transform 80ms ease-in;
     
 }
-
-.inputField.active{
-    border-bottom-color: #151111 ;
+.button:hover{
+    background: #D4F1F4;
+    color: #05445E;
 }
-input:focus + label{
-    font-size: 0.75rem;
-    transform: translateY(-5px);
+.button:active{
+    transform: scale(0.95);
 }
-.signBtn {
-    display: inline-block;
-    width: 100%;
-    height: 43px;
-    background-color: #151111;
-    color: #fff;
-    border: none;
+.button:focus{
+    outline: none;
+}
+.ghostButton{
+    border-radius: 20px;
+    /* border: 1px solid #05445E; */
+    background-color: #75E6DA;
+    border-color: #75E6DA;
+    color: #333;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 12px 45px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
     cursor: pointer;
-    border-radius: 0.8rem;
-    font-size: 0.8rem;
-    margin-bottom: 2rem;
-    transition: 0.3s;
-  }
-  
-  .signBtn:hover {
-    background-color: #8371fd;
-  }
-  
-  .text {
-    color: #bbb;
-    font-size: 0.7rem;
-  }
-  
-  .text a {
-    color: #bbb;
-    transition: 0.3s;
-  }
-  
-  .text a:hover {
-    color: #8371fd;
-  }
-
+    transition: transform 80ms ease-in;
+}
+.ghostButton:hover{
+    background: #05445E;
+    color: #75E6DA; 
+}
+.link{
+    color: #333;
+ font-size: 14px;
+ text-decoration: none;
+ margin: 15px 0;
+ text-decoration:underline;
+}
+.overlayContainer{
+    position: absolute;
+top: 0;
+left: 50%;
+width: 50%;
+height: 100%;
+overflow: hidden;
+transition: transform 0.6s ease-in-out;
+z-index: 100;
+}
+.overlay{
+    background: #ff416c;
+background: -webkit-linear-gradient(to right, #ff4b2b, #ff416c);
+background: linear-gradient(to bottom right, var(--first-color), #2367b9);
+background-repeat: no-repeat;
+background-size: cover;
+background-position: 0 0;
+color: #ffffff;
+position: relative;
+left: -100%;
+height: 100%;
+width: 200%;
+transform: translateX(0);
+transition: transform 0.6s ease-in-out;
+}
+.overlayPanel{
+    position: absolute;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     flex-direction: column;
+     padding: 0 40px;
+     text-align: center;
+     top: 0;
+     height: 100%;
+     width: 50%;
+     transform: translateX(0);
+     transition: transform 0.6s ease-in-out;
+}
+.leftOverlayPanel{
+    position: absolute;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     flex-direction: column;
+     padding: 0 40px;
+     text-align: center;
+     top: 0;
+     height: 100%;
+     width: 50%;
+     transform: translateX(0);
+     transition: transform 0.6s ease-in-out;
+    transform: translateX(-20%);
+}
+.rightOverlayPanel{
+    position: absolute;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     flex-direction: column;
+     padding: 0 40px;
+     text-align: center;
+     top: 0;
+     height: 100%;
+     width: 50%;
+     transform: translateX(0);
+     transition: transform 0.6s ease-in-out;
+    right: 0;
+     transform: translateX(0);
+}
+.paragraph{
+    font-size: 14px;
+   font-weight: 100;
+   line-height: 20px;
+   letter-spacing: 0.5px;
+   margin: 20px 0 30px
+}
+.googleBtn{
+    background: none;
+    outline: none;
+    padding: 2px 15px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: 0.14s;
+    cursor: pointer;
+    /* border-radius: 100vmax; */
+}
+.googleBtn:hover{
+    background: #333;
+    color: #fff;
+}
