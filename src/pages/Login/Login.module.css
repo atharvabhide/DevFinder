@@ -60,6 +60,7 @@ form{
  padding: 12px 15px;
  margin: 8px 0;
  width: 100%;
+ border-radius: 4px;
 }
 .button{
     border-radius: 20px;
@@ -193,6 +194,7 @@ transition: transform 0.6s ease-in-out;
     outline: none;
     padding: 2px 15px;
     display: flex;
+    border-radius: 4px;
     align-items: center;
     justify-content: space-between;
     transition: 0.14s;

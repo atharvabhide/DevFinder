@@ -12,6 +12,7 @@ import Typed from 'react-typed'
 
 import { DevCard } from '../../components/DevCard/DevCard'
 import { Layout } from '../../components/Layout/Layout'
+import { Footer } from '../../components/Footer/Footer'
 
 export const Home = () => {
   return (
@@ -89,6 +90,8 @@ export const Home = () => {
       
 
     </div>
+
+    <Footer />
     
    
     </>
