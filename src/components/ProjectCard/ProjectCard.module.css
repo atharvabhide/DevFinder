@@ -1,0 +1,79 @@
+.card{
+    z-index: 1;
+    position: relative;
+    max-width: 470px;
+    height: 450px;
+    border: 1.3px solid #65647C;
+    border-radius: 8px;
+    margin: 2rem auto;
+}
+.banner{
+    z-index: 1;
+    position: relative;
+    /* width: 100%; */
+    /* height: 40px; */
+    /* border-bottom: solid 1px lightgray; */
+    
+}
+.projectImage{
+    height: 12em;
+    width: 100%;
+    object-fit: cover;
+    opacity: 0.85;
+    border-radius: 8px;
+
+    border-bottom: 1.5px solid lightseagreen;
+}
+
+.projectTitle{
+    font-size: 1.5em;
+    margin-left: -0.7em;
+
+}
+.projectDeveloper{
+    font-size: 1em;
+    margin: 0.4em 0;
+    margin-left: -1em;
+
+}
+.projectFeedback{
+    margin-left: -1em;
+}
+
+.toolSection{
+    display: flex;
+    gap: 0.813rem;
+    margin: 0 1.5em;
+
+    /* margin: 0 auto; */
+    /* justify-content: center; */
+    flex-wrap: wrap;
+    position: absolute;
+    bottom: 0;
+    padding-bottom: clamp(1px, 8%, 4em);
+    
+}
+.toolBtn{
+    color: #fff;
+    outline: none;
+    border: 1px solid #333;
+    padding: 8px 15px;
+    font-weight: 500;
+    border-radius: 5px;
+}
+
+@media screen and (max-width: 700px) {
+    .card{
+        max-width: 550px;
+    }
+    
+}
+@media screen and (max-width: 340px) {
+    .toolBtn{
+        padding: 6px 14px;
+    }
+    .toolSection{
+        padding-bottom: clamp(1px, 2.5%, 4em);
+    }
+    
+}
