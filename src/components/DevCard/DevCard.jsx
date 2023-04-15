@@ -28,12 +28,23 @@ export const DevCard = (props) => {
                 <li className={styles.profilePosition}>{props.position}</li>
             </div>
             <p className={styles.profileBio}>{props.bio}</p>
-            <button className={styles.contact} >PROFILE</button>
+            {/* <button className={styles.contact} >PROFILE</button> */}
+
+            <div className={styles.bottom}>
+            <div className={styles.skillSection}>
+                <button className={styles.skillBtn} style={props.skill1 ? {backgroundColor: '#5670d7'} : {display: 'none'}}>{props.skill1}</button>
+                <button className={styles.skillBtn} style={props.skill2 ? {backgroundColor: '#5670d7'} : {display: 'none'}}>{props.skill2}</button>
+                <button className={styles.skillBtn} style={props.skill3 ? {backgroundColor: '#5670d7'} : {display: 'none'}}>{props.skill3}</button>
+                <button className={styles.skillBtn} style={props.skill4 ? {backgroundColor: '#5670d7'} : {display: 'none'}}>{props.skill4}</button>
+                <button className={styles.skillBtn} style={props.skill5 ? {backgroundColor: '#5670d7'} : {display: 'none'}}>{props.skill5}</button>
+            </div>
             <div className={styles.socialLinks}>
                 <Link to="#" className={styles.link}><FaLinkedinIn size={23} /></Link>
                 <Link to="#" className={styles.link}><SiGmail size={23} /></Link>
                 <Link to="#" className={styles.link}><GoMarkGithub size={23} /></Link>
             </div>
+            </div>
+
            
         </div>
     </>

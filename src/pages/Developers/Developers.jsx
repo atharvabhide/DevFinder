@@ -22,7 +22,12 @@ export const Developers = () => {
           image={Atharva}
             name="Atharva Bhide"
             position="ML/Backend Developer"
-            bio="The air was crisp and cool, with a hint of the upcoming autumn season. In the distance, a small stream meandered its way through the fields, glistening like a ribbon of silver in the morning light. It was a peaceful and idyllic scene, one that seemed to invite contemplation and reflection." 
+            bio="The air was crisp and cool, with a hint of the upcoming autumn season. In the distance, a small stream meandered its way through the fields, glistening like a ribbon of silver in the morning light. It was a peaceful and idyllic scene, one that seemed to invite contemplation and reflection."
+            skill1="Python" 
+            skill2="MongoDB" 
+            skill3="Tensorflow" 
+            skill4="React" 
+            skill5="Data Science" 
           />
           <DevCard
           image={Ak}

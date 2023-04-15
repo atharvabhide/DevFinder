@@ -1,8 +1,9 @@
 .card{
     z-index: 1;
     position: relative;
-    width: 250px;
-    height:380px;
+    /* min-width: 300px; */
+    max-width: 450px;
+    height:430px;
     border: 1.3px solid #65647C;
     border-radius: 4px;
     /* margin-bottom: 2rem; */
@@ -88,6 +89,7 @@
     /* max-width: 20em; */
     max-height: 6.21em;
     margin-bottom: 1.8em;
+    height: 10rem;
     /* white-space:wrap; */
     overflow: hidden;
     text-overflow: ellipsis;
@@ -120,4 +122,49 @@
     border-radius: 50%;
     top: 0;
     margin-top: -2.27rem;
+}
+.skillSection{
+    /* width: 100%; */
+    /* position: absolute;
+    bottom: 0; */
+    display: flex;
+    gap: 0.813em;
+    margin: 0 1vw;
+    padding-bottom: clamp(1px, 4%, 4em);
+    /* height: 0vh; */
+    justify-content: center;
+    align-items: left;
+    flex-wrap: wrap;
+}
+.skillBtn{
+    color: #fff;
+    outline: none;
+    border: 1px solid #333;
+    padding: 8px 15px;
+    font-weight: 500;
+    border-radius: 5px;
+
+}
+.bottom{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+
+
+
+@media screen and (max-width: 700px) {
+    .card{
+        max-width: 550px;
+    }
+    
+}
+@media screen and (max-width: 340px) {
+    .skillBtn{
+        padding: 6px 14px;
+    }
+    .skillSection{
+        padding-bottom: clamp(1px, 2.5%, 4em);
+    }
+    
 }
