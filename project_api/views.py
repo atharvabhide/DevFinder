@@ -25,7 +25,8 @@ class ProjectRetrieveView(generics.RetrieveAPIView):
     """
     queryset = Project.objects.all()
     serializer_class = ProjectSerializer
-
+    permission_classes = [IsAuthenticated]
+    
     def get(self, request, *args, **kwargs):
         return super().get(request, *args, **kwargs)
 
