@@ -5,6 +5,11 @@ from rest_framework import generics
 from rest_framework.pagination import PageNumberPagination
 
 class ProjectListView(generics.ListAPIView):
+    """
+    API endpoint that lists all projects.
+
+    No authentication required. 
+    """
     pagination_class = PageNumberPagination
     queryset = Project.objects.all()
     serializer_class = ProjectSerializer
@@ -13,6 +18,11 @@ class ProjectListView(generics.ListAPIView):
         return super().get(request, *args, **kwargs)
 
 class ProjectRetrieveView(generics.RetrieveAPIView):
+    """  
+    API endpoint that retrieves a project.
+    
+    No authentication required.
+    """
     queryset = Project.objects.all()
     serializer_class = ProjectSerializer
 
@@ -20,6 +30,11 @@ class ProjectRetrieveView(generics.RetrieveAPIView):
         return super().get(request, *args, **kwargs)
 
 class ProjectCreateView(generics.CreateAPIView, ProjectListView):
+    """ 
+    API endpoint that creates a project.
+    
+    Authentication required.
+    """
     permission_classes = [IsAuthenticated]
     queryset = Project.objects.all()
     serializer_class = ProjectSerializer
@@ -31,6 +46,11 @@ class ProjectCreateView(generics.CreateAPIView, ProjectListView):
         return super().get(request, *args, **kwargs)
 
 class ProjectUpdateView(generics.UpdateAPIView, ProjectRetrieveView):
+    """ 
+    API endpoint that updates a project.
+    
+    Authentication required.
+    """
     permission_classes = [IsAuthenticated]
     queryset = Project.objects.all()
     serializer_class = ProjectSerializer
@@ -42,6 +62,10 @@ class ProjectUpdateView(generics.UpdateAPIView, ProjectRetrieveView):
         return super().get(request, *args, **kwargs)
 
 class ProjectDestroyView(generics.DestroyAPIView, ProjectRetrieveView):
+    """ 
+    API endpoint that deletes a project.
+    
+    Authentication required."""
     permission_classes = [IsAuthenticated]
     queryset = Project.objects.all()
     serializer_class = ProjectSerializer
