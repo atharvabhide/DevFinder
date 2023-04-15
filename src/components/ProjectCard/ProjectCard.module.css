@@ -6,6 +6,10 @@
     border: 1.3px solid #65647C;
     border-radius: 8px;
     margin: 2rem auto;
+    transition: 0.13s;
+}
+.card:hover{
+    box-shadow: 0 0 10px 0 #eee inset, 0 0 10px 2px #eee;
 }
 .banner{
     z-index: 1;

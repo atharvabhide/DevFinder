@@ -20,8 +20,11 @@
     position: relative;
     
 }
+.header{
+    font-size: 1.5vw;
+}
 .heroGIF{
-    width: 34vw;
+    width: 50%;
 }
 .heroButton{
     background: none;
@@ -90,5 +93,21 @@
 .contributers{
     text-align: center;
     margin: 3rem 0;
+}
+
+@media screen and (max-width: 768px) {
+    .hero{
+        flex-direction: column-reverse;
+        justify-content: center;
+        margin: 0;
+    }
+    .header{
+        width: 100%;
+        text-align: center;
+        font-size: 2.5vw;
+    }
+    .heroGIF{
+        width: 70%;
+    }
 }
     

@@ -75,6 +75,14 @@ img{
   max-width: 100%;
   height: auto;
 }
+hr {
+  display: block;
+  height: 1px;
+  border: 0;
+  border-top: 1px solid lightgray;
+  margin: 1.5em 0;
+  padding: 0;
+}
 html{
   scroll-behavior: smooth;
   scroll-padding-top: 5rem;

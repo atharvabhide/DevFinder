@@ -1,0 +1,116 @@
+.project{
+    position: relative;
+    display: flex;
+    width: 100%;
+    height: 100%;
+    padding: 2.5rem 5rem;
+}   
+.projectTools{
+    /* background-color: red; */
+    width: 35%;
+    position: fixed;
+}
+.projectInfo{
+    /* background-color: aquamarine; */
+    margin-left: 30vw;
+    width: 65%;
+}
+.toolBtn{
+    background-color: #5670d7;
+    color: #fff;
+    outline: none;
+    border: 1px solid #333;
+    padding: 8px 15px;
+    font-weight: 500;
+    border-radius: 5px;
+}
+.toolSection{
+    display: flex;
+    gap: 0.813rem;
+    /* margin: 0 1.5em; */
+    width: 70%;
+    margin: 0.5rem 0;
+    /* margin: 0 auto; */
+    /* justify-content: center; */
+    flex-wrap: wrap;
+    
+    padding-bottom: clamp(1px, 8%, 4em);
+    
+}
+.projectImage{
+    max-height: 22rem;
+    /* min-width: 35.55rem; */
+    width: 100%;
+    object-fit: cover;
+    opacity: 0.85;
+    border-radius: 8px;
+
+    /* border-bottom: 1.5px solid lightseagreen; */
+}
+.projectLinks{
+    margin: 1rem 0;
+    font-weight: 600;
+    text-decoration: underline;
+}
+.commentSection{
+    width: 100%;
+    height: 12em;
+    font-size: 22px;
+}
+.commentBtn{
+    background-color: var(--first-color-light);
+    border: none;
+    padding: 18px 34px;
+    margin: 1em 0;
+    color: aliceblue;
+    font-size: var(--header-font);
+    border-radius: 100vmax;
+    cursor: pointer;
+}
+.commentBtn:hover{
+    background-color: var(--first-color);
+}
+.projectTitle {
+    font-size: var(--h2-font-size);
+}
+.aboutProject{
+    font-size: var(--h2-font-size);
+
+}
+.feedback{
+    font-size: var(--h2-font-size);
+
+}
+
+@media screen and (max-width: 875px) {
+    .project{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        padding: 2rem 3.4rem;
+        text-align: center;
+
+    }
+    .projectTools{
+        position: relative;
+        width: 100%;
+        
+    }
+    .projectInfo{
+        margin-left: 0;
+        width: 100%;
+    }
+    .toolSection{
+        width: 100%;
+        align-items: center;
+        justify-content: center;
+        padding-bottom: clamp(1px, 4%, 4em);
+    }
+}
+
+@media screen and (max-width: 426px){
+    .project{
+        padding: 2rem 1.43rem;
+    }
+}

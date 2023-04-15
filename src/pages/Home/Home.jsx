@@ -22,8 +22,8 @@ export const Home = () => {
       <div className={styles.heroPage}>
         <div className={styles.hero}>
           <div className={styles.header}>
-            <h1>The best platform for {' '} <br />
-                <Typed className={styles.typed} strings={['Developers', 'Interns', 'Companies']} typeSpeed={120} backSpeed={140} loop /></h1>
+            <h1>Empowering developers to {' '} <br />
+                <Typed className={styles.typed} strings={['Network', 'Connect', 'Grow']} typeSpeed={120} backSpeed={140} loop /><br /> with our developer-focused social platform</h1>
             <br /><br />  
             <Link to='/login'><button className={styles.heroButton}>
             Get Started
