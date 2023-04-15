@@ -1,3 +1,15 @@
+.header{
+    background-color: #05445E;
+    height: 40vh;
+    display: flex;
+    flex-direction: column;
+    gap: 4em;
+    justify-content: center;
+    align-items: center;
+    color: aliceblue;
+    font-weight: 900;
+}
+
 .projects{
     display: grid;
     margin: 0 2em;
