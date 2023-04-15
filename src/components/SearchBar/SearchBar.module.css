@@ -1,0 +1,19 @@
+.headerSearch{
+    display: flex;
+    padding: 0.5rem 1rem;
+    background-color: var(--first-color-light);
+    border-radius: 0.25rem;
+}
+.headerInput{
+    width: 14rem;
+    /* height: 2vh; */
+    font-size: 0.9rem;
+    border: none;
+    outline: none;
+    background-color: var(--first-color-light);
+    color: #fff;
+}
+.headerInput::placeholder{
+    font-family: var(--body-font);
+    color: var(--body-color);
+}

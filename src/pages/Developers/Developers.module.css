@@ -2,6 +2,8 @@
     background-color: #05445E;
     height: 40vh;
     display: flex;
+    flex-direction: column;
+    gap: 1em;
     justify-content: center;
     align-items: center;
     color: aliceblue;
@@ -10,5 +12,4 @@
 .developers{
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(18.2em, 1fr));
-    
 }

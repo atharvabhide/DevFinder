@@ -4,6 +4,9 @@ import { DevCard } from '../../components/DevCard/DevCard'
 import Atharva from '../../assets/nalla.jpg'
 import Ak from '../../assets/ak.jpg'
 import Dhanya from '../../assets/dhanya2.jpg'
+import {Footer} from '../../components/Footer/Footer'
+import { SearchBar } from '../../components/SearchBar/SearchBar'
+
 
 export const Developers = () => {
   return (
@@ -11,6 +14,7 @@ export const Developers = () => {
       <div className={styles.wrapper}>
         <div className={styles.header}>
             Idhar kuch toh header dalte searchbar ke sath
+            <SearchBar />
         </div>  
 
         <div className={styles.developers}>
@@ -41,6 +45,9 @@ export const Developers = () => {
           />
         </div>
     </div>
+    
+    <Footer />
+
     </>
   )
 }

@@ -9,6 +9,7 @@ import {TbMessageCircle} from 'react-icons/tb'
 import {FiUsers} from 'react-icons/fi'
 import {MdClose} from 'react-icons/md'
 import Logo from '../../assets/Logo.png'
+import { SearchBar } from '../SearchBar/SearchBar'
 
 
 export const Navbar = () => {
@@ -29,10 +30,8 @@ export const Navbar = () => {
                 {/* <h3>DevFinder</h3> */}
                 <img className="logo" src={Logo} alt="" />
 
-                <div className="headerSearch">
-                    <input type="text" placeholder='Search' className="headerInput" />
-                    <GoSearch style={IconStyle} />
-                </div>
+                {/* SearchBar */}
+                
 
                 {/* <img Logo idhar** /> */}
 

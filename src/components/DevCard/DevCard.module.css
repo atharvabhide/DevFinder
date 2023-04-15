@@ -51,6 +51,10 @@
     justify-content: center;
     align-items: center;
     padding: 0.85rem 0 0.5rem 0;
+    text-align: center;
+    max-height: 11.5vh;
+    margin: 0 auto;
+    
 }
 .socialLinks{
     position: relative;
