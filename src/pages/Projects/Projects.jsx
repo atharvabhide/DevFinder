@@ -5,6 +5,7 @@ import { SearchBar } from '../../components/SearchBar/SearchBar'
 import { useNavigate } from 'react-router'
 import { ProjectCard } from '../../components/ProjectCard/ProjectCard'
 import { Link } from 'react-router-dom'
+import {Footer} from '../../components/Footer/Footer'
 
 export const Projects = () => {
 
@@ -67,6 +68,7 @@ export const Projects = () => {
           </Link>
         </div>
       </div>
+      <Footer />
     </>
   )
 }

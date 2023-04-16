@@ -58,7 +58,7 @@
     font-size: 22px;
 }
 .commentBtn{
-    background-color: var(--first-color-light);
+    background-color: #05445E;
     border: none;
     padding: 18px 34px;
     margin: 1em 0;
@@ -68,7 +68,8 @@
     cursor: pointer;
 }
 .commentBtn:hover{
-    background-color: var(--first-color);
+    background-color: #75E6DA;
+    color: #333;
 }
 .projectTitle {
     font-size: var(--h2-font-size);

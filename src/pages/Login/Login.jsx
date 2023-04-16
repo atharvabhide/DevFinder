@@ -14,6 +14,7 @@ export const Login = () => {
     <>
     <div className={styles.wrapper}>
       <div className={styles.container}>
+        <div className={styles.jugaad1}>
         <div className={styles.signUpContainer}  style={signIn !== true ? { 
     transform: 'translateX(100%)',
     opacity: 1,
@@ -28,7 +29,9 @@ export const Login = () => {
             <button className={styles.button}>Sign Up</button>
           </form>
         </div>
+        </div>
 
+        <div className={styles.jugaad2}>
         <div className={styles.signInContainer}  style={signIn !== true ? { 
     transform: 'translateX(100%)'
   } : null}>
@@ -47,6 +50,7 @@ export const Login = () => {
               <p>Continue with Google</p>
             </button>
           </form>
+        </div>
         </div>
 
         <div className={styles.overlayContainer} style={signIn !== true ? { 

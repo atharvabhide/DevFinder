@@ -16,10 +16,10 @@
     
     margin: auto;
  overflow: hidden;
- width: 70%;
+ width: 75%;
  /* max-width: 100%; */
  /* min-height: 400px; */
- height: 80vh;
+ min-height: 80vh;
 }
 .signUpContainer{
     position: absolute;
@@ -204,4 +204,12 @@ transition: transform 0.6s ease-in-out;
 .googleBtn:hover{
     background: #333;
     color: #fff;
+}
+
+
+@media screen and (max-width: 900px) {
+    .container{
+        display: flex;
+        flex-direction: column;
+    }
 }
