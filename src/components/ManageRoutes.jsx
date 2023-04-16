@@ -6,6 +6,7 @@ import { Inbox } from '../pages/Inbox/Inbox'
 import { Projects } from '../pages/Projects/Projects'
 import { Login } from '../pages/Login/Login'
 import { IndividualProject } from '../pages/Projects/IndividualProject/IndividualProject'
+import { IndividualDeveloper } from '../pages/Developers/IndividualDeveloper/IndividualDeveloper'
 
 export const ManageRoutes = () => {
   return (
@@ -15,6 +16,7 @@ export const ManageRoutes = () => {
       <Route path="/inbox" element={<Inbox />} />
       <Route path="/projects" element={<Projects />} />
       <Route path="/projects/project" element={<IndividualProject />} />
+      <Route path='/developers/developer' element={<IndividualDeveloper />} />
       <Route path="/login" element={<Login />} />
       
     </Routes>
