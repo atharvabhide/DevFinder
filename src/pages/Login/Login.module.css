@@ -120,7 +120,7 @@ width: 50%;
 height: 100%;
 overflow: hidden;
 transition: transform 0.6s ease-in-out;
-z-index: 100;
+z-index: 10;
 }
 .overlay{
     background: #ff416c;
@@ -199,6 +199,7 @@ transition: transform 0.6s ease-in-out;
     justify-content: space-between;
     transition: 0.14s;
     cursor: pointer;
+    margin: 0 auto;
     /* border-radius: 100vmax; */
 }
 .googleBtn:hover{
@@ -207,9 +208,30 @@ transition: transform 0.6s ease-in-out;
 }
 
 
-@media screen and (max-width: 900px) {
-    .container{
-        display: flex;
-        flex-direction: column;
-    }
+@media screen and (max-width: 850px) {
+    .wrapper {
+        height: auto;
+        max-width: 550px;
+        overflow: hidden;
+      }
+    
+      .container {
+        position: static;
+        transform: none;
+        width: revert;
+        height: revert;
+        padding: 2rem;
+      }
+    
+      .formsWrap {
+        position: revert;
+        width: 100%;
+        height: auto;
+      }
+    
+      form {
+        max-width: revert;
+        padding: 1.5rem 2.5rem 2rem;
+        transition: transform 0.8s ease-in-out, opacity 0.45s linear;
+      }
 }

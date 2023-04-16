@@ -1,8 +1,7 @@
 import React, { useState } from 'react'
 import styles from './Login.module.css'
 import { Link } from 'react-router-dom'
-import Logo from '../../assets/Logo.png'
-import { useEffect } from 'react'
+
 import {FcGoogle} from 'react-icons/fc'
 
 export const Login = () => {
@@ -12,46 +11,53 @@ export const Login = () => {
   return (
     
     <>
+    <main>
     <div className={styles.wrapper}>
       <div className={styles.container}>
-        <div className={styles.jugaad1}>
-        <div className={styles.signUpContainer}  style={signIn !== true ? { 
-    transform: 'translateX(100%)',
-    opacity: 1,
-    zIndex: 5
-  } : null}>
-          <form action="#">
-            <h2>Create Account</h2><br />
-            <input className={styles.inputField} type="text" placeholder='Name' />
-            <input className={styles.inputField} type="text" placeholder='Username' />
-            <input className={styles.inputField} type="email" placeholder='Email' />
-            <input className={styles.inputField} type="password" placeholder='Password' /><br />
-            <button className={styles.button}>Sign Up</button>
-          </form>
-        </div>
-        </div>
 
-        <div className={styles.jugaad2}>
-        <div className={styles.signInContainer}  style={signIn !== true ? { 
-    transform: 'translateX(100%)'
+        <div className={styles.formsWraps}>
+        
+          <form action="#" className={styles.signUpContainer} style={signIn !== true ? { 
+          transform: 'translateX(100%)',
+          opacity: 1,
+          zIndex: 5,
+          
   } : null}>
-          <form action="#">
+            <h2>Create Account</h2><br />
+            <div className={styles.actualForm}>
+              <input className={styles.inputField} type="text"  placeholder='Name' />
+              <input className={styles.inputField} type="text"  placeholder='Username' />
+              <input className={styles.inputField} type="email"   placeholder='Email' />
+              <input className={styles.inputField} type="password"  placeholder='Password' /><br />
+              <button className={styles.button}>Sign Up</button>
+            </div>
+          </form>
+        
+
+        
+          <form action="#" className={styles.signInContainer}  style={signIn !== true ? { 
+            transform: 'translateX(100%)',
+            opacity: 0,
+            
+  } : null}>
             <h2>Log In</h2> <br />
             
-            <input className={styles.inputField} type="email" placeholder='Email' />
-            <input className={styles.inputField} type="password" placeholder='Password' />
-            <Link to="#" className={styles.link}>Forgot your password?</Link>
-            <button className={styles.button}>Sign In</button>
-            <div  className={styles.paragraph}>
-                OR
+            <div className={styles.actualForm}>
+              <input className={styles.inputField} type="email"   placeholder='Email' />
+              <input className={styles.inputField} type="password"  placeholder='Password' />
+              <Link to="#" className={styles.link}>Forgot your password?</Link><br /><br />
+              <button className={styles.button}>Sign In</button>
+              <div  className={styles.paragraph}>
+                  OR
+              </div>
+              <button className={styles.googleBtn}>
+                <FcGoogle size={22} style={{margin: '0 10px 0 0'}} />
+                <p>Continue with Google</p>
+              </button>
             </div>
-            <button className={styles.googleBtn}>
-              <FcGoogle size={22} style={{margin: '0 10px 0 0'}} />
-              <p>Continue with Google</p>
-            </button>
           </form>
         </div>
-        </div>
+        
 
         <div className={styles.overlayContainer} style={signIn !== true ? { 
     transform: 'translateX(-100%)'
@@ -86,6 +92,7 @@ export const Login = () => {
 
       </div>
       </div>
+      </main>
     </>
   )
 }
