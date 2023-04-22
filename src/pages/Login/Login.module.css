@@ -234,4 +234,40 @@ transition: transform 0.6s ease-in-out;
         padding: 1.5rem 2.5rem 2rem;
         transition: transform 0.8s ease-in-out, opacity 0.45s linear;
       }
+      form.signUpContainer {
+        transform: translateX(100%);
+      }
+      .signInContainer{
+        /* width: 100%; */
+      }
+      
+    
+      main.sign-up-mode form.signInContainer {
+        transform: translateX(100%);
+      }
+    
+      main.sign-up-mode form.signUpContainer {
+        transform: translateX(0%);
+      }
+}
+@media screen and (max-width: 570px){
+    .overlay{
+        position: absolute;
+        height: 30vh;
+        bottom: 0;
+    }
+    .signInContainer{
+        width: 100%;
+        position: absolute;
+        right: -100%;
+        
+    }
+    .signUpContainer{
+        width: 100%;
+        position: absolute;
+        left: -100%;
+    }
+    .ghostButton{
+        visibility: visible;
+    }
 }

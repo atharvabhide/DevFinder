@@ -6,10 +6,30 @@ import { useNavigate } from 'react-router'
 import { ProjectCard } from '../../components/ProjectCard/ProjectCard'
 import { Link } from 'react-router-dom'
 import {Footer} from '../../components/Footer/Footer'
+import { useState, useEffect } from 'react'
+import axios from 'axios'
+
 
 export const Projects = () => {
 
   const navigate = useNavigate();
+  const [myData, setMyData] = useState([]);
+  const [isError, setIsError] = useState("");
+
+  // Using Promises
+
+  useEffect(() => {
+    axios
+    .get("http://127.0.0.1:8000/project-api/projects/?page=1")
+    .then(response => {
+      const data = response.data;
+      const projects = data.results;
+      setMyData(projects);
+    })
+    .catch((error) => setIsError(error.message))
+  }, [])
+
+
 
   return (
     <>
@@ -18,10 +38,28 @@ export const Projects = () => {
             Idhar kuch toh header dalte searchbar ke sath
             <SearchBar />
         </div>
-        <div className={styles.projects}>
+        
           
           <Link to="/projects/project">
-          <ProjectCard
+
+            
+          <div className={styles.projects}>
+          {myData.map((items) => (
+            
+          
+            <ProjectCard
+              projectName={items.title}
+              image={items.featuredImage}
+            />
+            
+            
+          
+          ) )}
+          </div>
+
+           
+          {/* <ProjectCard
+            
             image={ProjectImage}
             projectName="Portfolio"
             projectDeveloper="wolfmartel"
@@ -64,10 +102,13 @@ export const Projects = () => {
             tool2="MongoDB"
             tool3="Node.js"
             tool4="Express.js"
-          />
+          /> */}
+
+          {/* <ProjectCard /> */}
           </Link>
-        </div>
+        
       </div>
+      
       <Footer />
     </>
   )
