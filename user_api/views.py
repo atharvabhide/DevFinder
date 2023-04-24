@@ -1,5 +1,5 @@
-from .models import Profile, Skill
-from .serializers import ProfileSerializer, SkillSerializer, UserSerializer
+from .models import Profile, Skill, Message
+from .serializers import ProfileSerializer, SkillSerializer, UserSerializer, MessageSerializer
 from rest_framework.generics import ListAPIView, RetrieveAPIView, DestroyAPIView, UpdateAPIView, CreateAPIView
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.pagination import PageNumberPagination
@@ -90,3 +90,25 @@ class SkillDestroyView(DestroyAPIView, SkillRetrieveView):
     
     def delete(self, request, *args, **kwargs):
         return self.destroy(request, *args, **kwargs)
+
+class CreateMessageAPIView(CreateAPIView):
+    queryset = Message.objects.all()
+    serializer_class = MessageSerializer
+    permission_classes = [IsAuthenticated]
+
+class ListMessageAPIView(ListAPIView):
+    serializer_class = MessageSerializer
+    permission_classes = [IsAuthenticated]
+
+    def get_queryset(self):
+        profile = self.request.user.profile
+        return profile.messages.all()
+
+
+class RetrieveMessageAPIView(RetrieveAPIView):
+    serializer_class = MessageSerializer
+    permission_classes = [IsAuthenticated]
+
+    def get_queryset(self):
+        profile = self.request.user.profile
+        return profile.messages.all()

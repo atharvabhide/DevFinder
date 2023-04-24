@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import ProfileListView, ProfileRetrieveView, ProfileUpdateView, ProfileDestroyView, SkillListView, SkillCreateView, SkillRetrieveView, SkillUpdateView, SkillDestroyView
+from .views import ProfileListView, ProfileRetrieveView, ProfileUpdateView, ProfileDestroyView, SkillListView, SkillCreateView, SkillRetrieveView, SkillUpdateView, SkillDestroyView, ListMessageAPIView, CreateMessageAPIView, RetrieveMessageAPIView
 
 urlpatterns = [
     path('profiles/', ProfileListView.as_view(), name='profile-list'),
@@ -11,4 +11,9 @@ urlpatterns = [
     path('profiles/<str:pk>/skills/<str:sk>/', SkillRetrieveView.as_view(), name='skill-detail'),
     path('profiles/<str:pk>/skills/<str:sk>/update/', SkillUpdateView.as_view(), name='skill-update'),
     path('profiles/<str:pk>/skills/<str:sk>/delete/', SkillDestroyView.as_view(), name='skill-delete'),
+
+    path('profiles/<str:pk>/messages/', ListMessageAPIView.as_view(), name='inbox'),
+    path('profiles/<str:pk>/messages/<str:sk>/', RetrieveMessageAPIView.as_view(), name='view-message'),
+    path('profiles/<str:pk>/create-message/', CreateMessageAPIView.as_view(), name='create-message'),
+
 ]
