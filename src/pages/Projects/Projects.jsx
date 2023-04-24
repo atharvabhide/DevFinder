@@ -28,7 +28,7 @@ export const Projects = () => {
     })
     .catch((error) => setIsError(error.message))
   }, [])
-
+  console.log(myData)
 
 
   return (
