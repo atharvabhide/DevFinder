@@ -17,7 +17,7 @@ class ProfileListView(ListAPIView):
 class ProfileRetrieveView(RetrieveAPIView):
     queryset = Profile.objects.all()
     serializer_class = ProfileSerializer
-    permission_classes = [IsAuthenticated]
+    # permission_classes = [IsAuthenticated]
     
     def get(self, request, *args, **kwargs):
         return self.retrieve(request, *args, **kwargs)
