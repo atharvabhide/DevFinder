@@ -38,22 +38,15 @@ export const Projects = () => {
             Idhar kuch toh header dalte searchbar ke sath
             <SearchBar />
         </div>
-        
-          
-          <Link to="/projects/project">
-
-            
           <div className={styles.projects}>
           {myData.map((items) => (
             
-          
+            <Link to="/projects/project">
             <ProjectCard
               projectName={items.title}
               image={items.featuredImage}
             />
-            
-            
-          
+            </Link>
           ) )}
           </div>
 
@@ -105,7 +98,7 @@ export const Projects = () => {
           /> */}
 
           {/* <ProjectCard /> */}
-          </Link>
+          {/* </Link> */}
         
       </div>
       
