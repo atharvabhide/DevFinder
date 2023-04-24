@@ -41,7 +41,7 @@ export const Projects = () => {
           <div className={styles.projects}>
           {myData.map((items) => (
             
-            <Link to="/projects/project">
+            <Link to="/projects/project" state={{url: items.url}}>
             <ProjectCard
               projectName={items.title}
               image={items.featuredImage}
