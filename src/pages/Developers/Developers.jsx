@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import styles from './Developers.module.css'
 import { DevCard } from '../../components/DevCard/DevCard'
 import Atharva from '../../assets/nalla.jpg'
@@ -7,9 +7,24 @@ import Dhanya from '../../assets/dhanya2.jpg'
 import {Footer} from '../../components/Footer/Footer'
 import { Link } from 'react-router-dom'
 import { SearchBar } from '../../components/SearchBar/SearchBar'
+import axios from 'axios'
 
 
 export const Developers = () => {
+
+  const [users, setUsers] = useState([]);
+
+  const fetchDevelopers = async () => {
+    const response = await axios.get("http://127.0.0.1:8000/user-api/profiles/");
+    const items = response.data.results;
+    console.log(items);
+    setUsers(items);
+  }
+
+  useEffect(() => {
+    fetchDevelopers();
+  }, [])
+
   return (
     <>
       <div className={styles.wrapper}>
