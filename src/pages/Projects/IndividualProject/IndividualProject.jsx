@@ -1,6 +1,6 @@
 import React from 'react'
 import styles from './IndividualProject.module.css'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import ProjectImage from '../../../assets/banner5.jpg'
 import { useState, useEffect } from 'react'
 import axios from 'axios'
@@ -8,21 +8,26 @@ import axios from 'axios'
 export const IndividualProject = (props) => {
 
     const [myData, setMyData] = useState([]);
-  const [isError, setIsError] = useState("");
+    const [isError, setIsError] = useState("");
+    const location = useLocation();
+    // console.log(location);
+    const url = location.state.url;
+    // console.log(url);
+  
 
-  // Using Promises
+  const fetchProject = async () => {
+    try {
+        const response = await axios.get(url);
+        const project = response.data;
+        setMyData(project);
+    } catch (err) {
+      setIsError(err);
+    }
+  }
 
   useEffect(() => {
-    axios
-    .get("http://127.0.0.1:8000/project-api/projects/e8074607-6a91-42c6-8e1a-c509333ab4ac/")
-    .then(response => {
-      const data = response.data;
-    //   const project = data.results;
-      setMyData(data);
-    })
-    .catch((error) => setIsError(error.message))
+    fetchProject();
   }, [])
-  console.log(myData);
 
   return (
     <>
