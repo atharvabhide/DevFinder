@@ -15,7 +15,7 @@ export const Developers = () => {
   const [users, setUsers] = useState([]);
 
   const fetchDevelopers = async () => {
-    const response = await axios.get("http://127.0.0.1:8000/user-api/profiles/");
+    const response = await axios.get("http://127.0.0.1:8000/user-api/profiles/?page=2");
     const items = response.data.results;
     console.log(items);
     setUsers(items);
@@ -34,20 +34,24 @@ export const Developers = () => {
         </div>  
 
         <div className={styles.developers}>
-          <Link to="/developers/developer">
-          <DevCard
-          image={Atharva}
-            name="Atharva Bhide"
-            position="ML/Backend Developer"
-            bio="The air was crisp and cool, with a hint of the upcoming autumn season. In the distance, a small stream meandered its way through the fields, glistening like a ribbon of silver in the morning light. It was a peaceful and idyllic scene, one that seemed to invite contemplation and reflection."
-            skill1="Python" 
-            skill2="MongoDB" 
-            skill3="Tensorflow" 
-            skill4="React" 
-            skill5="Data Science" 
-          />
-          </Link>
-          <Link to="/developers/developer">
+
+          {users.map((items) => (
+            <Link to="/developers/developer">
+            <DevCard
+              
+              name={items.username}
+              // position="ML/Backend Developer"
+              // bio="The air was crisp and cool, with a hint of the upcoming autumn season. In the distance, a small stream meandered its way through the fields, glistening like a ribbon of silver in the morning light. It was a peaceful and idyllic scene, one that seemed to invite contemplation and reflection."
+              // skill1="Python" 
+              // skill2="MongoDB" 
+              // skill3="Tensorflow" 
+              // skill4="React" 
+              // skill5="Data Science" 
+            />
+            </Link>
+          ))}
+          
+          {/* <Link to="/developers/developer">
           <DevCard
           image={Ak}
             name="Aakash Kasabekar"
@@ -71,7 +75,7 @@ export const Developers = () => {
             position="ML/Backend Developer"
             bio="The air was crisp and cool, with a hint of the upcoming autumn season. In the distance, a small stream meandered its way through the fields, glistening like a ribbon of silver in the morning light. It was a peaceful and idyllic scene, one that seemed to invite contemplation and reflection." 
           />
-          </Link>
+          </Link> */}
         </div>
     </div>
     
