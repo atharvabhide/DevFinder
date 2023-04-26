@@ -5,8 +5,26 @@ import {ProjectCard} from '../../../components/ProjectCard/ProjectCard'
 import ProjectImage from '../../../assets/banner5.jpg'
 import ProfileImage from '../../../assets/nalla.jpg'
 import {TiLocation} from 'react-icons/ti'
+import { useState, useEffect } from 'react'
+import axios from 'axios'
 
 export const IndividualDeveloper = () => {
+
+  const [users, setUsers] = useState([]);
+
+  const fetchDevelopers = async () => {
+    const response = await axios.get("http://127.0.0.1:8000/user-api/profiles/187adbe3-c468-4a67-bb18-eeebfa3be462/");
+    const items = response.data;
+    console.log(items);
+    setUsers(items);
+  }
+  
+  useEffect(() => {
+    fetchDevelopers();
+  }, [])
+  console.log(users);
+  
+
   return (
     <>
         <div className={styles.wrapper}>
@@ -17,7 +35,7 @@ export const IndividualDeveloper = () => {
                 <img src={ProfileImage} className={styles.developerImage} alt="" />
                 </div>
                 <div>
-                <p className={styles.developerName}><b>Atharva Bhide</b></p>
+                <p className={styles.developerName}><b>{users.username}</b></p>
                 <p className={styles.developerPosition}>Backend engineer</p>
                 
                 <p className={styles.developerLocation}><TiLocation size={22} />: Pune</p>
