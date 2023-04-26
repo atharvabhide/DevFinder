@@ -1,7 +1,14 @@
 from .models import Project, Review, Tag
 from rest_framework import serializers
 
+
+class TagSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Tag
+        fields = '__all__'
+
 class ProjectSerializer(serializers.HyperlinkedModelSerializer):
+    tags = TagSerializer(many=True, read_only=True)
     """ 
     Serializer for Project model.
     
@@ -22,31 +29,24 @@ class ProjectSerializer(serializers.HyperlinkedModelSerializer):
         model = Project
         fields = '__all__'
     
-class ReviewSerializer(serializers.HyperlinkedModelSerializer):
-    """" 
-    Serializer for Review model.
-    
-    Fields:
-        value: IntegerField
-        body: CharField
-        project: ForeignKey
-        owner: ForeignKey
-        createdAt: DateTimeField
-        id: UUIDField
-    """
+class ReviewSerializer(serializers.ModelSerializer):
+    project = serializers.CharField(source='project.title', read_only=True)
+
     class Meta:
         model = Review
-        fields = '__all__'
+        fields = ['id', 'project', 'body', 'value', 'createdAt']
+
+    def create(self, validated_data):
+        project_pk = self.context['view'].kwargs.get('pk')
+        try:
+            project = Project.objects.get(pk=project_pk)
+        except Project.DoesNotExist:
+            raise serializers.ValidationError(f"Project with ID {project_pk} does not exist")
+
+        return Review.objects.create(
+            project=project,
+            body=validated_data['body'],
+            value=validated_data['value'],
+        )
+
     
-class TagSerializer(serializers.HyperlinkedModelSerializer):
-    """  
-    Serializer for Tag model.
-    
-    Fields:
-        name: CharField
-        created_at: DateTimeField
-        id: UUIDField
-        """
-    class Meta:
-        model = Tag
-        fields = '__all__'
