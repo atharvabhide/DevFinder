@@ -7,6 +7,7 @@ from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.response import Response
 from rest_framework import status
+from rest_framework_simplejwt.authentication import JWTAuthentication
 
 
 class ProjectListView(generics.ListAPIView):
@@ -42,6 +43,7 @@ class ProjectCreateView(generics.CreateAPIView, ProjectListView):
     Authentication required.
     """
     permission_classes = [IsAuthenticated]
+    authentication_classes = [JWTAuthentication]
     queryset = Project.objects.all()
     serializer_class = ProjectSerializer
 
@@ -58,6 +60,7 @@ class ProjectUpdateView(generics.UpdateAPIView, ProjectRetrieveView):
     Authentication required.
     """
     permission_classes = [IsAuthenticated]
+    authentication_classes = [JWTAuthentication]
     queryset = Project.objects.all()
     serializer_class = ProjectSerializer
 
@@ -73,6 +76,7 @@ class ProjectDestroyView(generics.DestroyAPIView, ProjectRetrieveView):
     
     Authentication required."""
     permission_classes = [IsAuthenticated]
+    authentication_classes = [JWTAuthentication]
     queryset = Project.objects.all()
     serializer_class = ProjectSerializer
 
