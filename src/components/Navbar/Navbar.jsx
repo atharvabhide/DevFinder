@@ -5,6 +5,7 @@ import {HiMenuAlt3} from 'react-icons/hi'
 import {Link} from 'react-router-dom'
 import {HiCode, HiOutlineHome} from 'react-icons/hi'
 import {MdOutlineLogin} from 'react-icons/md'
+import {MdOutlineLogout} from 'react-icons/md'
 import {TbMessageCircle} from 'react-icons/tb'
 import {FiUsers} from 'react-icons/fi'
 import {MdClose} from 'react-icons/md'
@@ -75,6 +76,11 @@ export const Navbar = () => {
                             <Link to="/login" className="navLink">
                                 <MdOutlineLogin className="navIcon" />
                                 <span className="navName">Login/Signup</span>
+                            </Link> 
+
+                            <Link to="/logout" className="navLink">
+                                <MdOutlineLogout className="navIcon" />
+                                <span className="navName">Logout</span>
                             </Link> 
 
                         </div>
