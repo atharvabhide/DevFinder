@@ -131,36 +131,41 @@ class SkillDestroyView(DestroyAPIView, SkillRetrieveView):
     def delete(self, request, *args, **kwargs):
         return self.destroy(request, *args, **kwargs)
 
-class CreateMessageAPIView(CreateAPIView):
+class ListMessageAPIView(generics.ListCreateAPIView):
+    serializer_class = MessageSerializer
+
+    def get_queryset(self):
+        user = self.request.user
+        profile, created = Profile.objects.get_or_create(user=user)
+        queryset = Message.objects.filter(recipient=profile)
+        return queryset
+
+    def perform_create(self, serializer):
+        recipient_id = self.kwargs.get('pk')
+        recipient = Profile.objects.get(id=recipient_id)
+        sender = self.request.user.profile
+        email = self.request.user.profile.email
+        name = self.request.user.profile.name
+        serializer.save(sender=sender, recipient=recipient, email = email, name = name)
+
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
+
+class RetrieveMessageAPIView(generics.RetrieveAPIView):
     queryset = Message.objects.all()
     serializer_class = MessageSerializer
-    authentication_classes = [JWTAuthentication]
-    permission_classes = [IsAuthenticated]
+    # permission_classes = [IsAuthenticated]
 
-    def post(self, request, *args, **kwargs):
-        return self.create(request, *args, **kwargs)
-
-class ListMessageAPIView(ListAPIView):
-    serializer_class = MessageSerializer
-    authentication_classes = [JWTAuthentication]
-    permission_classes = [IsAuthenticated]
-
-    def post(self, request, *args, **kwargs):
-        return self.list(request, *args, **kwargs)
+class SimilarUserView(ListAPIView):
+    serializer_class = UserSerializer
 
     def get_queryset(self):
-        profile = self.request.user.profile
-        return profile.messages.all()
+        # Retrieve the current user's skills
+        current_user_skills = self.request.user.profile.skills.all()
 
+        # Retrieve other users with similar skills
+        similar_users = Profile.objects.filter(
+            Q(skills__in=current_user_skills) & ~Q(user=self.request.user)
+        )
 
-class RetrieveMessageAPIView(RetrieveAPIView):
-    serializer_class = MessageSerializer
-    authentication_classes = [JWTAuthentication]
-    permission_classes = [IsAuthenticated]
+        return similar_users
 
-    def post(self, request, *args, **kwargs):
-        return self.retrieve(request, *args, **kwargs)
-
-    def get_queryset(self):
-        profile = self.request.user.profile
-        return profile.messages.all()
