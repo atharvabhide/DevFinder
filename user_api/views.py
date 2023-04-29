@@ -15,9 +15,9 @@ class ProfileCreateView(generics.GenericAPIView):
     def post(self, request, *args,  **kwargs):
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
-        profile = serializer.save()
+        user = serializer.save()
         return Response({
-            "profile": ProfileSerializer(profile, context=self.get_serializer_context()).data,
+            "user": UserSerializer(user, context=self.get_serializer_context()).data,
             "message": "Profile Created Successfully. Now perform Login to get your token",
         })
 

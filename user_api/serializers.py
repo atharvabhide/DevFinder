@@ -4,15 +4,15 @@ from django.contrib.auth.models import User
 
 class RegisterSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Profile
-        fields = ('name','username','email','password')
+        model = User 
+        fields = ('first_name', 'username', 'email', 'password')
         extra_kwargs = {
             'password':{'write_only': True},
         }
 
     def create(self, validated_data):
-        profile = Profile.objects.create(name = validated_data['name'], username = validated_data['username'], email = validated_data['email'] , password = validated_data['password'])
-        return profile
+        user = User.objects.create_user(first_name = validated_data['first_name'], username = validated_data['username'], email = validated_data['email'] , password = validated_data['password'])
+        return user
 
 class SkillSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
