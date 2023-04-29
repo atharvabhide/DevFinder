@@ -64,6 +64,9 @@ class ProjectUpdateView(generics.UpdateAPIView, ProjectRetrieveView):
     queryset = Project.objects.all()
     serializer_class = ProjectSerializer
 
+    def post(self, request, *args, **kwargs):
+        return super().post(request, *args, **kwargs)
+
     def put(self, request, *args, **kwargs):
         return super().put(request, *args, **kwargs)
     
@@ -79,6 +82,9 @@ class ProjectDestroyView(generics.DestroyAPIView, ProjectRetrieveView):
     authentication_classes = [JWTAuthentication]
     queryset = Project.objects.all()
     serializer_class = ProjectSerializer
+
+    def post(self, request, *args, **kwargs):
+        return super().post(request, *args, **kwargs)
 
     def delete(self, request, *args, **kwargs):
         return super().delete(request, *args, **kwargs)

@@ -13,13 +13,13 @@ class UserSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 class ProfileSerializer(serializers.HyperlinkedModelSerializer):
-    user = UserSerializer()
+    # user = UserSerializer()
     skills = serializers.StringRelatedField(many=True)
     messages_sent = serializers.HyperlinkedRelatedField(many=True, read_only=True, view_name='inbox', source='sender')
     messages_received = serializers.HyperlinkedRelatedField(many=True, read_only=True, view_name='inbox', source='messages')
     class Meta:
         model = Profile
-        fields = '__all__'
+        exclude = ['user']
 
 class MessageSerializer(serializers.HyperlinkedModelSerializer):
     # sender = serializers.HyperlinkedRelatedField(view_name='profile-detail', read_only=True)

@@ -28,6 +28,9 @@ class ProfileUpdateView(UpdateAPIView, ProfileRetrieveView):
     serializer_class = ProfileSerializer
     authentication_classes = [JWTAuthentication]
     permission_classes = [IsAuthenticated]
+
+    def post(self, request, *args, **kwargs):
+        return self.update(request, *args, **kwargs)
     
     def put(self, request, *args, **kwargs):
         return self.update(request, *args, **kwargs)
@@ -51,6 +54,9 @@ class ProfileDestroyView(DestroyAPIView, ProfileRetrieveView):
     serializer_class = ProfileSerializer
     authentication_classes = [JWTAuthentication]
     permission_classes = [IsAuthenticated]
+
+    def post(self, request, *args, **kwargs):
+        return self.destroy(request, *args, **kwargs)
     
     def delete(self, request, *args, **kwargs):
         return self.destroy(request, *args, **kwargs)
@@ -60,6 +66,9 @@ class SkillListView(ListAPIView):
     serializer_class = SkillSerializer
     authentication_classes = [JWTAuthentication]
     permission_classes = [IsAuthenticated]
+
+    def post(self, request, *args, **kwargs):
+        return self.list(request, *args, **kwargs)
     
     def get(self, request, *args, **kwargs):
         return self.list(request, *args, **kwargs)
@@ -69,6 +78,9 @@ class SkillCreateView(CreateAPIView, SkillListView):
     serializer_class = SkillSerializer
     authentication_classes = [JWTAuthentication]
     permission_classes = [IsAuthenticated]
+
+    def post(self, request, *args, **kwargs):
+        return self.create(request, *args, **kwargs)
     
     def post(self, request, *args, **kwargs):
         return self.create(request, *args, **kwargs)
@@ -85,6 +97,9 @@ class SkillUpdateView(UpdateAPIView, SkillRetrieveView):
     serializer_class = SkillSerializer
     authentication_classes = [JWTAuthentication]
     permission_classes = [IsAuthenticated]
+
+    def post(self, request, *args, **kwargs):
+        return self.update(request, *args, **kwargs)
     
     def put(self, request, *args, **kwargs):
         return self.update(request, *args, **kwargs)
@@ -94,6 +109,9 @@ class SkillDestroyView(DestroyAPIView, SkillRetrieveView):
     serializer_class = SkillSerializer
     authentication_classes = [JWTAuthentication]
     permission_classes = [IsAuthenticated]
+
+    def post(self, request, *args, **kwargs):
+        return self.destroy(request, *args, **kwargs)
     
     def delete(self, request, *args, **kwargs):
         return self.destroy(request, *args, **kwargs)
@@ -104,10 +122,16 @@ class CreateMessageAPIView(CreateAPIView):
     authentication_classes = [JWTAuthentication]
     permission_classes = [IsAuthenticated]
 
+    def post(self, request, *args, **kwargs):
+        return self.create(request, *args, **kwargs)
+
 class ListMessageAPIView(ListAPIView):
     serializer_class = MessageSerializer
     authentication_classes = [JWTAuthentication]
     permission_classes = [IsAuthenticated]
+
+    def post(self, request, *args, **kwargs):
+        return self.list(request, *args, **kwargs)
 
     def get_queryset(self):
         profile = self.request.user.profile
@@ -118,6 +142,9 @@ class RetrieveMessageAPIView(RetrieveAPIView):
     serializer_class = MessageSerializer
     authentication_classes = [JWTAuthentication]
     permission_classes = [IsAuthenticated]
+
+    def post(self, request, *args, **kwargs):
+        return self.retrieve(request, *args, **kwargs)
 
     def get_queryset(self):
         profile = self.request.user.profile
