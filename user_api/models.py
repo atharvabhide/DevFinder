@@ -6,10 +6,10 @@ import uuid
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, null=True, blank=True)
-    name = models.CharField(max_length=200, null=True, blank=True, required=True)
-    email = models.EmailField(max_length=500, null=True, blank=True, required=True)
-    password = models.CharField(max_length=200, null=True, blank=True, required=True)
-    username = models.CharField(max_length=200, null=True, blank=True, required=True)
+    name = models.CharField(max_length=200, null=True, blank=True)
+    email = models.EmailField(max_length=500, null=True, blank=True)
+    password = models.CharField(max_length=200, null=True, blank=True)
+    username = models.CharField(max_length=200, null=True, blank=True)
     location = models.CharField(max_length=200, null=True, blank=True)
     shortIntro = models.CharField(max_length=200, null=True, blank=True)
     bio = models.TextField(null=True, blank=True)
