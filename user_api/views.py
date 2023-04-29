@@ -3,9 +3,23 @@ from .serializers import ProfileSerializer, SkillSerializer, UserSerializer, Mes
 from rest_framework.generics import ListAPIView, RetrieveAPIView, DestroyAPIView, UpdateAPIView, CreateAPIView
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.pagination import PageNumberPagination
-from rest_framework.response import Response
 from rest_framework import status
 from rest_framework_simplejwt.authentication import JWTAuthentication
+from rest_framework import generics
+from rest_framework.response import Response
+from .serializers import RegisterSerializer, UserSerializer
+
+
+class ProfileCreateView(generics.GenericAPIView):
+    serializer_class = RegisterSerializer
+    def post(self, request, *args,  **kwargs):
+        serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        profile = serializer.save()
+        return Response({
+            "profile": ProfileSerializer(profile, context=self.get_serializer_context()).data,
+            "message": "Profile Created Successfully. Now perform Login to get your token",
+        })
 
 class ProfileListView(ListAPIView):
     pagination_class = PageNumberPagination

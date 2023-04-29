@@ -2,6 +2,18 @@ from .models import Profile, Skill, Message
 from rest_framework import serializers
 from django.contrib.auth.models import User
 
+class RegisterSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Profile
+        fields = ('name','username','email','password')
+        extra_kwargs = {
+            'password':{'write_only': True},
+        }
+
+    def create(self, validated_data):
+        profile = Profile.objects.create_user(name = validated_data['name'], username = validated_data['username'], email = validated_data['email'] , password = validated_data['password'])
+        return profile
+
 class SkillSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Skill
