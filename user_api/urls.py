@@ -1,9 +1,13 @@
-from django.urls import path
-from .views import ProfileListView, ProfileCreateView, ProfileRetrieveView, ProfileUpdateView, ProfileDestroyView, SkillListView, SkillCreateView, SkillRetrieveView, SkillUpdateView, SkillDestroyView, ListMessageAPIView, CreateMessageAPIView, RetrieveMessageAPIView
+from django.urls import path, re_path
+from .views import ProfileListView, ProfileCreateView, ProfileRetrieveView, register_by_access_token, authentication_test, ProfileUpdateView, ProfileDestroyView, SkillListView, SkillCreateView, SkillRetrieveView, SkillUpdateView, SkillDestroyView, ListMessageAPIView, CreateMessageAPIView, RetrieveMessageAPIView
 
 urlpatterns = [
     path('profiles/', ProfileListView.as_view(), name='profile-list'),
     path('profiles/create/', ProfileCreateView.as_view(), name='profile-create'),
+
+    re_path('profiles/register-by-access-token/' + r'social/(?P<backend>[^/]+)/$', register_by_access_token),
+    path('profiles/authentication-test/', authentication_test),
+
     path('profiles/<str:pk>/', ProfileRetrieveView.as_view(), name='profile-detail'),
     path('profiles/<str:pk>/update/', ProfileUpdateView.as_view(), name='profile-update'),
     path('profiles/<str:pk>/delete/', ProfileDestroyView.as_view(), name='profile-delete'),
