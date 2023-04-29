@@ -1,0 +1,9 @@
+.messageList{
+    display: grid;
+    grid-template-columns: auto auto auto;
+    gap: 1em;
+}
+.wrapper{
+    width: 100%;
+   padding: 1em 2em;
+}

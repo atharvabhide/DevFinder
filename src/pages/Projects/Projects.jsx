@@ -12,7 +12,7 @@ import axios from 'axios'
 
 export const Projects = () => {
 
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const [myData, setMyData] = useState([]);
   const [isError, setIsError] = useState("");
 

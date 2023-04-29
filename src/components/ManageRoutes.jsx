@@ -9,6 +9,7 @@ import { IndividualProject } from '../pages/Projects/IndividualProject/Individua
 import { IndividualDeveloper } from '../pages/Developers/IndividualDeveloper/IndividualDeveloper'
 import {SignUp} from '../pages/SignUp/SignUp'
 import { AddProject } from '../pages/Projects/IndividualProject/AddProject/AddProject'
+import { Modal } from './Modal/Modal'
 
 export const ManageRoutes = () => {
   return (
@@ -22,6 +23,7 @@ export const ManageRoutes = () => {
       <Route path="/login" element={<Login />} />
       <Route path="/signup" element={<SignUp />} />
       <Route path="/add-project" element={<AddProject />} />
+      <Route path="/modal" element={<Modal />} />
 
 
       
