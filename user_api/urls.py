@@ -19,5 +19,5 @@ urlpatterns = [
 
     path('profiles/<str:pk>/messages/', ListMessageAPIView.as_view(), name='inbox'),
     path('profiles/<str:pk>/messages/<str:sk>/', RetrieveMessageAPIView.as_view(), name='view-message'),
-    path('profiles/<str:pk>/create-message/', CreateMessageAPIView.as_view(), name='create-message'),
+    path('profiles/<str:pk>/messages/create/', CreateMessageAPIView.as_view(), name='create-message'),
 ]
