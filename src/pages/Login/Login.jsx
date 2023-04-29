@@ -1,12 +1,74 @@
-import React, { useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import styles from './Login.module.css'
 import { Link } from 'react-router-dom'
+import axios from 'axios';
 
 import {FcGoogle} from 'react-icons/fc'
+import jwtDecode from 'jwt-decode';
+
+import { AuthContext } from '../../context/AuthContext';
 
 export const Login = () => {
 
   const [signIn, toggle] = useState(true);
+  
+  // const [authTokens, setAuthTokens] = useState(() =>
+  // localStorage.getItem("authTokens")
+  //   ? JSON.parse(localStorage.getItem("authTokens"))
+  //   : null
+  // );
+
+  // console.log("Token state ", authTokens);
+
+
+  // const loginUser = async (username, password) => {
+  //   const response = await axios.post("http://127.0.0.1:8000/api/token/", {username: username, password: password});
+  //   console.log(response);
+  //   // console.log(jwtDecode(response.data.access));
+  //   if (response.status === 200)
+  //   {
+  //     localStorage.setItem("authTokens", JSON.stringify(response.data));
+  //     setAuthTokens(response.data);
+  //   }
+  //   else (
+  //     alert("oopsie daisy")
+  //   )
+  // }
+
+  // const logoutUser = () => {
+  //   setAuthTokens(null);
+  //   localStorage.removeItem("authTokens");
+  // }
+
+
+  // const registerUser = async (name, username, email, password) => {
+  //   const response = await axios.post("http://127.0.0.1:8000/user-api/profiles/create/", {name, username, email, password});
+  //   console.log(response);
+  // }
+
+  const {authTokens, loginUser, logoutUser, registerUser} = useContext(AuthContext);
+
+  // const [signInUsername, setSignInUsername] = useState("");
+  // const [signInPassword, setSignInPassword] = useState("");
+  // const [registerFirstName, setRegisterFirstName] = useState("");
+  // const [registerUsername, setRegisterUsername] = useState("");
+  // const [registerEmail, setRegisterEmail] = useState("");
+  // const [registerPassword, setRegisterPassword] = useState("");
+
+  const handleLogin = () => {
+    loginUser("aryan123", "aryan123");
+  }
+
+  console.log("Tokens", authTokens);
+
+  const first_name = "Aryan";
+  const username = "aryan123";
+  const email = "aryan@gmail.com";
+  const password = "aryan123";
+
+  const handleRegister = () => {
+    registerUser(first_name, username, email, password);
+  }
 
   return (
     
@@ -17,7 +79,7 @@ export const Login = () => {
 
         <div className={styles.formsWraps}>
         
-          <form action="#" className={styles.signUpContainer} style={signIn !== true ? { 
+          <form action="#" onSubmit={(e) => {e.preventDefault();}} className={styles.signUpContainer} style={signIn !== true ? { 
           transform: 'translateX(100%)',
           opacity: 1,
           zIndex: 5,
@@ -29,24 +91,24 @@ export const Login = () => {
               <input className={styles.inputField} type="text"  placeholder='Username' />
               <input className={styles.inputField} type="email"   placeholder='Email' />
               <input className={styles.inputField} type="password"  placeholder='Password' /><br />
-              <button className={styles.button}>Sign Up</button>
+              <button className={styles.button} onClick={handleRegister}>Sign Up</button>
             </div>
           </form>
         
 
         
-          <form action="#" className={styles.signInContainer}  style={signIn !== true ? { 
+          <form action="#" onSubmit={(e) => {e.preventDefault();}} className={styles.signInContainer}  style={signIn !== true ? { 
             transform: 'translateX(100%)',
             opacity: 0,
             
   } : null}>
-            <h2>Log In</h2> <br />
+            <h2 onClick={logoutUser}>Log In</h2> <br />
             
             <div className={styles.actualForm}>
               <input className={styles.inputField} type="email"   placeholder='Email' />
               <input className={styles.inputField} type="password"  placeholder='Password' />
-              <Link to="#" className={styles.link}>Forgot your password?</Link><br /><br />
-              <button className={styles.button}>Sign In</button>
+              <Link to="" className={styles.link}>Forgot your password?</Link><br /><br />
+              <button className={styles.button} onClick={handleLogin}>Sign In</button>
               <div  className={styles.paragraph}>
                   OR
               </div>
