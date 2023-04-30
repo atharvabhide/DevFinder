@@ -27,8 +27,8 @@ class UserSerializer(serializers.ModelSerializer):
 class ProfileSerializer(serializers.HyperlinkedModelSerializer):
     # user = UserSerializer()
     skills = serializers.StringRelatedField(many=True)
-    messages_sent = serializers.HyperlinkedRelatedField(many=True, read_only=True, view_name='inbox', source='sender')
-    messages_received = serializers.HyperlinkedRelatedField(many=True, read_only=True, view_name='inbox', source='messages')
+    messages_sent = serializers.HyperlinkedRelatedField(many=True, read_only=True, view_name='message-list', source='sender')
+    messages_received = serializers.HyperlinkedRelatedField(many=True, read_only=True, view_name='message-list', source='messages')
     class Meta:
         model = Profile
         exclude = ['user']
