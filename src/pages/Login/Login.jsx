@@ -38,7 +38,7 @@ export const Login = () => {
   const api = useAxios();
 
   const testAuth = async () => {
-    const response = await api.get("/aryan-test/");
+    const response = await api.get("/user-api/profiles/95565560-2c49-43cb-bb58-503c2f928501/update/");
     console.log(response);
   }
 
