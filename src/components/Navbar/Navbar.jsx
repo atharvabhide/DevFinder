@@ -24,7 +24,7 @@ export const Navbar = () => {
         console.log("click ho gaya");
     }
 
-    const {logoutUser} = useContext(AuthContext);
+    const {logoutUser, authTokens} = useContext(AuthContext);
 
     return (
     <>
@@ -81,10 +81,11 @@ export const Navbar = () => {
                                 <span className="navName">Login/Signup</span>
                             </Link> 
 
-                            <Link to="/logout" className="navLink" onClick={logoutUser}>
-                                <MdOutlineLogout className="navIcon" />
-                                <span className="navName">Logout</span>
-                            </Link> 
+                            { authTokens &&
+                                <Link to="/logout" className="navLink" onClick={logoutUser}>
+                                    <MdOutlineLogout className="navIcon" />
+                                    <span className="navName">Logout</span>
+                                </Link> }
 
                         </div>
                     </div>
