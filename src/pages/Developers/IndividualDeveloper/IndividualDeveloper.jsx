@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import styles from './IndividualDeveloper.module.css'
 import {ProjectCard} from '../../../components/ProjectCard/ProjectCard'
 // import {ShortProjectCard} from '../IndividualDeveloper/ShortProjectCard'
@@ -7,22 +7,24 @@ import ProfileImage from '../../../assets/nalla.jpg'
 import {TiLocation} from 'react-icons/ti'
 import { useState, useEffect } from 'react'
 import axios from 'axios'
+import { useAxios } from '../../../utils/useAxios'
 
 export const IndividualDeveloper = () => {
 
   const [users, setUsers] = useState([]);
 
+  const api = useAxios();
+
   const fetchDevelopers = async () => {
-    const response = await axios.get("http://127.0.0.1:8000/user-api/profiles/187adbe3-c468-4a67-bb18-eeebfa3be462/");
+    const response = await api.get("/user-api/profiles/95565560-2c49-43cb-bb58-503c2f928501/");
     const items = response.data;
-    console.log(items);
+    console.log("items ", items);
     setUsers(items);
   }
   
   useEffect(() => {
     fetchDevelopers();
   }, [])
-  console.log(users);
   
 
   return (

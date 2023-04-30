@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import './Navbar.css'
 import {GoSearch} from 'react-icons/go'
 import {HiMenuAlt3} from 'react-icons/hi'
@@ -24,7 +24,12 @@ export const Navbar = () => {
         console.log("click ho gaya");
     }
 
-    const {logoutUser} = useContext(AuthContext);
+    const {logoutUser, isLoggedIn} = useContext(AuthContext);
+
+    const handleLogout = () => {
+        alert("You have logged out!")
+        logoutUser()
+    }
 
     return (
     <>
@@ -81,10 +86,16 @@ export const Navbar = () => {
                                 <span className="navName">Login/Signup</span>
                             </Link> 
 
-                            <Link to="/logout" className="navLink" onClick={logoutUser}>
+                            {/* <Link to="/logout" className="navLink" onClick={handleLogout}>
                                 <MdOutlineLogout className="navIcon" />
                                 <span className="navName">Logout</span>
-                            </Link> 
+                            </Link>  */}
+                            {isLoggedIn &&
+                                <Link to="" className="navLink" onClick={handleLogout}>
+                                    <MdOutlineLogout className="navIcon" />
+                                    <span className="navName">Logout</span>
+                                </Link> 
+                            }
 
                         </div>
                     </div>

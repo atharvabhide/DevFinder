@@ -14,6 +14,19 @@ export const AuthProvider = ({ children }) => {
       : null
     );
 
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+    useEffect(() => {
+      if(authTokens === null)
+      {
+        setIsLoggedIn(false);
+      }
+      else
+      {
+        setIsLoggedIn(true);
+      }
+    }, [authTokens])
+
     // console.log("Token state ", authTokens);
   
     const loginUser = async (username, password) => {
@@ -50,7 +63,7 @@ export const AuthProvider = ({ children }) => {
 
     const handleGoogleLogin = async (access_token) => {
       console.log(access_token);
-      const response = await axios.post("http://127.0.0.1:8000/api/register-by-access-token/social/google-oauth2/", {"access_token": access_token});
+      const response = await axios.post("http://127.0.0.1:8000/user-api/register-by-access-token/social/google-oauth2/", {"access_token": access_token});
       console.log(response);
       if (response.status === 200)
       {
@@ -70,6 +83,7 @@ export const AuthProvider = ({ children }) => {
         registerUser,
         googleLogin,
         handleGoogleLogin,
+        isLoggedIn,
     }
 
     return (

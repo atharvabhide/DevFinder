@@ -36,7 +36,7 @@ export const Developers = () => {
         <div className={styles.developers}>
 
           {users.map((items) => (
-            <Link to="/developers/developer">
+            <Link to="/developers/developer" key={items.url}>
             <DevCard
               
               name={items.username}
