@@ -1,5 +1,5 @@
 from django.urls import path, re_path, include
-from .views import ProfileListView, ProfileCreateView, ProfileRetrieveView, GoogleOAuth2APIView, ProfileUpdateView, ProfileDestroyView, SkillListView, SkillCreateView, SkillRetrieveView, SkillUpdateView, SkillDestroyView, ListMessageAPIView, CreateMessageAPIView, RetrieveMessageAPIView
+from .views import ProfileListView, ProfileCreateView, ProfileRetrieveView, ProfileUpdateView, ProfileDestroyView, SkillListView, SkillCreateView, SkillRetrieveView, SkillUpdateView, SkillDestroyView, ListMessageAPIView, RetrieveMessageAPIView
 
 urlpatterns = [
     path('profiles/', ProfileListView.as_view(), name='profile-list'),
