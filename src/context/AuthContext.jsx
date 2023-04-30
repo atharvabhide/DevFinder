@@ -2,6 +2,8 @@ import axios from 'axios';
 import React, { useContext, useEffect, useState } from 'react'
 import jwtDecode from 'jwt-decode';
 import { createContext } from 'react';
+import { GoogleLogin } from '@react-oauth/google';
+import { googleLogout, useGoogleLogin } from '@react-oauth/google'; 
 
 export const AuthContext = createContext();
 
@@ -40,12 +42,34 @@ export const AuthProvider = ({ children }) => {
         return response;
     }
 
+    const googleLogin = useGoogleLogin({
+      onSuccess: (codeResponse) => {console.log(codeResponse); handleGoogleLogin(codeResponse.access_token)},
+      // flow: 'auth-code',
+      onError: (error) => console.log('Login Failed:', error),
+    });
+
+    const handleGoogleLogin = async (access_token) => {
+      console.log(access_token);
+      const response = await axios.post("http://127.0.0.1:8000/api/register-by-access-token/social/google-oauth2/", {"access_token": access_token});
+      console.log(response);
+      if (response.status === 200)
+      {
+        localStorage.setItem("authTokens", JSON.stringify(response.data));
+        setAuthTokens(response.data);
+      }
+      else (
+        alert("oopsie daisy")
+      )
+    }
+
     const contextData = {
         authTokens,
         setAuthTokens,
         loginUser,
         logoutUser,
         registerUser,
+        googleLogin,
+        handleGoogleLogin,
     }
 
     return (

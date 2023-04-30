@@ -8,45 +8,16 @@ import jwtDecode from 'jwt-decode';
 
 import { AuthContext } from '../../context/AuthContext';
 
+import { GoogleLogin } from '@react-oauth/google';
+import { googleLogout, useGoogleLogin } from '@react-oauth/google'; 
+
+import { useAxios } from "../../utils/useAxios"
+
 export const Login = () => {
 
   const [signIn, toggle] = useState(true);
   
-  // const [authTokens, setAuthTokens] = useState(() =>
-  // localStorage.getItem("authTokens")
-  //   ? JSON.parse(localStorage.getItem("authTokens"))
-  //   : null
-  // );
-
-  // console.log("Token state ", authTokens);
-
-
-  // const loginUser = async (username, password) => {
-  //   const response = await axios.post("http://127.0.0.1:8000/api/token/", {username: username, password: password});
-  //   console.log(response);
-  //   // console.log(jwtDecode(response.data.access));
-  //   if (response.status === 200)
-  //   {
-  //     localStorage.setItem("authTokens", JSON.stringify(response.data));
-  //     setAuthTokens(response.data);
-  //   }
-  //   else (
-  //     alert("oopsie daisy")
-  //   )
-  // }
-
-  // const logoutUser = () => {
-  //   setAuthTokens(null);
-  //   localStorage.removeItem("authTokens");
-  // }
-
-
-  // const registerUser = async (name, username, email, password) => {
-  //   const response = await axios.post("http://127.0.0.1:8000/user-api/profiles/create/", {name, username, email, password});
-  //   console.log(response);
-  // }
-
-  const {authTokens, loginUser, logoutUser, registerUser} = useContext(AuthContext);
+  const {authTokens, loginUser, logoutUser, registerUser, handleGoogleLogin, googleLogin} = useContext(AuthContext);
 
   // const [signInUsername, setSignInUsername] = useState("");
   // const [signInPassword, setSignInPassword] = useState("");
@@ -68,6 +39,18 @@ export const Login = () => {
 
   const handleRegister = () => {
     registerUser(first_name, username, email, password);
+  }
+
+  const api = useAxios();
+
+  const testAuth = async () => {
+    const response = await api.get("/aryan-test/");
+    console.log(response);
+  }
+
+  const testRefresh = async () => {
+    const response = await axios.post(`http://127.0.0.1:8000/api/token/refresh/`, {refresh : authTokens.refresh});
+    console.log(response);
   }
 
   return (
@@ -107,12 +90,12 @@ export const Login = () => {
             <div className={styles.actualForm}>
               <input className={styles.inputField} type="email"   placeholder='Email' />
               <input className={styles.inputField} type="password"  placeholder='Password' />
-              <Link to="" className={styles.link}>Forgot your password?</Link><br /><br />
+              <Link to="" className={styles.link} onClick={testAuth}>Forgot your password?</Link><br /><br />
               <button className={styles.button} onClick={handleLogin}>Sign In</button>
               <div  className={styles.paragraph}>
                   OR
               </div>
-              <button className={styles.googleBtn}>
+              <button className={styles.googleBtn} onClick={googleLogin}>
                 <FcGoogle size={22} style={{margin: '0 10px 0 0'}} />
                 <p>Continue with Google</p>
               </button>
