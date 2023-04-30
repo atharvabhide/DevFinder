@@ -19,37 +19,29 @@ export const Login = () => {
   
   const {authTokens, loginUser, logoutUser, registerUser, handleGoogleLogin, googleLogin} = useContext(AuthContext);
 
-  // const [signInUsername, setSignInUsername] = useState("");
-  // const [signInPassword, setSignInPassword] = useState("");
-  // const [registerFirstName, setRegisterFirstName] = useState("");
-  // const [registerUsername, setRegisterUsername] = useState("");
-  // const [registerEmail, setRegisterEmail] = useState("");
-  // const [registerPassword, setRegisterPassword] = useState("");
+  const [signInUsername, setSignInUsername] = useState("");
+  const [signInPassword, setSignInPassword] = useState("");
+  const [registerFirstName, setRegisterFirstName] = useState("");
+  const [registerUsername, setRegisterUsername] = useState("");
+  const [registerEmail, setRegisterEmail] = useState("");
+  const [registerPassword, setRegisterPassword] = useState("");
 
   const handleLogin = () => {
-    loginUser("aryan123", "aryan123");
+    loginUser(signInUsername, signInPassword);
   }
 
   console.log("Tokens", authTokens);
 
-  const first_name = "Aryan";
-  const username = "aryan123";
-  const email = "aryan@gmail.com";
-  const password = "aryan123";
-
-  const handleRegister = () => {
-    registerUser(first_name, username, email, password);
+  const handleRegister = async () => {
+    const response = await registerUser(registerFirstName, registerUsername, registerEmail, registerPassword);
+    console.log(response);
+    toggle(true);
   }
 
   const api = useAxios();
 
   const testAuth = async () => {
     const response = await api.get("/aryan-test/");
-    console.log(response);
-  }
-
-  const testRefresh = async () => {
-    const response = await axios.post(`http://127.0.0.1:8000/api/token/refresh/`, {refresh : authTokens.refresh});
     console.log(response);
   }
 
@@ -70,10 +62,10 @@ export const Login = () => {
   } : null}>
             <h2>Create Account</h2><br />
             <div className={styles.actualForm}>
-              <input className={styles.inputField} type="text"  placeholder='Name' />
-              <input className={styles.inputField} type="text"  placeholder='Username' />
-              <input className={styles.inputField} type="email"   placeholder='Email' />
-              <input className={styles.inputField} type="password"  placeholder='Password' /><br />
+              <input className={styles.inputField} type="text"  placeholder='Name' onChange={(e) => {setRegisterFirstName(e.target.value);}}/>
+              <input className={styles.inputField} type="text"  placeholder='Username' onChange={(e) => {setRegisterUsername(e.target.value);}}/>
+              <input className={styles.inputField} type="email"   placeholder='Email' onChange={(e) => {setRegisterEmail(e.target.value);}}/>
+              <input className={styles.inputField} type="password"  placeholder='Password' onChange={(e) => {setRegisterPassword(e.target.value);}}/><br />
               <button className={styles.button} onClick={handleRegister}>Sign Up</button>
             </div>
           </form>
@@ -88,8 +80,8 @@ export const Login = () => {
             <h2 onClick={logoutUser}>Log In</h2> <br />
             
             <div className={styles.actualForm}>
-              <input className={styles.inputField} type="email"   placeholder='Email' />
-              <input className={styles.inputField} type="password"  placeholder='Password' />
+              <input className={styles.inputField} type="text"   placeholder='Username' onChange={(e) => {setSignInUsername(e.target.value);}}/>
+              <input className={styles.inputField} type="password"  placeholder='Password' onChange={(e) => {setSignInPassword(e.target.value);}}/>
               <Link to="" className={styles.link} onClick={testAuth}>Forgot your password?</Link><br /><br />
               <button className={styles.button} onClick={handleLogin}>Sign In</button>
               <div  className={styles.paragraph}>
