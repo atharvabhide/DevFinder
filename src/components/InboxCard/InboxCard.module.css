@@ -1,0 +1,41 @@
+.userImage{
+    max-width: 50em;
+    height: auto;
+}
+.message{
+    border: 1px solid #ccc;
+    max-width: 25em;
+    padding: 1em;
+    display: flex;
+    gap: 1em;
+    justify-content: space-evenly;
+    align-items: center;
+    cursor: pointer;
+    position: relative;
+}
+.username{
+    font-size: 0.8rem;
+    margin: 0.3em;
+}
+.messageContent{
+    /* display: inline-block; */
+    height: 50px;
+    /* white-space: nowrap; */
+    overflow: hidden !important;
+    text-overflow: ellipsis;
+    font-size: 0.5rem;
+   
+}
+.messageSubject{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    
+}
+.messageTime{
+    font-size: 0.6em;
+    position:absolute;
+    top: 1%;
+    right: 2%;
+    padding-top: 1em;
+}

@@ -4,12 +4,15 @@ import { Link, useLocation } from 'react-router-dom'
 import ProjectImage from '../../../assets/banner5.jpg'
 import { useState, useEffect } from 'react'
 import axios from 'axios'
+import { Modal } from '../../../components/Modal/Modal'
 
 export const IndividualProject = (props) => {
 
     const [myData, setMyData] = useState([]);
     const [isError, setIsError] = useState("");
     const location = useLocation();
+    const [show, setShow] = useState(false);
+
     // console.log(location);
     const url = location.state.url;
     // console.log(url);
@@ -60,7 +63,11 @@ export const IndividualProject = (props) => {
 
                     <textarea className={styles.commentSection} id=""></textarea>
 
-                    <button className={styles.commentBtn}>Comment</button>
+                    <button className={styles.commentBtn}>Comment</button><br />
+
+                    <button className={styles.commentBtn} onClick={() => setShow(true)}>Delete</button>
+
+                    <Modal onClose={() => setShow(false)} show={show} />
 
                 </div>
 
