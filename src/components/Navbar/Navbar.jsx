@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import './Navbar.css'
 import {GoSearch} from 'react-icons/go'
 import {HiMenuAlt3} from 'react-icons/hi'
@@ -11,6 +11,7 @@ import {FiUsers} from 'react-icons/fi'
 import {MdClose} from 'react-icons/md'
 import Logo from '../../assets/Logo.png'
 import { SearchBar } from '../SearchBar/SearchBar'
+import { AuthContext } from '../../context/AuthContext'
 
 
 export const Navbar = () => {
@@ -22,6 +23,8 @@ export const Navbar = () => {
         setNavbarOpen((prev) => !prev)
         console.log("click ho gaya");
     }
+
+    const {logoutUser} = useContext(AuthContext);
 
     return (
     <>
@@ -78,7 +81,7 @@ export const Navbar = () => {
                                 <span className="navName">Login/Signup</span>
                             </Link> 
 
-                            <Link to="/logout" className="navLink">
+                            <Link to="/logout" className="navLink" onClick={logoutUser}>
                                 <MdOutlineLogout className="navIcon" />
                                 <span className="navName">Logout</span>
                             </Link> 

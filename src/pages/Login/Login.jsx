@@ -8,16 +8,13 @@ import jwtDecode from 'jwt-decode';
 
 import { AuthContext } from '../../context/AuthContext';
 
-import { GoogleLogin } from '@react-oauth/google';
-import { googleLogout, useGoogleLogin } from '@react-oauth/google'; 
-
 import { useAxios } from "../../utils/useAxios"
 
 export const Login = () => {
 
   const [signIn, toggle] = useState(true);
   
-  const {authTokens, loginUser, logoutUser, registerUser, handleGoogleLogin, googleLogin} = useContext(AuthContext);
+  const {authTokens, loginUser, logoutUser, registerUser, googleLogin} = useContext(AuthContext);
 
   const [signInUsername, setSignInUsername] = useState("");
   const [signInPassword, setSignInPassword] = useState("");
@@ -40,10 +37,10 @@ export const Login = () => {
 
   const api = useAxios();
 
-  const testAuth = async () => {
-    const response = await api.get("/aryan-test/");
-    console.log(response);
-  }
+  // const testAuth = async () => {
+  //   const response = await api.get("/aryan-test/");
+  //   console.log(response);
+  // }
 
   return (
     
@@ -82,7 +79,7 @@ export const Login = () => {
             <div className={styles.actualForm}>
               <input className={styles.inputField} type="text"   placeholder='Username' onChange={(e) => {setSignInUsername(e.target.value);}}/>
               <input className={styles.inputField} type="password"  placeholder='Password' onChange={(e) => {setSignInPassword(e.target.value);}}/>
-              <Link to="" className={styles.link} onClick={testAuth}>Forgot your password?</Link><br /><br />
+              <Link to="" className={styles.link}>Forgot your password?</Link><br /><br />
               <button className={styles.button} onClick={handleLogin}>Sign In</button>
               <div  className={styles.paragraph}>
                   OR
