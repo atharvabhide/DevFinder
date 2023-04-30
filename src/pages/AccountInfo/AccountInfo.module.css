@@ -1,0 +1,199 @@
+.developer{
+    position: relative;
+    display: flex;
+    width: 100%;
+    height: 100%;
+    padding: 2.2rem 5rem 2.2rem 4rem;
+}
+.developerProfile{
+    width: 25%;
+    position: fixed;
+    /* background-color: red; */
+    
+}
+.developerInfo{
+    width: 75%;
+    margin-left: 30vw;
+}
+.skill{
+    display: flex;
+    justify-content: space-evenly ;
+}
+.skillName{
+    margin-right: 3em;
+}
+.otherSkills{
+    display: flex;
+    gap: 0.813rem;
+    width: 100%;
+    margin: 0.5rem 0;
+    flex-wrap: wrap;
+    padding-bottom: clamp(1px, 4%, 4em);
+}
+.otherSkillsBtn{
+    background-color: #5670d7;
+    color: #fff;
+    outline: none;
+    border: 1px solid #333;
+    padding: 12px 18px;
+    font-weight: 500;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.projectSection{
+    display: grid;
+    grid-template-columns: auto auto;
+    gap: 1em;
+    /* background-color: aqua; */
+    
+}
+
+.card{
+    z-index: 1;
+    position: relative;
+    max-width: 400px;
+    height: 320px;
+    border: 1.3px solid #65647C;
+    border-radius: 8px;
+    margin: 2rem 0;
+    transition: 0.13s;
+    cursor: pointer;
+}
+.card:hover{
+    box-shadow: 0 0 10px 0 #eee inset, 0 0 10px 2px #eee;
+}
+.banner{
+    z-index: 1;
+    position: relative;
+    /* width: 100%; */
+    /* height: 40px; */
+    /* border-bottom: solid 1px lightgray; */
+    
+}
+.projectImage{
+    height: 10em;
+    width: 100%;
+    object-fit: cover;
+    opacity: 0.85;
+    border-radius: 8px;
+
+    border-bottom: 1.5px solid lightseagreen;
+}
+
+
+.projectTitle{
+    font-size: 1.5em;
+    margin-left: -0.7em;
+
+}
+.projectDeveloper{
+    font-size: 1em;
+    margin: 0.4em 0;
+    margin-left: -1em;
+
+}
+.projectInfo{
+    padding-right:  1em;
+}
+.projectFeedback{
+    margin-left: -1em;
+}
+
+.developerCard{
+    /* border: 1px solid var(--title-color); */
+    padding: 3em 2em;
+    text-align: center;
+    border-radius: 4px;
+    width: 100%;
+    height: 100%;
+    /* height: 10em; */
+}
+.developerImage{
+    display: block;
+    height: 10em;
+    margin: 0 auto;
+    border: 4px solid lightseagreen;
+    border-radius: 50%;
+    
+}
+.developerName{
+    font-size: 1.8em;
+}
+.developerLocation{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.developerPosition{
+    margin-top: -1.2em;
+}
+.editBtn{
+    background-color: #05445E;
+    /* opacity: 0.7; */
+    border: none;
+    padding: 18px 28px;
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 4px;
+    cursor: pointer;
+}
+.editBtn:hover{
+    background-color: #75E6DA;
+    color: #333;
+}
+
+@media screen and (max-width: 1170px) {
+    .projectSection{
+        grid-template-columns: repeat(1, 1fr);
+    }
+    
+    
+}
+
+@media screen and (769px <= width <= 945px) {
+    .developerProfile{
+        width: 28%;
+    }
+    .developer{
+        padding: 2.2rem 3rem 2.2rem 2rem;
+    }
+    
+}
+@media screen and (max-width: 768px){
+    .developer{
+        display: flex;
+        flex-direction: column;
+        padding: 0rem 2rem;
+    }
+    .developerProfile{
+        position: relative;
+    }
+    .developerCard{
+        display: flex;
+        min-width: 90vw;
+        height: 100%;
+        align-items: center;
+        justify-content: space-evenly;
+        padding: 2.5em 0;
+    }
+    .developerInfo{
+        margin-left: 0;
+        width: 100%;
+    }
+}
+@media screen and (max-width: 450px){
+    .developerCard{
+        flex-direction: column;
+        min-width: 85vw;
+        
+        
+    }
+    .developerInfo{
+        text-align: justify;
+
+    }
+    .skill{
+        flex-direction: column;
+    }
+}

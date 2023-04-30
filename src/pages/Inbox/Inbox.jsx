@@ -29,7 +29,7 @@ export const Inbox = () => {
       </div><br />
       <div className={styles.messageList}>
       <InboxCard
-
+        
       />
       
 
