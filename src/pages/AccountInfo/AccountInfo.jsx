@@ -20,6 +20,7 @@ export const AccountInfo = (props) => {
     
       function handleSave() {
         // Make API call to save changes to backend
+
         setIsEditing(false);
       }
     
@@ -136,7 +137,7 @@ export const AccountInfo = (props) => {
               </div><hr />
                 <h2>PROJECTS</h2>
               <div className={styles.projectSection}>
-              
+                  
                 
               </div>
 

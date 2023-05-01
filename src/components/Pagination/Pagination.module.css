@@ -1,0 +1,17 @@
+.wrapper{
+    display: flex;
+    gap: 0.875em;
+    justify-content: center;
+    margin-top: 4em;
+}
+.btn{
+    padding: 0 8px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    transition: 0.3s;
+    border-radius: 4px;
+}
+.btn:hover{
+    background-color: aquamarine;
+}
