@@ -19,10 +19,11 @@ export const Projects = () => {
 
   const [currentPage, setCurrentPage] = useState(1);
   const [data, setData] = useState([]);
-  const itemsPerPage = 10;
+  const itemsPerPage =2;
   const totalPages = Math.ceil(data.length / itemsPerPage);
 
   // Using Promises
+
 
   useEffect(() => {
     axios

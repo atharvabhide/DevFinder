@@ -28,21 +28,22 @@ export const Pagination = ({ currentPage, totalPages, onPageChange }) =>  {
 
   return (
     <div className={styles.wrapper}>
-      <button className={styles.btn} onClick={handlePreviousPage} >
+      <button className={styles.btn} onClick={handlePreviousPage} disabled={currentPageNumber === 1} >
         {/*Add this line disabled={currentPageNumber === 1} once pagination is sorted */}
         <GrFormPrevious size={25} />
       </button>
       {pageNumbers.map((pageNumber) => (
         <p
           key={pageNumber}
-          onClick={() => handlePageChange(pageNumber)}
-          
+          onClick={() => handlePageChange(pageNumber) }
+          disabled={pageNumber === currentPageNumber}
         >
         {/*Add this line disabled={pageNumber === currentPageNumber} once pagination is sorted */}
-          Page {currentPageNumber} of {totalPages}
+          
         </p>
       ))}
-      <button className={styles.btn} onClick={handleNextPage} > 
+      <p>Page {currentPageNumber} of {totalPages}</p>
+      <button className={styles.btn} onClick={handleNextPage} disabled={currentPageNumber === totalPages} > 
       {/*Add this line disabled={currentPageNumber === totalPages} once pagination is sorted */}
         <GrFormNext size={25} />
       </button>

@@ -1,7 +1,7 @@
 .wrapper{
     /* padding: 1.8rem 4.7rem; */
     /* width: 93vw; */
-    /* height: 100%; */
+    height: 100%;
     /* background: red; */
     
 }
@@ -78,7 +78,7 @@
 .aboutBackground{
     position: absolute;
     right: 0;
-    min-width: 40rem;
+    /* min-width: 40rem; */
     height: auto;
     opacity: 0.1   ;
     z-index: -4;
