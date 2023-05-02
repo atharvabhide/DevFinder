@@ -16,6 +16,7 @@ from rest_framework.permissions import AllowAny
 from social_django.utils import psa
 from rest_framework_simplejwt.tokens import RefreshToken
 
+
 @api_view(['POST'])
 @permission_classes([AllowAny])
 @psa()
@@ -59,15 +60,12 @@ def authentication_test(request):
         status=status.HTTP_200_OK,
     )
 
+# get hyperlink of user who is currently logged in
 @api_view(['GET'])
-def get_user(request):
-    user = request.user
-    return Response(
-        {
-            'user': UserSerializer(user).data
-        },
-        status=status.HTTP_200_OK,
-    )
+def current_profile_hyperlink(request):
+    profile = Profile.objects.get(user=request.user)
+    serializer = ProfileSerializer(profile, context={'request': request})
+    return Response(serializer.data, status=status.HTTP_200_OK)
 
 class ProfileCreateView(generics.GenericAPIView):
     serializer_class = RegisterSerializer
