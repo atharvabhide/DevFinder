@@ -78,8 +78,17 @@ class ProfileCreateView(generics.GenericAPIView):
             "message": "Profile Created Successfully. Now perform Login to get your token",
         })
 
+class UsersPagination(PageNumberPagination):
+    page_size_query_param = 'page_size'
+
+    def get_page_size(self, request):
+        # Get the total count of projects
+        total_profiles = Profile.objects.count()
+        # Set the page size to the total number of projects
+        return total_profiles
+
 class ProfileListView(ListAPIView):
-    pagination_class = PageNumberPagination
+    pagination_class = UsersPagination
     queryset = Profile.objects.all()
     serializer_class = ProfileSerializer
     
