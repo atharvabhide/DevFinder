@@ -3,7 +3,7 @@ from .views import (
     ProfileListView, ProfileCreateView, 
     ProfileRetrieveView, ProfileUpdateView, 
     ProfileDestroyView, SkillListView, 
-    SkillCreateView, SkillRetrieveView, 
+    SkillCreateView, SkillRetrieveView, CurrentUser,
     SkillUpdateView, SkillDestroyView, 
     ListMessageAPIView, RetrieveMessageAPIView,
     register_by_access_token, authentication_test,
@@ -15,7 +15,7 @@ urlpatterns = [
     re_path('register-by-access-token/' + r'social/(?P<backend>[^/]+)/$', register_by_access_token),
     path('authentication-test/', authentication_test),
 
-    path('current-user/', current_profile_hyperlink, name='current-user'),
+    path('current-user/', CurrentUser.as_view(), name='current-user'),
 
     path('profiles/', ProfileListView.as_view(), name='profile-list'),
     path('profiles/create/', ProfileCreateView.as_view(), name='profile-create'),

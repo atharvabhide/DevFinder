@@ -226,3 +226,9 @@ class SimilarUserView(ListAPIView):
 
         return similar_users
 
+class CurrentUser(RetrieveAPIView):
+   
+    def get(self, request, *args, **kwargs):
+        return Response({'uuid': str(request.user.profile.id)})
+        
+
