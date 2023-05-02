@@ -1,18 +1,38 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import styles from './AccountInfo.module.css'
 import ProfileImage from '../../assets/nalla.jpg'
 import { TiLocation } from 'react-icons/ti'
 import { ShortProjectCard } from '../Developers/IndividualDeveloper/IndividualDeveloper'
 import ProjectImage from '../../assets/banner2.jpg'
-import { useState } from 'react'
+import { useState, useContext } from 'react'
+import { useAxios } from '../../utils/useAxios';
+import { AuthContext } from '../../context/AuthContext';
 
 export const AccountInfo = (props) => {
+    
+    const [profile, setProfile] = useState([]);
+    const api = useAxios();
+
+    const fetchProfile = async () => {
+      const response = await api.get("/user-api/current-user/");
+      // console.log(response);
+      const userPK = response.data.uuid;
+      const profileResponse = await api.get(`/user-api/profiles/${userPK}/`)
+      // console.log(profileResponse);
+      console.log(profileResponse.data);
+      setProfile(profileResponse.data);
+    }
+
+    useEffect(() => {
+      fetchProfile();
+    }, [])
+
 
     const [isEditing, setIsEditing] = useState(false);
     const [about, setAbout] = useState(props.about);
     const [skills, setSkills] = useState(props.skills);
-  const [newSkill, setNewSkill] = useState({ name: '', description: '' });
-  const [isAddingSkill, setIsAddingSkill] = useState(false);
+    const [newSkill, setNewSkill] = useState({ name: '', description: '' });
+    const [isAddingSkill, setIsAddingSkill] = useState(false);
 
     function handleEdit() {
         setIsEditing(true);
