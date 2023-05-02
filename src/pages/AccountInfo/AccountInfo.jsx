@@ -5,6 +5,7 @@ import { TiLocation } from 'react-icons/ti'
 import { ShortProjectCard } from '../Developers/IndividualDeveloper/IndividualDeveloper'
 import ProjectImage from '../../assets/banner2.jpg'
 import { useState } from 'react'
+import { ProjectLongCard } from '../../components/ProjectLongCard/ProjectLongCard'
 
 export const AccountInfo = (props) => {
 
@@ -137,7 +138,7 @@ export const AccountInfo = (props) => {
               </div><hr />
                 <h2>PROJECTS</h2>
               <div className={styles.projectSection}>
-                  
+                  <ProjectLongCard />
                 
               </div>
 
