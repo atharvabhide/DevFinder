@@ -30,11 +30,16 @@ class ProjectSerializer(serializers.HyperlinkedModelSerializer):
         fields = '__all__'
     
 class ReviewSerializer(serializers.ModelSerializer):
+    owner = serializers.SerializerMethodField()
     project = serializers.CharField(source='project.title', read_only=True)
 
     class Meta:
         model = Review
         fields = ['id', 'project', 'body', 'value', 'createdAt']
+
+    def get_owner(self, obj):
+        return obj.owner.user.username if obj.sender else None
+
 
     def create(self, validated_data):
         project_pk = self.context['view'].kwargs.get('pk')
