@@ -7,6 +7,7 @@ import ProjectImage from '../../assets/banner2.jpg'
 import { useState, useContext } from 'react'
 import { useAxios } from '../../utils/useAxios';
 import { AuthContext } from '../../context/AuthContext';
+import { ProjectLongCard } from '../../components/ProjectLongCard/ProjectLongCard'
 
 export const AccountInfo = (props) => {
     
@@ -157,7 +158,7 @@ export const AccountInfo = (props) => {
               </div><hr />
                 <h2>PROJECTS</h2>
               <div className={styles.projectSection}>
-                  
+                  <ProjectLongCard />
                 
               </div>
 
