@@ -59,6 +59,16 @@ def authentication_test(request):
         status=status.HTTP_200_OK,
     )
 
+@api_view(['GET'])
+def get_user(request):
+    user = request.user
+    return Response(
+        {
+            'user': UserSerializer(user).data
+        },
+        status=status.HTTP_200_OK,
+    )
+
 class ProfileCreateView(generics.GenericAPIView):
     serializer_class = RegisterSerializer
     def post(self, request, *args,  **kwargs):
