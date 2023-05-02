@@ -78,7 +78,7 @@
 .aboutBackground{
     position: absolute;
     right: 0;
-    /* min-width: 40rem; */
+    width: 80vw;
     height: auto;
     opacity: 0.1   ;
     z-index: -4;
