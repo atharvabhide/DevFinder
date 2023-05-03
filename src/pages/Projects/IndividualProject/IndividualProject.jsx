@@ -82,16 +82,18 @@ export const IndividualProject = (props) => {
 
                     <p className={styles.feedback}><b>Reviews</b></p>
 
-                    <ProjectReview
-                      image={Profile}
-                      username="dhananjay"
-                      comment="I find club music kind of boring and monotonic, additionally to this whenever I visit the club I get a headache for some reason and I have no idea why…"
-                    />
-                    <ProjectReview
-                      image={Profile}
-                      username="dhananjay"
-                      comment="I find club music kind of boring and monotonic, additionally to this whenever I visit the club I get a headache for some reason and I have no idea why…"
-                    />
+                    {reviews.map((items) => (
+            
+                      <ProjectReview
+
+                        image={Profile}
+                        username={items.owner}
+                        comment={items.body}
+                      />
+            
+                    ))}
+
+                    
                     
 
 
