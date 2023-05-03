@@ -197,29 +197,47 @@ class SkillDestroyView(DestroyAPIView, SkillRetrieveView):
     def delete(self, request, *args, **kwargs):
         return self.destroy(request, *args, **kwargs)
 
-class ListMessageAPIView(generics.ListCreateAPIView):
+from rest_framework import generics, status
+from rest_framework.response import Response
+from rest_framework.reverse import reverse
+from rest_framework.views import APIView
+from .models import Message
+from .serializers import MessageSerializer
+
+
+class ListMessageAPIView(generics.ListAPIView):
     serializer_class = MessageSerializer
 
     def get_queryset(self):
-        user = self.request.user
-        profile, created = Profile.objects.get_or_create(user=user)
-        queryset = Message.objects.filter(recipient=profile)
-        return queryset
+        profile = self.request.user.profile
+        message_requests = profile.messages.all()
+        unread_count = message_requests.filter(is_read=False).count()
+        self.unread_count = unread_count
+        return message_requests
 
-    def perform_create(self, serializer):
-        recipient_id = self.kwargs.get('pk')
-        recipient = Profile.objects.get(id=recipient_id)
-        sender = self.request.user.profile
-        email = self.request.user.profile.email
-        name = self.request.user.profile.name
-        serializer.save(sender=sender, recipient=recipient, email = email, name = name)
-
-        return Response(serializer.data, status=status.HTTP_201_CREATED)
 
 class RetrieveMessageAPIView(generics.RetrieveAPIView):
-    queryset = Message.objects.all()
     serializer_class = MessageSerializer
-    # permission_classes = [IsAuthenticated]
+    queryset = Message.objects.all()
+
+
+class CreateMessageAPIView(APIView):
+    def post(self, request, pk):
+        recipient = generics.get_object_or_404(Profile, pk=pk)
+        sender = request.user.profile if request.user.is_authenticated else None
+        serializer = MessageSerializer(data=request.data)
+
+        if serializer.is_valid():
+            message = serializer.save(sender=sender, recipient=recipient)
+
+            if sender:
+                message.name = sender.name
+                message.email = sender.email
+                message.save()
+
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
 
 class SimilarUserView(ListAPIView):
     serializer_class = UserSerializer

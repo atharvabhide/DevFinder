@@ -5,7 +5,7 @@ from .views import (
     ProfileDestroyView, SkillListView, 
     SkillCreateView, SkillRetrieveView, CurrentUser,
     SkillUpdateView, SkillDestroyView, 
-    ListMessageAPIView, RetrieveMessageAPIView,
+    ListMessageAPIView, RetrieveMessageAPIView,CreateMessageAPIView,
     register_by_access_token, authentication_test,
     current_profile_hyperlink,
 )
@@ -30,5 +30,6 @@ urlpatterns = [
     path('profiles/<str:pk>/skills/<str:sk>/delete/', SkillDestroyView.as_view(), name='skill-delete'),
 
     path('profiles/<str:pk>/messages/', ListMessageAPIView.as_view(), name='message-list'),
+    path('profiles/<str:pk>/messages/create', ListMessageAPIView.as_view(), name='message-create'),
     path('profiles/<str:pk>/messages/<str:sk>/', RetrieveMessageAPIView.as_view(), name='view-message'),
 ]
