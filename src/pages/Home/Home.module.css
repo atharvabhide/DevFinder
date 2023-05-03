@@ -2,7 +2,8 @@
     /* padding: 1.8rem 4.7rem; */
     /* width: 93vw; */
     height: 100%;
-    /* background: red; */
+    background: linear-gradient(to bottom, #ffffff 40%, #DEFCF9 200%);
+    padding-bottom: 7rem;
     
 }
 
@@ -12,16 +13,20 @@
     align-items: center;
     justify-content: space-between;
     height: 84vh;
-    margin: 0 4.7rem;
+    margin: 0 4.3rem;
     /* background: #333; */
     margin-bottom: 1em;
+    font-family: var(--hero-font);
+    background-color: #fff;
 }
 .heroPage{
     position: relative;
     
 }
 .header{
-    font-size: 1.5vw;
+    font-size: 1.25em;
+    line-height: 1.3;
+    
 }
 .heroGIF{
     width: 50%;
@@ -64,6 +69,7 @@
 .about{
     /* background-color: #b9bdeb; */
     margin: 4rem 0;
+    position: relative;
    
     /* height: 90vh; */
     
@@ -72,16 +78,18 @@
 .aboutHeader{
     text-align: center;
     padding: 1rem 0;
+    color: var(--second-color);
     
     
 }
 .aboutBackground{
     position: absolute;
     right: 0;
-    width: 80vw;
+    
+    width: 90vw;
     height: auto;
-    opacity: 0.1   ;
-    z-index: -4;
+    opacity: 0.04;
+    z-index: 0;
 }
 .aboutInfo{
     padding: 0.5rem 2rem;
@@ -93,6 +101,11 @@
 .contributers{
     text-align: center;
     margin: 3rem 0;
+    color: var(--second-color);
+
+}
+.typed{
+    color: var(--second-color);
 }
 
 @media screen and (max-width: 768px) {

@@ -1,4 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat+Alternates&family=Mulish:wght@300&family=Poppins:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat+Alternates&family=Mulish:wght@800&family=Outfit:wght@300&display=swap');
+
 
 :root{
   --header-height: 3.5rem;
@@ -16,9 +17,9 @@
   --body-color: #fff;
   --container-color: #fff;
 
-  --hero-font: 'Montserrat Alternates', sans-serif; 
-  --header-font: 'Poppins', sans-serif;
-  --body-font: 'Mulish', sans-serif;
+  --hero-font: 'Mulish', sans-serif; 
+  --header-font: 'Montserrat Alternates', sans-serif;
+  --body-font: 'Outfit', sans-serif;
   --biggest-font-size: 2.25rem;
   --h1-font-size: 1.5rem;
   --h2-font-size: 1.25rem;
