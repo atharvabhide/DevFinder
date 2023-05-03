@@ -8,22 +8,25 @@ import {TiLocation} from 'react-icons/ti'
 import { useState, useEffect } from 'react'
 import axios from 'axios'
 import { useAxios } from '../../../utils/useAxios'
+import { useLocation } from 'react-router-dom'
 
 export const IndividualDeveloper = () => {
 
-  const [users, setUsers] = useState([]);
-
+  const [profile, setProfile] = useState();
   const api = useAxios();
 
-  const fetchDevelopers = async () => {
-    const response = await api.get("/user-api/profiles/95565560-2c49-43cb-bb58-503c2f928501/");
-    const items = response.data;
-    console.log("items ", items);
-    setUsers(items);
+  const location = useLocation();
+
+  const fetchProfile = async () => {
+    console.log(location);
+    const profileUrl = location.state.url;
+    const response = await api.get(profileUrl);
+    console.log(response.data);
+    setProfile(response.data)
   }
   
   useEffect(() => {
-    fetchDevelopers();
+    fetchProfile();
   }, [])
   
 
@@ -37,7 +40,7 @@ export const IndividualDeveloper = () => {
                 <img src={ProfileImage} className={styles.developerImage} alt="" />
                 </div>
                 <div>
-                <p className={styles.developerName}><b>{users.username}</b></p>
+                <p className={styles.developerName}><b>{profile?.username}</b></p>
                 <p className={styles.developerPosition}>Backend engineer</p>
                 
                 <p className={styles.developerLocation}><TiLocation size={22} />: Pune</p>
