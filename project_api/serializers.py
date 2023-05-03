@@ -35,10 +35,10 @@ class ReviewSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Review
-        fields = ['id', 'project', 'body', 'value', 'createdAt']
+        fields = ['id', 'project', 'body', 'value', 'createdAt', 'owner']
 
     def get_owner(self, obj):
-        return obj.owner.user.username if obj.sender else None
+        return obj.owner.user.username if obj.owner else None
 
 
     def create(self, validated_data):
