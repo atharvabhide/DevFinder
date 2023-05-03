@@ -1,13 +1,6 @@
 from .models import Project, Review, Tag
 from rest_framework import serializers
 
-class ImageSerializer(serializers.Serializer):
-    image = serializers.ImageField()
-
-    def create(self, validated_data):
-        image = validated_data["image"]
-        return image
-
 class TagSerializer(serializers.ModelSerializer):
     class Meta:
         model = Tag
