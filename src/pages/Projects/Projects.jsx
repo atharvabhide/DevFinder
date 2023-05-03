@@ -35,7 +35,7 @@ export const Projects = () => {
       })
       .catch((error) => setIsError(error.message))
   }, [currentPage, itemsPerPage])
-  console.log(myData)
+  console.log(data)
 
   const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber);

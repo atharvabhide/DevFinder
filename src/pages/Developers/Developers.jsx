@@ -15,7 +15,7 @@ export const Developers = () => {
   const [users, setUsers] = useState([]);
 
   const fetchDevelopers = async () => {
-    const response = await axios.get("http://127.0.0.1:8000/user-api/profiles/?page=2");
+    const response = await axios.get("http://127.0.0.1:8000/user-api/profiles/");
     const items = response.data.results;
     console.log(items);
     setUsers(items);
@@ -36,7 +36,7 @@ export const Developers = () => {
         <div className={styles.developers}>
 
           {users.map((items) => (
-            <Link to="/developers/developer" key={items.url}>
+            <Link to="/developers/developer" key={items.url} state={{url: items.url}}>
             <DevCard
               
               name={items.username}

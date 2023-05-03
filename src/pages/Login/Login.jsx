@@ -44,8 +44,10 @@ export const Login = () => {
 
   const api = useAxios();
 
+  const comment = {"comment" : "Your is so nice"}
+
   const testAuth = async () => {
-    const response = await api.get("/user-api/current-user/");
+    const response = await api.post("http://127.0.0.1:8000/project-api/review/mod/", comment);
     console.log(response);
   }
 
