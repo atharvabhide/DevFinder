@@ -1,5 +1,5 @@
 from .models import Project, Review, Tag
-from .serializers import ProjectSerializer, ReviewSerializer,TagSerializer
+from .serializers import ProjectSerializer, ReviewSerializer,TagSerializer, ImageSerializer
 from rest_framework.permissions import IsAuthenticated
 from rest_framework import generics
 from rest_framework.pagination import PageNumberPagination
@@ -10,6 +10,9 @@ from rest_framework import status
 from rest_framework_simplejwt.authentication import JWTAuthentication
 from rest_framework.views import APIView
 from profanity_check import predict
+from PIL import Image
+import opennsfw2 as nsfw
+from io import BytesIO
 
 # class ProjectsPagination(PageNumberPagination):
 #     page_size_query_param = 'page_size'
@@ -170,3 +173,18 @@ class ReviewModView(APIView):
             return Response({"prediction": "Review contains profanity"})
         else:
             return Response({"prediction": "Review is clean"})
+
+class ImageModView(APIView):
+    def post(self, request, format=None):
+        serializer = ImageSerializer(data=request.data)
+        if serializer.is_valid():
+            image_field = serializer.data["image"]
+            image_bytes = image_field.read()
+            pillow_image = Image.open(BytesIO(image_bytes))
+            nsfw_probability = nsfw.predict_image(pillow_image)
+            if (nsfw_probability > 0.7):
+                return Response({"prediction": "Image contains nudity"})
+            else:
+                return Response({"prediction": "Image is clean"})
+        else:
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

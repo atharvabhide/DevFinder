@@ -5,3 +5,5 @@ django-cors-headers==3.14.0
 social-auth-core
 social-auth-app-django
 alt-profanity-check
+opennsfw2
+Pillow
