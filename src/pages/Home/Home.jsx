@@ -19,6 +19,7 @@ export const Home = () => {
     <>
     
     <div className={styles.wrapper}>
+      
       <div className={styles.heroPage}>
         <div className={styles.hero}>
           <div className={styles.header}>

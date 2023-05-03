@@ -12,6 +12,7 @@ import {MdClose} from 'react-icons/md'
 import Logo from '../../assets/Logo.png'
 import { SearchBar } from '../SearchBar/SearchBar'
 import { AuthContext } from '../../context/AuthContext'
+import {FiUser} from 'react-icons/fi'
 
 
 export const Navbar = () => {
@@ -40,8 +41,28 @@ export const Navbar = () => {
                 <img className="logo" src={Logo} alt="" />
 
                 {/* SearchBar */}
-                
 
+                {isLoggedIn ? 
+                (
+                
+                    <ul className="account">
+                        <li class="dropdown">
+                            <FiUser className="accountImage" size={40} />
+                            <ul className="dropdownList">
+                            <li className="option">
+                                <Link to="/account" className="dropdownLink">Edit Profile</Link>
+                            </li>
+                            <li className="option">
+                                <Link onClick={handleLogout}>Log out</Link>
+                            </li>
+                            </ul>
+                        </li>
+                    </ul>
+                
+                ) : (null)
+                }
+                
+                
                 {/* <img Logo idhar** /> */}
 
                 <button className="headerToggle" onClick={handleToggleClick} >

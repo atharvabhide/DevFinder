@@ -4,8 +4,12 @@ import { Link, useLocation } from 'react-router-dom'
 import ProjectImage from '../../../assets/banner5.jpg'
 import { useState, useEffect } from 'react'
 import axios from 'axios'
+import Profile from '../../../assets/dhanya2.jpg'
+
 import { Modal } from '../../../components/Modal/Modal'
 import { useAxios } from '../../../utils/useAxios'
+
+import { ProjectReview } from '../../../components/ProjectReview/ProjectReview'
 
 export const IndividualProject = (props) => {
 
@@ -86,9 +90,27 @@ export const IndividualProject = (props) => {
 
                     <button className={styles.commentBtn} onClick={createReview}>Comment</button><br />
 
-                    <button className={styles.commentBtn} onClick={() => setShow(true)}>Delete</button>
+                    <p className={styles.feedback}><b>Reviews</b></p>
 
-                    <Modal onClose={() => setShow(false)} show={show} />
+                    {reviews.map((items) => (
+            
+                      <ProjectReview
+
+                        image={Profile}
+                        username={items.owner}
+                        comment={items.body}
+                      />
+            
+                    ))}
+
+                    
+                    
+
+
+
+                    {/* <button className={styles.commentBtn} onClick={() => setShow(true)}>Delete</button>
+
+                    <Modal onClose={() => setShow(false)} show={show} /> */}
 
                 </div>
 

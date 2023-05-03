@@ -7,11 +7,14 @@ import { Projects } from '../pages/Projects/Projects'
 import { Login } from '../pages/Login/Login'
 import { IndividualProject } from '../pages/Projects/IndividualProject/IndividualProject'
 import { IndividualDeveloper } from '../pages/Developers/IndividualDeveloper/IndividualDeveloper'
-import {SignUp} from '../pages/SignUp/SignUp'
+// import {SignUp} from '../pages/ForgotPassword/SignUp'
+
 import { AddProject } from '../pages/Projects/IndividualProject/AddProject/AddProject'
 import { Modal } from './Modal/Modal'
 import { AccountInfo } from '../pages/AccountInfo/AccountInfo'
 import { EditProfile } from '../pages/AccountInfo/EditProfile/EditProfile'
+import { ForgotPassword } from '../pages/ForgotPassword/ForgotPassword'
+import { ResetPassword } from '../pages/ResetPassword/ResetPassword'
 
 export const ManageRoutes = () => {
   return (
@@ -23,12 +26,14 @@ export const ManageRoutes = () => {
       <Route path="/projects/project" element={<IndividualProject />} />
       <Route path='/developers/developer' element={<IndividualDeveloper />} />
       <Route path="/login" element={<Login />} />
-      <Route path="/signup" element={<SignUp />} />
+      {/* <Route path="/signup" element={<SignUp />} /> */}
       <Route path="/add-project" element={<AddProject />} />
       <Route path="/modal" element={<Modal />} />
       <Route path="/account" element={<AccountInfo />} />
       <Route path="/account/edit" element={<EditProfile />} />
-
+      <Route path="/forgot-password" element={<ForgotPassword />} />
+      <Route path="/reset-password" element={<ResetPassword />} />
+      
 
       
     </Routes>

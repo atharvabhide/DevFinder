@@ -56,6 +56,7 @@
     width: 100%;
     height: 12em;
     font-size: 22px;
+    resize: none;
 }
 .commentBtn{
     background-color: #05445E;
@@ -82,6 +83,7 @@
     font-size: var(--h2-font-size);
 
 }
+
 
 @media screen and (max-width: 875px) {
     .project{

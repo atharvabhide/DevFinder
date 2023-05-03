@@ -42,8 +42,8 @@ export const Inbox = () => {
 
   return (
     <>
-    
     <div className={styles.wrapper}>
+      
       <div className={styles.title}>
         New Messages
       </div><br />
@@ -51,6 +51,9 @@ export const Inbox = () => {
       <InboxCard
         
       />
+
+
+      
 
       </div>
 
