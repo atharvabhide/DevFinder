@@ -15,6 +15,10 @@ from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import AllowAny
 from social_django.utils import psa
 from rest_framework_simplejwt.tokens import RefreshToken
+import opennsfw2 as nsfw
+from rest_framework.parsers import MultiPartParser
+from PIL import Image
+from io import BytesIO
 
 
 @api_view(['POST'])
@@ -256,3 +260,16 @@ class SimilarUserView(ListAPIView):
 class CurrentUser(RetrieveAPIView):
     def get(self, request, *args, **kwargs):
         return Response({'uuid': str(request.user.profile.id)})
+    
+class ImageModView(APIView):
+    parser_classes = (MultiPartParser,)
+    def post(self, request, format=None):
+        if 'image' not in request.data:
+            return Response({'error': 'Image not found'}, status=400)
+        image = request.data['image']
+        pil_image = Image.open(BytesIO(image.read()))
+        prediction = nsfw.predict_image(pil_image)
+        if prediction > 0.7:
+            return Response({'prediction': 'image is nsfw'})
+        else:
+            return Response({'prediction': 'image is not nsfw'})

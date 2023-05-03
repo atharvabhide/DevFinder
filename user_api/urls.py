@@ -6,8 +6,7 @@ from .views import (
     SkillCreateView, SkillRetrieveView, CurrentUser,
     SkillUpdateView, SkillDestroyView, 
     ListMessageAPIView, RetrieveMessageAPIView,CreateMessageAPIView,
-    register_by_access_token, authentication_test,
-    current_profile_hyperlink,
+    register_by_access_token, authentication_test, ImageModView
 )
 
 urlpatterns = [
@@ -32,4 +31,5 @@ urlpatterns = [
     path('profiles/<str:pk>/messages/', ListMessageAPIView.as_view(), name='message-list'),
     path('profiles/<str:pk>/messages/create', ListMessageAPIView.as_view(), name='message-create'),
     path('profiles/<str:pk>/messages/<str:sk>/', RetrieveMessageAPIView.as_view(), name='view-message'),
+    path('image/mod/', ImageModView.as_view(), name = 'image-moderation'),
 ]
