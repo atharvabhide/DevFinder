@@ -23,12 +23,29 @@ export const IndividualDeveloper = () => {
     const response = await api.get(profileUrl);
     console.log(response.data);
     setProfile(response.data)
+
+    // console.log(`${profileUrl}messages/`);
+    // const messageData = await api.get(`${profileUrl}messages/`);
+    // console.log(messageData);
   }
   
   useEffect(() => {
     fetchProfile();
   }, [])
   
+  const messageTest = {
+    "bruh": "okay"
+  }
+  const sendMessage = async () => {
+    console.log("TODO");
+    const profileUrl = location.state.url;
+    const messageData = await api.get(`${profileUrl}messages/`);
+    console.log("message data ", messageData);
+  }
+
+  useEffect(() => {
+    sendMessage();
+  }, [])
 
   return (
     <>

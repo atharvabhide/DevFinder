@@ -40,8 +40,18 @@ export const IndividualProject = (props) => {
   }
 
   useEffect(() => {
-    fetchProject();
+    fetchProject(); 
   }, [])
+
+  const reviewTest = {
+    "body": "This is my very honest review",
+    "value": null
+  }
+  const createReview = async () => {
+    console.log(`${url}reviews/create`);
+    const response = api.post(`${url}reviews/create`, reviewTest);
+    console.log(response);
+  }
 
   return (
     <>
@@ -74,7 +84,7 @@ export const IndividualProject = (props) => {
 
                     <textarea className={styles.commentSection} id=""></textarea>
 
-                    <button className={styles.commentBtn}>Comment</button><br />
+                    <button className={styles.commentBtn} onClick={createReview}>Comment</button><br />
 
                     <button className={styles.commentBtn} onClick={() => setShow(true)}>Delete</button>
 

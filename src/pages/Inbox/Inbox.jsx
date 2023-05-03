@@ -20,6 +20,26 @@ export const Inbox = () => {
   }, [])
   console.log(myData)
 
+  const [selectedFile, setSelectedFile] = useState();
+
+  const checkNSFW = async () => {
+    const formData = new FormData();
+    formData.append("image", selectedFile);
+    console.log(formData);
+    for (const pair of formData.entries()) {
+      console.log(`${pair[0]}, ${pair[1]}`);
+    }
+    for (const value of formData.values()) {
+      console.log("value ", value);
+    }
+    try {
+      const response = await axios.post("http://localhost:8000/project-api/image/mod/", formData);
+      console.log(response);
+    } catch (err) {
+        // console.log("error: ", err);
+    }
+  }
+
   return (
     <>
     
@@ -31,12 +51,14 @@ export const Inbox = () => {
       <InboxCard
         
       />
-      
 
       </div>
 
     </div>
-    
+    <input type="file" onChange={(e) => {console.log(e.target.files[0]); setSelectedFile(e.target.files[0])}}/>
+    <button onClick={checkNSFW}>
+      Upload!
+    </button>
     </>
   )
 }
