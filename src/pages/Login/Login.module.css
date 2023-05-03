@@ -111,6 +111,7 @@ form{
  text-decoration: none;
  margin: 15px 0;
  text-decoration:underline;
+ cursor: pointer;
 }
 .overlayContainer{
     position: absolute;
@@ -120,11 +121,11 @@ width: 50%;
 height: 100%;
 overflow: hidden;
 transition: transform 0.6s ease-in-out;
-z-index: 10;
+z-index: 5;
 }
 .overlay{
     background: #ff416c;
-background: -webkit-linear-gradient(to right, #ff4b2b, #ff416c);
+/* background: -webkit-linear-gradient(to right, #ff4b2b, #ff416c); */
 background: linear-gradient(to bottom right, var(--first-color), #2367b9);
 background-repeat: no-repeat;
 background-size: cover;
@@ -231,14 +232,11 @@ transition: transform 0.6s ease-in-out;
     
       form {
         max-width: revert;
-        padding: 1.5rem 2.5rem 2rem;
+        /* padding: 1.5rem 2.5rem 2rem; */
         transition: transform 0.8s ease-in-out, opacity 0.45s linear;
       }
       form.signUpContainer {
         transform: translateX(100%);
-      }
-      .signInContainer{
-        /* width: 100%; */
       }
       
     
@@ -255,11 +253,14 @@ transition: transform 0.6s ease-in-out;
         position: absolute;
         height: 30vh;
         bottom: 0;
+        background: none;
+        color: #333;
     }
     .signInContainer{
         width: 100%;
         position: absolute;
         right: -100%;
+        z-index: 6;
         
     }
     .signUpContainer{
@@ -270,4 +271,18 @@ transition: transform 0.6s ease-in-out;
     .ghostButton{
         visibility: visible;
     }
+    .overlayContainer{
+        width: 100%;
+        left: 0%;
+        height: 27%;
+        top: 80%;
+        margin-top: -1.85em;
+        z-index: 10;
+    }
+    
+    .leftOverlayPanel{
+        display: none;
+    }
+    
+
 }

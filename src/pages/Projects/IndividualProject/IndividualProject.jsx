@@ -4,7 +4,11 @@ import { Link, useLocation } from 'react-router-dom'
 import ProjectImage from '../../../assets/banner5.jpg'
 import { useState, useEffect } from 'react'
 import axios from 'axios'
+import Profile from '../../../assets/dhanya2.jpg'
+
 import { Modal } from '../../../components/Modal/Modal'
+
+import { ProjectReview } from '../../../components/ProjectReview/ProjectReview'
 
 export const IndividualProject = (props) => {
 
@@ -65,9 +69,25 @@ export const IndividualProject = (props) => {
 
                     <button className={styles.commentBtn}>Comment</button><br />
 
-                    <button className={styles.commentBtn} onClick={() => setShow(true)}>Delete</button>
+                    <p className={styles.feedback}><b>Reviews</b></p>
 
-                    <Modal onClose={() => setShow(false)} show={show} />
+                    <ProjectReview
+                      image={Profile}
+                      username="dhananjay"
+                      comment="I find club music kind of boring and monotonic, additionally to this whenever I visit the club I get a headache for some reason and I have no idea why…"
+                    />
+                    <ProjectReview
+                      image={Profile}
+                      username="dhananjay"
+                      comment="I find club music kind of boring and monotonic, additionally to this whenever I visit the club I get a headache for some reason and I have no idea why…"
+                    />
+                    
+
+
+
+                    {/* <button className={styles.commentBtn} onClick={() => setShow(true)}>Delete</button>
+
+                    <Modal onClose={() => setShow(false)} show={show} /> */}
 
                 </div>
 

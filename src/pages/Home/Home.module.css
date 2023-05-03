@@ -2,7 +2,7 @@
     /* padding: 1.8rem 4.7rem; */
     /* width: 93vw; */
     height: 100%;
-    background: linear-gradient(to bottom, #ffffff 40%, #DEFCF9 200%);
+    background: linear-gradient(to bottom, #ffffff 40%, #DEFCF9 100%);
     padding-bottom: 7rem;
     
 }
@@ -84,9 +84,9 @@
 }
 .aboutBackground{
     position: absolute;
-    right: 0;
+    right:10%;
     
-    width: 90vw;
+    width: 70vw;
     height: auto;
     opacity: 0.04;
     z-index: 0;

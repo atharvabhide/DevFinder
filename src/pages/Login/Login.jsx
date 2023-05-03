@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from 'react'
 import styles from './Login.module.css'
 import { Link } from 'react-router-dom'
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 import {FcGoogle} from 'react-icons/fc'
 import jwtDecode from 'jwt-decode';
@@ -9,10 +10,16 @@ import jwtDecode from 'jwt-decode';
 import { AuthContext } from '../../context/AuthContext';
 
 import { useAxios } from "../../utils/useAxios"
+import { ForgotPassword } from '../ForgotPassword/ForgotPassword';
 
 export const Login = () => {
 
   const [signIn, toggle] = useState(true);
+  const [show, setShow] = useState(false);
+
+  const navigate = useNavigate();
+
+  
   
   const {authTokens, loginUser, logoutUser, registerUser, googleLogin} = useContext(AuthContext);
 
@@ -79,7 +86,8 @@ export const Login = () => {
             <div className={styles.actualForm}>
               <input className={styles.inputField} type="text"   placeholder='Username' onChange={(e) => {setSignInUsername(e.target.value);}}/>
               <input className={styles.inputField} type="password"  placeholder='Password' onChange={(e) => {setSignInPassword(e.target.value);}}/>
-              <Link to="" className={styles.link} onClick={testAuth}>Forgot your password?</Link><br /><br />
+              <p className={styles.link} onClick={() => {testAuth; navigate('/forgot-password')}} >Forgot your password?</p><br />
+              {/* <ForgotPassword onClose={() => setShow(true)} show={show} /> */}
               <button className={styles.button} onClick={handleLogin}>Sign In</button>
               <div  className={styles.paragraph}>
                   OR
@@ -118,6 +126,8 @@ export const Login = () => {
               <div className={styles.paragraph}>Enter your details and start your journey with us</div>
               <div className={styles.ghostButton} onClick={() => toggle(false)}>Sign Up</div>
             </div>
+
+            
 
 
           </div>

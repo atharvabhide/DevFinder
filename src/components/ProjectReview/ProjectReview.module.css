@@ -1,0 +1,15 @@
+.userImage{
+    height: 2.5em;
+    border-radius: 50%;
+    border: 2px solid lightseagreen;
+    margin-top: 1em;
+    
+}
+.review{
+    display: flex;
+    align-items: start;
+    gap: 0.75em;
+}
+.rightQuotes{
+    float: right;
+}
