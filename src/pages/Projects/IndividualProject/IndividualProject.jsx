@@ -5,6 +5,7 @@ import ProjectImage from '../../../assets/banner5.jpg'
 import { useState, useEffect } from 'react'
 import axios from 'axios'
 import { Modal } from '../../../components/Modal/Modal'
+import { useAxios } from '../../../utils/useAxios'
 
 export const IndividualProject = (props) => {
 
@@ -12,17 +13,27 @@ export const IndividualProject = (props) => {
     const [isError, setIsError] = useState("");
     const location = useLocation();
     const [show, setShow] = useState(false);
+    const [reviews, setReviews] = useState([]);
 
     // console.log(location);
     const url = location.state.url;
     // console.log(url);
+
+    const api = useAxios();
+    
   
 
   const fetchProject = async () => {
     try {
-        const response = await axios.get(url);
+        const response = await api.get(url);
+        console.log(response);
         const project = response.data;
         setMyData(project);
+        
+        console.log(`${url}reviews/`);
+        const reviewData = await api.get(`${url}reviews/`)
+        console.log(reviewData.data.results);
+        setReviews(reviewData.data.results)
     } catch (err) {
       setIsError(err);
     }
