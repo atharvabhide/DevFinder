@@ -9,14 +9,14 @@ from rest_framework.response import Response
 from rest_framework import status
 from rest_framework_simplejwt.authentication import JWTAuthentication
 
-class ProjectsPagination(PageNumberPagination):
-    page_size_query_param = 'page_size'
+# class ProjectsPagination(PageNumberPagination):
+#     page_size_query_param = 'page_size'
 
-    def get_page_size(self, request):
-        # Get the total count of projects
-        total_projects = Project.objects.count()
-        # Set the page size to the total number of projects
-        return total_projects
+#     def get_page_size(self, request):
+#         # Get the total count of projects
+#         total_projects = Project.objects.count()
+#         # Set the page size to the total number of projects
+#         return total_projects
 
 
 class ProjectListView(generics.ListAPIView):
@@ -25,7 +25,7 @@ class ProjectListView(generics.ListAPIView):
 
     No authentication required. 
     """
-    pagination_class = ProjectsPagination
+    pagination_class = PageNumberPagination
     queryset = Project.objects.all()
     serializer_class = ProjectSerializer
 
