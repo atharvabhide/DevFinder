@@ -8,6 +8,8 @@ from rest_framework import status
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework_simplejwt.authentication import JWTAuthentication
+from rest_framework.views import APIView
+from profanity_check import predict
 
 # class ProjectsPagination(PageNumberPagination):
 #     page_size_query_param = 'page_size'
@@ -160,4 +162,11 @@ class ReviewCreateView(generics.CreateAPIView):
 
         headers = self.get_success_headers(serializer.data)
         return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
-
+    
+class ReviewModView(APIView):
+    def post(self, request):
+        review = request.data['comment']
+        if predict([review])[0] == 1:
+            return Response({"prediction": "Review contains profanity"})
+        else:
+            return Response({"prediction": "Review is clean"})

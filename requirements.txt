@@ -4,3 +4,4 @@ djangorestframework_simplejwt==5.0.0
 django-cors-headers==3.14.0
 social-auth-core
 social-auth-app-django
+alt-profanity-check

@@ -11,5 +11,6 @@ urlpatterns = [
     path('projects/<str:pk>/tags/create', views.TagCreateView.as_view(), name = 'tag-create'),
     path('projects/<str:pk>/reviews/create', views.ReviewCreateView.as_view(), name = 'review-create'),
     path('projects/<str:pk>/reviews/', views.ReviewListView.as_view(), name = 'review-list'),
+    path('review/mod/', views.ReviewModView.as_view(), name = 'review-moderation'),
 
 ]
