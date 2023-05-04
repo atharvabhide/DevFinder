@@ -49,3 +49,14 @@
     background-color: #75E6DA;
     color: #333;
 }
+
+.upload_container{
+    background-color: #eee;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+
+    padding: 16px 15px;
+    border-radius: 4px;
+    margin: 1em 0;
+}
