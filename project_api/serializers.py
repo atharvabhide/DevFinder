@@ -50,6 +50,7 @@ class ReviewSerializer(serializers.ModelSerializer):
         return Review.objects.create(
             project=project,
             body=validated_data['body'],
+            owner=self.context['request'].user.profile,
         )
 
     
