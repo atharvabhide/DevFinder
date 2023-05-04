@@ -20,7 +20,7 @@ export const Inbox = () => {
   }, [])
   console.log(myData)
 
-  const [selectedFile, setSelectedFile] = useState();
+  // const [selectedFile, setSelectedFile] = useState();
 
   // const checkNSFW = async () => {
   //   const formData = new FormData();
