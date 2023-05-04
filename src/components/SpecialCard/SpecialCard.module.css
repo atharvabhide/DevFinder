@@ -2,14 +2,14 @@
     padding: 1.2rem 1rem;
     width: 20em;
     border-radius: 12px;
-    background: #191c29;
+    background: #000;
     position: relative;
     border-width: 5px;
     border-style: solid;
     border-image: 
     linear-gradient(
       to bottom, 
-      var(--first-color), 
+      #eb7724, 
       rgba(100, 100, 100, 0)
     ) 0.5 10%;
     
@@ -17,7 +17,7 @@
 
 .profileImg{
     height: 3.7em;
-    border: 4px solid lightseagreen;
+    border: 1.5px solid #fefefe;
     border-radius: 50%;
 }
 .profileHeader{
@@ -50,9 +50,9 @@
     gap: 10px;
 }
 #buttonSkills{
-    background: var(--first-color);
+    background: #454545;
     outline: none;
-    border: 2px solid var(--title-color);
+    border: 1.5px solid var(--second-color);
     padding: 8px 12px;
     border-radius: 2em;
     color: #fff;

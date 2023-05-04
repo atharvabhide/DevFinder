@@ -18,7 +18,10 @@
     "react-dom": "^18.2.0",
     "react-icons": "^4.8.0",
     "react-router-dom": "^6.10.0",
-    "react-typed": "^1.2.0"
+    "react-typed": "^1.2.0",
+    "xterm": "^5.1.0",
+    "xterm-addon-fit": "^0.7.0",
+    "xterm-for-react": "^1.0.4"
   },
   "devDependencies": {
     "@types/react": "^18.0.28",

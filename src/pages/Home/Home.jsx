@@ -1,13 +1,17 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styles from './Home.module.css'
-import Hero from '../../assets/Home_Animation.gif'
+import Hero from '../../assets/coding.gif'
 import {FiChevronDown} from 'react-icons/fi'
-import Background from '../../assets/6064.jpg' 
+import Background from '../../assets/bg-img.png' 
 import { Link } from 'react-router-dom'
 import Atharva from '../../assets/nalla.jpg'
 import Ak from '../../assets/Ak.jpg'
 import Dhanya from '../../assets/dhanya2.jpg'
 import Typed from 'react-typed'
+import {FaFolder} from 'react-icons/fa'
+import {VscCircleLargeFilled} from 'react-icons/vsc'
+
+// import TerminalComponent from '../../components/Terminal/Terminal'
 
 
 import { SpecialCard } from '../../components/SpecialCard/SpecialCard'
@@ -15,6 +19,20 @@ import { Layout } from '../../components/Layout/Layout'
 import { Footer } from '../../components/Footer/Footer'
 
 export const Home = () => {
+
+  // const defaultText = ">.";
+  
+  const [value, setValue] = useState("~/hello/welcome-to-devFinder/home main*");
+
+  const handleChange = (event) => {
+    setValue(event.target.value);
+  }
+  const handleKeyDown = (event) => {
+    if (event.key === 'Backspace' && value === '') {
+      setValue(defaultText);
+    }
+  }
+  
   return (
     <>
     
@@ -30,20 +48,38 @@ export const Home = () => {
             Get Started
             </button></Link>
           </div>
-          <img src={Hero} alt="" className={styles.heroGIF} />
+          {/* <img src={Hero} alt="" className={styles.heroGIF} /> */}
+          <div className={styles.terminalContainer}>
+              <div className={styles.terminalHeader}>
+                <div className={styles.dots}>
+                <VscCircleLargeFilled style={{color: '#fe5e61'}} />
+                <VscCircleLargeFilled style={{color: '#fdba33'}} />
+                <VscCircleLargeFilled style={{color: '#23cc45'}} />
+                </div>
+                
+                <FaFolder style={{color: 'blue'}} />
+                <p className={styles.folderName}>~/hello/welcome-to-devFinder/home</p>
+              </div>
+
+            <textarea value={value} onChange={handleChange} onKeyDown={handleKeyDown} className={styles.terminal} name="" id="" cols="60" rows="20">
+              
+            </textarea>
+          </div>
+          
           
 
         </div>
         <div className={styles.scroll}>
-          <a href="#about"><FiChevronDown size='2rem'  /></a>
+          <a href="#about"><FiChevronDown size='2rem' className={styles.scrollButton}  /></a>
           
           </div>
       </div>
 
       <div className={styles.about} id="about">
-        <img className={styles.aboutBackground} src={Background} alt="" />
+        {/* <img className={styles.aboutBackground} src={Background} alt="" /> */}
+        
         <h1 className={styles.aboutHeader}>About DevFinder</h1>
-        <p className={styles.aboutInfo}>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae itaque consectetur, harum voluptate error inventore pariatur architecto tempore deserunt obcaecati tempora sit, nobis eum quos eligendi amet, exercitationem sint! Quam dicta ipsa exercitationem esse quas corrupti suscipit quisquam veniam assumenda aut provident maiores cupiditate iure quae possimus ab, omnis molestiae animi consequatur? Quasi quos amet facilis aliquid fuga sit quidem quam odio. Sapiente soluta possimus voluptas, impedit iusto laboriosam voluptates! Ex, pariatur! Quae ratione iure quaerat numquam beatae nulla sequi dolores odit, quod magni voluptatibus labore esse eos sapiente. Mollitia molestias cum consequuntur, placeat nisi, aut ab tenetur deleniti inventore veniam illum voluptas magni autem repellendus corporis nam odit excepturi maxime quod? Aliquam odio possimus fuga magnam beatae fugit sequi ad reprehenderit, quos velit esse consequatur laudantium veniam. Reiciendis quod corporis cupiditate qui facilis quidem voluptate aperiam asperiores recusandae officiis. Labore saepe, laudantium natus debitis, nostrum, facilis nulla fugit ad molestias perferendis veniam nam officiis molestiae minus ipsum error dolorem quaerat id eveniet quis eos. Ea aut suscipit adipisci, atque earum id? Sequi sit sapiente libero, consequatur, alias suscipit assumenda consectetur blanditiis voluptas quasi, ut ullam aut recusandae similique ea nisi debitis corporis asperiores. Ullam quidem suscipit quae blanditiis nostrum quaerat! Doloribus eveniet quasi animi minus neque praesentium nihil fuga ipsum, quo totam labore. Natus reiciendis autem maiores id provident recusandae ipsum animi quam illum officiis officia suscipit veniam eaque, odio aspernatur. Magni aliquid nam eos quis sapiente? Hic aspernatur ab iure consequuntur dolor iste enim, delectus debitis quas, saepe facere sint pariatur laborum ipsum magni repellat voluptatem quibusdam quos nihil deserunt facilis. Tempora corrupti deleniti quae beatae quibusdam officiis repellendus eius, itaque nostrum harum in minima illum consequuntur expedita quod accusamus cupiditate totam id enim! Dignissimos itaque debitis doloremque dolor deleniti quaerat numquam nisi asperiores, id odit quisquam iste.</p>
+        <p className={styles.aboutInfo}>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae itaque consectetur, harum voluptate error inventore pariatur architecto tempore deserunt obcaecati tempora sit, nobis eum quos eligendi amet, exercitationem sint! Quam dicta ipsa exercitationem esse quas corrupti suscipit quisquam veniam assumenda aut provident maiores cupiditate iure quae possimus ab, omnis molestiae animi consequatur? Quasi quos amet facilis aliquid fuga sit quidem quam odio. Sapiente soluta possimus voluptas, impedit iusto laboriosam voluptateur, alias suscipit assumenda consectetur blanditiis voluptas quasi, ut ullam aut recusandae similique ea nisi debitis corporis asperiores. Ullam quidem suscipit quae blanditiis nostrum quaerat! Doloribus eveniet quasi animi minus neque praesentium nihil fuga ipsum, quo totam labore. Natus reiciendis autem maiores id provident recusandae ipsum animi quam illum officiis officia suscipit veniam eaque, odio aspernatur. Magni aliquid nam eos quis sapiente? Hic aspernatur ab iure consequuntur dolor iste enim, delectus debitis quas, saepe facere sint pariatur laborum ipsum magni repellat voluptatem quibusdam quos nihil deserunt facilis. Tempora corrupti deleniti quae beatae quibusdam officiis repellendus eius, itaque nostrum harum in minima illum consequuntur expedita quod accusamus cupiditate totam id enim! Dignissimos itaque debitis doloremque dolor deleniti quaerat numquam nisi asperiores, id odit quisquam iste.</p>
       </div>
         
       <h1 className={styles.contributers}>Project Maintainers</h1>

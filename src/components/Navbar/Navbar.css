@@ -3,7 +3,10 @@
     top: 0;
     left: 0;
     width: 100%;
-    background-color: var(--container-color);
+    background-color: #73777B;
+    /* background-color: #0f0e0f; */
+  
+
     box-shadow: 0 1px 0 rgba(22, 8, 43, 0.1);
     padding: 0 1rem;
     z-index: var(--z-fixed);
@@ -51,7 +54,8 @@
     left: 0;
     height: 100vh;
     padding: 1rem 0rem 0;
-    background-color: var(--container-color);
+    /* background-color: var(--container-color); */
+    background-color: #0f0f12;
     box-shadow: 1px 0 0 rgba(22, 8, 43, 0.1);
     z-index: var(--z-fixed);
     transition: .4s;
@@ -101,11 +105,13 @@ nav::-webkit-scrollbar{
 .navIcon {
     font-size: 1.2rem;
     margin-right: .5rem;
+    color: #eb7724;
 }
 .navName{
     font-size: var(--normal-font-size);
     font-weight: var(--font-medium);
     white-space: nowrap;
+    color: #fff;
 }
 .logo{
   height: 11rem;
