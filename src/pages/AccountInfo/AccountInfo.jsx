@@ -8,6 +8,7 @@ import { useState, useContext } from 'react'
 import { useAxios } from '../../utils/useAxios';
 import { AuthContext } from '../../context/AuthContext';
 import { ProjectLongCard } from '../../components/ProjectLongCard/ProjectLongCard'
+import { Link } from 'react-router-dom'
 
 export const AccountInfo = (props) => {
     
@@ -91,7 +92,9 @@ export const AccountInfo = (props) => {
                 
                 <p className={styles.developerLocation}><TiLocation size={22} />: Pune</p>
 
-                <button className={styles.editBtn}>Edit Profile</button>
+                <Link to={"/account/edit"} state={{url: profile.url}}>
+                  <button className={styles.editBtn}>Edit Profile</button>
+                </Link>
                 </div>
 
               </div>

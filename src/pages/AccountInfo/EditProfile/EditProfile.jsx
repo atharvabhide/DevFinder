@@ -2,10 +2,14 @@ import React, { useEffect, useState } from 'react'
 import styles from './EditProfile.module.css'
 import { useAxios } from '../../../utils/useAxios';
 import axios from 'axios';
+import { useLocation } from 'react-router-dom';
 
 export const EditProfile = () => {
 
-  const [selectedFile, setSelectedFile] = useState();
+  const [selectedFile, setSelectedFile] = useState(); 
+
+  const location = useLocation();
+  console.log(location);
 
   const api = useAxios();
 
@@ -41,7 +45,8 @@ export const EditProfile = () => {
 
     if (responseNSFW.data.prediction != "image is nsfw")
     {
-      const response = await api.post("http://127.0.0.1:8000/user-api/profiles/c48554e6-f19b-4fb5-900c-2afe6573323f/update/", formData);
+      const profileUrl = location.state.url;
+      const response = await api.post(`${profileUrl}update/`, formData);
       console.log(response);
     }
     else {
