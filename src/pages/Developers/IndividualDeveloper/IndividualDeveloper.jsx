@@ -43,10 +43,6 @@ export const IndividualDeveloper = () => {
     console.log("message data ", messageData);
   }
 
-  useEffect(() => {
-    sendMessage();
-  }, [])
-
   return (
     <>
         <div className={styles.wrapper}>
@@ -62,7 +58,7 @@ export const IndividualDeveloper = () => {
                 
                 <p className={styles.developerLocation}><TiLocation size={22} />: Pune</p>
 
-                <button className={styles.sendBtn}>Send Message</button>
+                <button className={styles.sendBtn} onClick={sendMessage}>Send Message</button>
                 </div>
 
               </div>
