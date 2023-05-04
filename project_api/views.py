@@ -10,6 +10,7 @@ from rest_framework import status
 from rest_framework_simplejwt.authentication import JWTAuthentication
 from rest_framework.views import APIView
 from profanity_check import predict
+from rest_framework.parsers import MultiPartParser
 from PIL import Image
 import opennsfw2 as nsfw
 from io import BytesIO
@@ -164,16 +165,14 @@ class ReviewModView(APIView):
             return Response({"prediction": "Review is clean"})
 
 class ImageModView(APIView):
+    parser_classes = (MultiPartParser,)
     def post(self, request, format=None):
-        serializer = ImageSerializer(data=request.data)
-        if serializer.is_valid():
-            image_field = serializer.data["image"]
-            image_bytes = image_field.read()
-            pillow_image = Image.open(BytesIO(image_bytes))
-            nsfw_probability = nsfw.predict_image(pillow_image)
-            if (nsfw_probability > 0.7):
-                return Response({"prediction": "Image contains nudity"})
-            else:
-                return Response({"prediction": "Image is clean"})
+        if 'image' not in request.data:
+            return Response({'error': 'Image not found'}, status=400)
+        image = request.data['image']
+        pil_image = Image.open(BytesIO(image.read()))
+        prediction = nsfw.predict_image(pil_image)
+        if prediction > 0.7:
+            return Response({'prediction': 'image is nsfw'})
         else:
-            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+            return Response({'prediction': 'image is not nsfw'})
