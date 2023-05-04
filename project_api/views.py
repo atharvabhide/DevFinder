@@ -10,9 +10,8 @@ from rest_framework import status
 from rest_framework_simplejwt.authentication import JWTAuthentication
 from rest_framework.views import APIView
 from profanity_check import predict
-import opennsfw2 as nsfw
-from rest_framework.parsers import MultiPartParser
 from PIL import Image
+import opennsfw2 as nsfw
 from io import BytesIO
 
 # class ProjectsPagination(PageNumberPagination):
@@ -138,6 +137,14 @@ class TagListView(generics.ListAPIView):
         return Tag.objects.filter(projects__pk=pk)
 
 
+class ReviewCreateView(generics.CreateAPIView):
+    serializer_class = ReviewSerializer
+    permission_classes = [IsAuthenticated]
+    
+    def get_queryset(self):
+        project_pk = self.kwargs.get('pk')
+        return Review.objects.filter(project_id=project_pk)
+
 class ReviewListView(generics.ListAPIView):
     serializer_class = ReviewSerializer
 
@@ -145,28 +152,9 @@ class ReviewListView(generics.ListAPIView):
         project_pk = self.kwargs.get('pk')
         return Review.objects.filter(project__pk=project_pk)
 
-class ReviewCreateView(generics.CreateAPIView):
-    serializer_class = ReviewSerializer
 
-    def create(self, request, *args, **kwargs):
-        serializer = self.get_serializer(data=request.data)
-        serializer.is_valid(raise_exception=True)
 
-        project_pk = self.kwargs.get('pk')
-        try:
-            project = Project.objects.get(pk=project_pk)
-        except Project.DoesNotExist:
-            return Response({"error": f"Project with ID {project_pk} does not exist"}, status=status.HTTP_404_NOT_FOUND)
-
-        review = Review.objects.create(
-            project=project,
-            body=serializer.validated_data['body'],
-            value=serializer.validated_data['value'],
-        )
-
-        headers = self.get_success_headers(serializer.data)
-        return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
-    
+            
 class ReviewModView(APIView):
     def post(self, request):
         review = request.data['comment']
@@ -176,14 +164,16 @@ class ReviewModView(APIView):
             return Response({"prediction": "Review is clean"})
 
 class ImageModView(APIView):
-    parser_classes = (MultiPartParser,)
     def post(self, request, format=None):
-        if 'image' not in request.data:
-            return Response({'error': 'Image not found'}, status=400)
-        image = request.data['image']
-        pil_image = Image.open(BytesIO(image.read()))
-        prediction = nsfw.predict_image(pil_image)
-        if prediction > 0.7:
-            return Response({'prediction': 'image is nsfw'})
+        serializer = ImageSerializer(data=request.data)
+        if serializer.is_valid():
+            image_field = serializer.data["image"]
+            image_bytes = image_field.read()
+            pillow_image = Image.open(BytesIO(image_bytes))
+            nsfw_probability = nsfw.predict_image(pillow_image)
+            if (nsfw_probability > 0.7):
+                return Response({"prediction": "Image contains nudity"})
+            else:
+                return Response({"prediction": "Image is clean"})
         else:
-            return Response({'prediction': 'image is not nsfw'})
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

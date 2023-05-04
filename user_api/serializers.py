@@ -50,5 +50,17 @@ class MessageSerializer(serializers.HyperlinkedModelSerializer):
 
     def get_email(self, obj):
         return obj.sender.user.email if obj.sender else None
+    
+    def create(self, validated_data):
+        profile_pk = self.context['view'].kwargs.get('pk')
+        try:
+            profile = Profile.objects.get(pk=profile_pk)
+        except profile.DoesNotExist:
+            raise serializers.ValidationError(f"Project with ID {profile_pk} does not exist")
 
+        return Profile.objects.create(
+            profile=profile,
+            body=validated_data['body'],
+            subject = validated_data['subject'],
+        )
 

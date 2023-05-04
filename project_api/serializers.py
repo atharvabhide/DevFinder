@@ -34,7 +34,7 @@ class ReviewSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Review
-        fields = ['id', 'project', 'body', 'value', 'createdAt', 'owner']
+        fields = ['id', 'project', 'body', 'createdAt', 'owner']
 
     def get_owner(self, obj):
         return obj.owner.user.username if obj.owner else None
@@ -50,7 +50,6 @@ class ReviewSerializer(serializers.ModelSerializer):
         return Review.objects.create(
             project=project,
             body=validated_data['body'],
-            value=validated_data['value'],
         )
 
     

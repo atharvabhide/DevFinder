@@ -19,6 +19,7 @@ import opennsfw2 as nsfw
 from rest_framework.parsers import MultiPartParser
 from PIL import Image
 from io import BytesIO
+from rest_framework.views import APIView
 
 
 @api_view(['POST'])
@@ -201,13 +202,6 @@ class SkillDestroyView(DestroyAPIView, SkillRetrieveView):
     def delete(self, request, *args, **kwargs):
         return self.destroy(request, *args, **kwargs)
 
-from rest_framework import generics, status
-from rest_framework.response import Response
-from rest_framework.reverse import reverse
-from rest_framework.views import APIView
-from .models import Message
-from .serializers import MessageSerializer
-
 
 class ListMessageAPIView(generics.ListAPIView):
     serializer_class = MessageSerializer
@@ -225,22 +219,13 @@ class RetrieveMessageAPIView(generics.RetrieveAPIView):
     queryset = Message.objects.all()
 
 
-class CreateMessageAPIView(APIView):
-    def post(self, request, pk):
-        recipient = generics.get_object_or_404(Profile, pk=pk)
-        sender = request.user.profile if request.user.is_authenticated else None
-        serializer = MessageSerializer(data=request.data)
-
-        if serializer.is_valid():
-            message = serializer.save(sender=sender, recipient=recipient)
-
-            if sender:
-                message.name = sender.name
-                message.email = sender.email
-                message.save()
-
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+class CreateMessageAPIView(generics.CreateAPIView):
+    serializer_class = MessageSerializer
+    permission_classes = [IsAuthenticated]
+    
+    def get_queryset(self):
+        profile_pk = self.kwargs.get('pk')
+        return Profile.objects.filter(project_id=profile_pk)
 
 
 class SimilarUserView(ListAPIView):
