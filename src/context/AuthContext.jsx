@@ -7,6 +7,8 @@ import { googleLogout, useGoogleLogin } from '@react-oauth/google';
 
 export const AuthContext = createContext();
 
+const baseURL = "http://127.0.0.1:8000";
+
 export const AuthProvider = ({ children }) => {
     const [authTokens, setAuthTokens] = useState(() =>
     localStorage.getItem("authTokens")
@@ -15,6 +17,8 @@ export const AuthProvider = ({ children }) => {
     );
 
     const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+    const [currentUUID, setCurrentUUID] = useState("");
 
     useEffect(() => {
       if(authTokens === null)
@@ -37,6 +41,7 @@ export const AuthProvider = ({ children }) => {
       {
         localStorage.setItem("authTokens", JSON.stringify(response.data));
         setAuthTokens(response.data);
+        getUser(response.data.access);
       }
       else (
         alert("oopsie daisy")
@@ -69,10 +74,21 @@ export const AuthProvider = ({ children }) => {
       {
         localStorage.setItem("authTokens", JSON.stringify(response.data));
         setAuthTokens(response.data);
+        getUser(response.data.access);
       }
       else (
         alert("oopsie daisy")
       )
+    }
+
+    const getUser = async (access_token) => {
+      const response = await axios.get(`${baseURL}/user-api/current-user/`, {
+        headers: {
+          "Authorization": `Bearer ${access_token}`,
+        }
+      });
+      console.log(response);
+      setCurrentUUID(response.data.uuid);
     }
 
     const contextData = {
@@ -84,6 +100,8 @@ export const AuthProvider = ({ children }) => {
         googleLogin,
         handleGoogleLogin,
         isLoggedIn,
+        getUser,
+        currentUUID,
     }
 
     return (

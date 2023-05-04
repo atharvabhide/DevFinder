@@ -23,12 +23,25 @@ export const IndividualDeveloper = () => {
     const response = await api.get(profileUrl);
     console.log(response.data);
     setProfile(response.data)
+
+    // console.log(`${profileUrl}messages/`);
+    // const messageData = await api.get(`${profileUrl}messages/`);
+    // console.log(messageData);
   }
   
   useEffect(() => {
     fetchProfile();
   }, [])
   
+  const messageTest = {
+    "bruh": "okay"
+  }
+  const sendMessage = async () => {
+    console.log("TODO");
+    const profileUrl = location.state.url;
+    const messageData = await api.get(`${profileUrl}messages/`);
+    console.log("message data ", messageData);
+  }
 
   return (
     <>
@@ -45,7 +58,7 @@ export const IndividualDeveloper = () => {
                 
                 <p className={styles.developerLocation}><TiLocation size={22} />: Pune</p>
 
-                <button className={styles.sendBtn}>Send Message</button>
+                <button className={styles.sendBtn} onClick={sendMessage}>Send Message</button>
                 </div>
 
               </div>
