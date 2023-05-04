@@ -14,10 +14,10 @@ class Profile(models.Model):
     bio = models.TextField(null=True, blank=True)
     profileImage = models.ImageField(null=True, blank=True, upload_to='profile_images/')
     socialGithub = models.CharField(max_length=200, null=True, blank=True)
-    socialLinkedIn = models.CharField(max_length=200, null=True, blank=True)
     socialTwitter = models.CharField(max_length=200, null=True, blank=True)
     socialYoutube = models.CharField(max_length=200, null=True, blank=True)
     socialWebsite = models.CharField(max_length=200, null=True, blank=True)
+    socialHashnode = models.CharField(max_length=200, null=True, blank=True)
     createdAt = models.DateTimeField(auto_now_add=True)
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False, unique=True)
 
