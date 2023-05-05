@@ -4,6 +4,8 @@ import { useAxios } from '../../../utils/useAxios';
 import axios from 'axios';
 import { useLocation } from 'react-router-dom';
 
+const baseURL = import.meta.env.VITE_API_BASE_URL;
+
 export const EditProfile = () => {
 
   const [selectedFile, setSelectedFile] = useState(); 
@@ -40,7 +42,7 @@ export const EditProfile = () => {
     for (const value of imageData.values()) {
       console.log("value ", value);
     }
-    const responseNSFW = await api.post("http://localhost:8000/project-api/image/mod/", imageData);
+    const responseNSFW = await api.post(`${baseURL}project-api/image/mod/`, imageData);
     console.log(responseNSFW);
 
     if (responseNSFW.data.prediction != "image is nsfw")

@@ -4,7 +4,7 @@ import { useContext } from "react";
 import { AuthContext } from "../context/AuthContext";
 import jwtDecode from "jwt-decode";
 
-const baseURL = "http://127.0.0.1:8000";
+const baseURL = import.meta.env.VITE_API_BASE_URL;
 
 export const useAxios = () => {
     const { authTokens, setAuthTokens } = useContext(AuthContext);
@@ -28,6 +28,6 @@ export const useAxios = () => {
         config.headers.Authorization = `Bearer ${response.data.access}`;
         return config;
     });
-
+    // const test = "pkay";
     return axiosInstance;
 }
