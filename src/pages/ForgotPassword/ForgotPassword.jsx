@@ -3,6 +3,8 @@ import styles from './ForgotPassword.module.css'
 import {RxCross2} from 'react-icons/rx'
 import { Login } from '../Login/Login';
 import { Link } from 'react-router-dom';
+import { baseURL } from '../../utils/config';
+import axios from 'axios';
 
 export const ForgotPassword = (props) => {
 
@@ -11,6 +13,16 @@ export const ForgotPassword = (props) => {
     const handleClick = () => {
         setValidation(!validation);
     };
+
+    const email = {
+        "email" : "darknightmare2409@gmail.com",
+    }
+
+    const handleSendEmail = async () => {
+        setValidation(!validation);
+        const response = axios.post(`${baseURL}reset_password/`, email)
+        console.log(response);
+    }
 
     
   return (
@@ -29,7 +41,7 @@ export const ForgotPassword = (props) => {
                     </div>
                     <div className={styles.modalFooter}>
                         <div>
-                        <button className={styles.modalButton} id={styles.deleteButton} onClick={handleClick}>Send</button>
+                        <button className={styles.modalButton} id={styles.deleteButton} onClick={handleSendEmail}>Send</button>
                         
                         </div>
                         <div>

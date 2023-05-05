@@ -20,8 +20,6 @@ export const Login = () => {
   const [show, setShow] = useState(false);
 
   const navigate = useNavigate();
-
-  
   
   const {authTokens, loginUser, logoutUser, registerUser, googleLogin} = useContext(AuthContext);
 
@@ -51,10 +49,12 @@ export const Login = () => {
   const testAuth = async () => {
     // const response = await axios.post(`${baseURL}/api/token/refresh/`, {refresh : authTokens?.refresh});
     // console.log(response);
-    const user = jwtDecode(authTokens?.access);
-    const isExpired = dayjs.unix(user.exp).diff(dayjs()) < 1;
-    console.log(user);
-    console.log(isExpired);
+    // const user = jwtDecode(authTokens?.access);
+    // const isExpired = dayjs.unix(user.exp).diff(dayjs()) < 1;
+    // console.log(user);
+    // console.log(isExpired);
+    const response = await api.delete(`http://127.0.0.1:8000/user-api/profiles/e10cd488-c8a6-4954-80d1-7677c2df5218/delete/`)
+    console.log(response);
   }
 
   // const sendMessage = aync () => {
