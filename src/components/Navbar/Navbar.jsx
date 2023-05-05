@@ -9,7 +9,7 @@ import {MdOutlineLogout} from 'react-icons/md'
 import {TbMessageCircle} from 'react-icons/tb'
 import {FiUsers} from 'react-icons/fi'
 import {MdClose} from 'react-icons/md'
-import Logo from '../../assets/Logo.png'
+import Logo from '../../assets/logo-dark.png'
 import { SearchBar } from '../SearchBar/SearchBar'
 import { AuthContext } from '../../context/AuthContext'
 import {FiUser} from 'react-icons/fi'
@@ -76,7 +76,7 @@ export const Navbar = () => {
             <nav className={`navContainer ${navbarOpen ? 'navOpen' : 'navClosed'}`}>
                 <div >
                 
-                    <Link className="navLink navLogo"><span className="navLogoName">DevFinder</span></Link>
+                    <Link className="navLink navLogo"><span className="navLogoName" style={{color: '#eb7724'}}>DevFinder</span></Link>
 
                     <div className="navList">
                         <div className="navItems"  >

@@ -9,7 +9,7 @@
     transition: 0.13s;
 }
 .card:hover{
-    box-shadow: 0 0 10px 0 #eee inset, 0 0 10px 2px #eee;
+    box-shadow: 0 0 10px 0 var(--first-color) inset, 0 0 10px 2px var(--first-color);
 }
 .banner{
     z-index: 1;
@@ -24,24 +24,27 @@
     width: 100%;
     object-fit: cover;
     opacity: 0.85;
-    border-radius: 8px;
+    border-radius: 8px 8px 0 0;
 
-    border-bottom: 1.5px solid lightseagreen;
+    /* border-bottom: 1px solid #ddd; */
 }
 
 .projectTitle{
     font-size: 1.5em;
     margin-left: -0.7em;
+    color: #fff;
 
 }
 .projectDeveloper{
     font-size: 1em;
     margin: 0.4em 0;
     margin-left: -1em;
+    color: var(--first-color);
 
 }
 .projectFeedback{
     margin-left: -1em;
+    color: #eee
 }
 
 .toolSection{

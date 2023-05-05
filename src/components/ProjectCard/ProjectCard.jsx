@@ -11,8 +11,8 @@ export const ProjectCard = (props) => {
             </div>
             <ul>
                 <li className={styles.projectTitle}><b>{props.projectName}</b></li>
-                <li className={styles.projectDeveloper}>by {props.projectDeveloper}</li>
-                <li className={styles.projectFeedback}>{props.projectFeedback} Positive Feedback({props.voteCount} votes)</li>
+                <li className={styles.projectDeveloper}>by <i>{props.projectDeveloper}</i></li>
+                <li className={styles.projectFeedback}>{props.projectFeedback}% Positive Feedback({props.voteCount} votes)</li>
             </ul>
             <div className={styles.bottom}>
             <div className={styles.toolSection}>

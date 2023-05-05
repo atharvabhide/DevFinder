@@ -24,7 +24,7 @@ export const DevCard = (props) => {
             </div>
             
             <div className={styles.profileInfo}>
-                <li className={styles.profileName}><b>{props.name}</b></li>
+                <li className={styles.profileName}><i>{props.name}</i></li>
                 <li className={styles.profilePosition}>{props.position}</li>
             </div>
             <p className={styles.profileBio}>{props.bio}</p>

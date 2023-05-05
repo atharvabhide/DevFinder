@@ -12,7 +12,7 @@
     /* background-color: red; */
 }
 .card:hover{
-    box-shadow: 0 0 10px 0 #eee inset, 0 0 10px 2px #eee;
+    box-shadow: 0 0 10px 0 var(--first-color) inset, 0 0 10px 2px var(--first-color);
 }
 .banner{
     z-index: 1;
@@ -20,8 +20,8 @@
     border-radius: 8px;
     
     width:100%;
-    height:80px;
-    background-image: url('../../assets/banner5.jpg');
+    height:75px;
+    background-image: url('../../assets/morgan-codes-wallpaper3.png');
     background-size: cover;
     opacity: 0.85;
     border-bottom: solid 1px lightgrey;
@@ -34,7 +34,7 @@
     /* width: 30px; */
     /* height: 7vh; */
     /* display: block; */
-    border: 4px solid lightseagreen;
+    border: 4px solid #fff;
     height: 4.5em;
     width: 4.5em;
     
@@ -86,7 +86,7 @@
     color: #fff;
 }
 .profileBio{
-    font-size: 0.8rem;
+    font-size: 1rem;
     padding: 0 0.65em 0 0.65em;
     text-align: center;
     font-weight: 500;
@@ -97,12 +97,14 @@
     /* white-space:wrap; */
     overflow: hidden;
     text-overflow: ellipsis;
+    color: #ededed;
 }
 .profileName{
     font-size: 1.2rem;
-    color: #333;
+    color: #fff;
     padding: 0 1rem;
     text-align: center;
+    color: var(--first-color)
 }
 .profilePosition{
     font-size: 0.85rem;
@@ -113,7 +115,8 @@
     color: var(--text-color);
 }
 .link{
-    color:rgb(191, 214, 234);
+    color: #ddd;
+    
 }
 .link:hover{
     color: var(--first-color);
@@ -172,3 +175,4 @@
     }
     
 }
+

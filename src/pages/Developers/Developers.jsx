@@ -40,6 +40,10 @@ export const Developers = () => {
             <DevCard
               
               name={items.username}
+              position={items.shortIntro}
+              image={items.profileImage}
+              bio={items.bio}
+
               // position="ML/Backend Developer"
               // bio="The air was crisp and cool, with a hint of the upcoming autumn season. In the distance, a small stream meandered its way through the fields, glistening like a ribbon of silver in the morning light. It was a peaceful and idyllic scene, one that seemed to invite contemplation and reflection."
               // skill1="Python" 
@@ -50,6 +54,8 @@ export const Developers = () => {
             />
             </Link>
           ))}
+
+          
           
           {/* <Link to="/developers/developer">
           <DevCard

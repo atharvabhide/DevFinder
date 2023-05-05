@@ -56,6 +56,9 @@ export const Projects = () => {
       <ProjectCard
         image={item.featuredImage}
         projectName={item.title}
+        projectDeveloper={item.owner}
+        projectFeedback={item.voteRatio}
+        voteCount={item.voteTotal}
         
       />
       </Link>
@@ -74,7 +77,7 @@ export const Projects = () => {
     <>
       <div className={styles.wrapper}>
         <div className={styles.header}>
-            Idhar kuch toh header dalte searchbar ke sath
+            Search For Projects
             <SearchBar />
         </div>
           
