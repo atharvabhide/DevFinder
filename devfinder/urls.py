@@ -3,6 +3,9 @@ from django.urls import path, include, re_path
 from . import settings
 from django.conf.urls.static import static
 from django.contrib.auth import views as auth_views
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from rest_framework.reverse import reverse
 
 
 from rest_framework_simplejwt.views import (
@@ -10,7 +13,16 @@ from rest_framework_simplejwt.views import (
     TokenRefreshView
 )
 
+# class APIRootView(APIView):
+#     def get(self, request):
+#         return Response({
+#             "message" : "Welcome to DevFinder Backend API",
+#         })
+
 urlpatterns = [
+
+    # path('', APIRootView.as_view(), name='api-root'),
+
     path('admin/', admin.site.urls),
     path('user-api/', include('user_api.urls')),
     path('project-api/', include('project_api.urls')),
