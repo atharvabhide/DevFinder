@@ -3,25 +3,32 @@ import styles from './Inbox.module.css'
 import { InboxCard } from '../../components/InboxCard/InboxCard'
 import { useState, useEffect } from 'react'
 import axios from 'axios'
+import { AuthContext } from '../../context/AuthContext';
+import { useContext } from 'react';
+import { useAxios } from '../../utils/useAxios';
 
 export const Inbox = () => {
 
-  const [myData, setMyData] = useState([]);
+  const { currentUUID } = useContext(AuthContext);
+  console.log(currentUUID);
+  
+  const [messages, setMessages] = useState([]);
+  
+  const api = useAxios();
+  
+  const fetchMessages = async () => {
+    const response = await api.get(`user-api/profiles/${currentUUID}/messages/`);
+    console.log(response);
+    setMessages(response.data.results);
+    console.log(messages);
+  }
 
   useEffect(() => {
-    axios
-    .get("")
-    .then(response => {
-      const data = response.data;
-      const projects = data.results;
-      setMyData(projects);
-    })
-    .catch((error) => setIsError(error.message))
+    fetchMessages();
   }, [])
-  console.log(myData)
-
+  
+  /* 
   // const [selectedFile, setSelectedFile] = useState();
-
   // const checkNSFW = async () => {
   //   const formData = new FormData();
   //   formData.append("image", selectedFile);
@@ -39,7 +46,7 @@ export const Inbox = () => {
   //       // console.log("error: ", err);
   //   }
   // }
-
+  */
   return (
     <>
     <div className={styles.wrapper}>

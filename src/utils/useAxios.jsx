@@ -3,8 +3,7 @@ import dayjs from "dayjs";
 import { useContext } from "react";
 import { AuthContext } from "../context/AuthContext";
 import jwtDecode from "jwt-decode";
-
-const baseURL = import.meta.env.VITE_API_BASE_URL;
+import { baseURL } from "./config";
 
 export const useAxios = () => {
     const { authTokens, setAuthTokens } = useContext(AuthContext);

@@ -18,7 +18,10 @@ export const AuthProvider = ({ children }) => {
 
     const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-    const [currentUUID, setCurrentUUID] = useState("");
+    const [currentUUID, setCurrentUUID] = useState(() => {
+      const storedUUID = localStorage.getItem("user");
+      return storedUUID ? JSON.parse(storedUUID) : null;
+    });
 
     useEffect(() => {
       if(authTokens === null)
@@ -50,7 +53,9 @@ export const AuthProvider = ({ children }) => {
 
     const logoutUser = () => {
         setAuthTokens(null);
+        setCurrentUUID(null);
         localStorage.removeItem("authTokens");
+        localStorage.removeItem("user");
     }
 
     
@@ -88,6 +93,7 @@ export const AuthProvider = ({ children }) => {
         }
       });
       console.log(response);
+      localStorage.setItem("user", JSON.stringify(response.data.uuid));
       setCurrentUUID(response.data.uuid);
     }
 
