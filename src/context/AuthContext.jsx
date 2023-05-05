@@ -7,7 +7,7 @@ import { googleLogout, useGoogleLogin } from '@react-oauth/google';
 
 export const AuthContext = createContext();
 
-const baseURL = "http://127.0.0.1:8000";
+const baseURL = import.meta.env.VITE_API_BASE_URL;
 
 export const AuthProvider = ({ children }) => {
     const [authTokens, setAuthTokens] = useState(() =>
@@ -34,7 +34,7 @@ export const AuthProvider = ({ children }) => {
     // console.log("Token state ", authTokens);
   
     const loginUser = async (username, password) => {
-      const response = await axios.post("http://127.0.0.1:8000/api/token/", {username: username, password: password});
+      const response = await axios.post(`${baseURL}api/token/`, {username: username, password: password});
       console.log(response);
       // console.log(jwtDecode(response.data.access));
       if (response.status === 200)
@@ -55,7 +55,7 @@ export const AuthProvider = ({ children }) => {
 
     
     const registerUser = async (first_name, username, email, password) => {
-        const response = await axios.post("http://127.0.0.1:8000/user-api/profiles/create/", {first_name, username, email, password});
+        const response = await axios.post(`${baseURL}user-api/profiles/create/`, {first_name, username, email, password});
         console.log(response);
         return response;
     }
@@ -68,7 +68,7 @@ export const AuthProvider = ({ children }) => {
 
     const handleGoogleLogin = async (access_token) => {
       console.log(access_token);
-      const response = await axios.post("http://127.0.0.1:8000/user-api/register-by-access-token/social/google-oauth2/", {"access_token": access_token});
+      const response = await axios.post(`${baseURL}user-api/register-by-access-token/social/google-oauth2/`, {"access_token": access_token});
       console.log(response);
       if (response.status === 200)
       {
