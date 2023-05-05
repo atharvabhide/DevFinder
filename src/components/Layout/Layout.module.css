@@ -1,9 +1,12 @@
 .layout{
-    width: 93.3vw;
+    min-width: 96.24vw;
     /* min-height: 80vh; */
     /* background-color: red; */
     /* margin: 1.5rem 5.8rem; */
-    margin: -1px 3.3rem;
+    overflow: hidden;
+    margin: -1px 3.37rem;
+    padding-right: 2em;
+    background-color: #000;
 }
 @media screen and (width < 768px){
     .layout{
