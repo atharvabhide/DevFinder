@@ -17,7 +17,7 @@ import {FiUser} from 'react-icons/fi'
 
 export const Navbar = () => {
     const IconStyle = {color: "white"}
-    const IconstyleMenu = {color: "#333"}
+    const IconstyleMenu = {color: "#fff"}
 
     const [navbarOpen, setNavbarOpen] = useState(false);
     const handleToggleClick = () => {
