@@ -3,22 +3,26 @@ import styles from './Inbox.module.css'
 import { InboxCard } from '../../components/InboxCard/InboxCard'
 import { useState, useEffect } from 'react'
 import axios from 'axios'
+import { AuthContext } from '../../context/AuthContext';
+import { useContext } from 'react';
 
 export const Inbox = () => {
 
-  const [myData, setMyData] = useState([]);
+  const { currentUUID } = useContext(AuthContext);
+  console.log(currentUUID);
+  // const [myData, setMyData] = useState([]);
 
-  useEffect(() => {
-    axios
-    .get("")
-    .then(response => {
-      const data = response.data;
-      const projects = data.results;
-      setMyData(projects);
-    })
-    .catch((error) => setIsError(error.message))
-  }, [])
-  console.log(myData)
+  // useEffect(() => {
+  //   axios
+  //   .get("")
+  //   .then(response => {
+  //     const data = response.data;
+  //     const projects = data.results;
+  //     setMyData(projects);
+  //   })
+  //   .catch((error) => setIsError(error.message))
+  // }, [])
+  // console.log(myData)
 
   // const [selectedFile, setSelectedFile] = useState();
 
