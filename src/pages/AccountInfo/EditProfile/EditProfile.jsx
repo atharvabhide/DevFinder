@@ -3,8 +3,7 @@ import styles from './EditProfile.module.css'
 import { useAxios } from '../../../utils/useAxios';
 import axios from 'axios';
 import { useLocation } from 'react-router-dom';
-
-const baseURL = import.meta.env.VITE_API_BASE_URL;
+import { baseURL } from '../../../utils/config';
 
 export const EditProfile = () => {
 

@@ -19,14 +19,27 @@ export const useAxios = () => {
         // console.log("isExp: ", isExpired);
         if (!isExpired) {return config;}
 
-        const response = await axios.post(`${baseURL}/api/token/refresh/`, {refresh : authTokens?.refresh});
-        localStorage.setItem("authTokens", JSON.stringify(response.data));
+        try {
+            const response = await axios.post(`${baseURL}/api/token/refresh/`, {
+              refresh: authTokens?.refresh,
+            });
+            localStorage.setItem("authTokens", JSON.stringify(response.data));
+            config.headers.Authorization = `Bearer ${response.data.access}`;
+            return config;
+            
+        } catch (error) {
+            console.log(error);
+            // handle error
+        }
 
-        setAuthTokens(response.data);
+        // const response = await axios.post(`${baseURL}/api/token/refresh/`, {refresh : authTokens?.refresh});
+        // localStorage.setItem("authTokens", JSON.stringify(response.data));
 
-        config.headers.Authorization = `Bearer ${response.data.access}`;
-        return config;
+        // setAuthTokens(response.data);
+
+        // config.headers.Authorization = `Bearer ${response.data.access}`;
+        // return config;
     });
-    // const test = "pkay";
+   
     return axiosInstance;
 }
