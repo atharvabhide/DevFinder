@@ -20,7 +20,7 @@ import { Footer } from '../../components/Footer/Footer'
 
 export const Home = () => {
 
-  // const defaultText = ">.";
+  
   
   const [value, setValue] = useState("~/hello/welcome-to-devFinder/home main*");
 
@@ -53,8 +53,8 @@ export const Home = () => {
               <div className={styles.terminalHeader}>
                 <div className={styles.dots}>
                 <VscCircleLargeFilled style={{color: '#fe5e61'}} />
-                <VscCircleLargeFilled style={{color: '#fdba33'}} />
-                <VscCircleLargeFilled style={{color: '#23cc45'}} />
+                <VscCircleLargeFilled style={{color: '#fdba33', marginLeft: '8px'}} />
+                <VscCircleLargeFilled style={{color: '#23cc45', marginLeft: '8px'}} />
                 </div>
                 
                 <FaFolder style={{color: 'blue'}} />
