@@ -11,6 +11,8 @@ import { AuthContext } from '../../context/AuthContext';
 
 import { useAxios } from "../../utils/useAxios"
 import { ForgotPassword } from '../ForgotPassword/ForgotPassword';
+import { baseURL } from '../../utils/config';
+import dayjs from 'dayjs';
 
 export const Login = () => {
 
@@ -47,8 +49,12 @@ export const Login = () => {
   const comment = {"comment" : "Your is so nice"}
 
   const testAuth = async () => {
-    const response = await api.post("http://127.0.0.1:8000/project-api/review/mod/", comment);
-    console.log(response);
+    // const response = await axios.post(`${baseURL}/api/token/refresh/`, {refresh : authTokens?.refresh});
+    // console.log(response);
+    const user = jwtDecode(authTokens?.access);
+    const isExpired = dayjs.unix(user.exp).diff(dayjs()) < 1;
+    console.log(user);
+    console.log(isExpired);
   }
 
   // const sendMessage = aync () => {
@@ -87,12 +93,12 @@ export const Login = () => {
             opacity: 0,
             
   } : null}>
-            <h2 style={{color:'#fff'}}>Log In</h2> <br />
+            <h2 style={{color:'#fff'}} onClick={testAuth}>Log In</h2> <br />
             
             <div className={styles.actualForm}>
               <input className={styles.inputField} type="text"   placeholder='Username' onChange={(e) => {setSignInUsername(e.target.value);}}/>
               <input className={styles.inputField} type="password"  placeholder='Password' onChange={(e) => {setSignInPassword(e.target.value);}}/>
-              <p className={styles.link} onClick={() => {testAuth; navigate('/forgot-password')}} >Forgot your password?</p><br />
+              <p className={styles.link} onClick={() => {navigate('/forgot-password')}} >Forgot your password?</p><br />
               {/* <ForgotPassword onClose={() => setShow(true)} show={show} /> */}
               <button className={styles.button} onClick={handleLogin}>Sign In</button>
               <div  className={styles.paragraph}>

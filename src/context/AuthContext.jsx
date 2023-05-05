@@ -4,10 +4,9 @@ import jwtDecode from 'jwt-decode';
 import { createContext } from 'react';
 import { GoogleLogin } from '@react-oauth/google';
 import { googleLogout, useGoogleLogin } from '@react-oauth/google'; 
+import { baseURL } from '../utils/config';
 
 export const AuthContext = createContext();
-
-const baseURL = import.meta.env.VITE_API_BASE_URL;
 
 export const AuthProvider = ({ children }) => {
     const [authTokens, setAuthTokens] = useState(() =>
