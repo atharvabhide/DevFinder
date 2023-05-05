@@ -173,7 +173,7 @@
     position: absolute;
     left: 3%;
     display: flex;
-    gap: 2px;
+    /* gap: 2px; */
     
 }
 

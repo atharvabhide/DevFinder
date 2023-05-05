@@ -29,7 +29,7 @@ export const Developers = () => {
     <>
       <div className={styles.wrapper}>
         <div className={styles.header}>
-            Idhar kuch toh header dalte searchbar ke sath
+            Search For Developers
             <SearchBar />
         </div>  
 

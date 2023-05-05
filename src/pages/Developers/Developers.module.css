@@ -1,11 +1,12 @@
 .header{
-    background-color: #05445E;
+    background-color: #1b1a1a;
     height: 40vh;
     display: flex;
     flex-direction: column;
     gap: 4em;
     justify-content: center;
     align-items: center;
+    font-size: 1.2em;
     color: aliceblue;
     font-weight: 900;
 }

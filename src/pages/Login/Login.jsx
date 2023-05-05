@@ -87,7 +87,7 @@ export const Login = () => {
             opacity: 0,
             
   } : null}>
-            <h2>Log In</h2> <br />
+            <h2 style={{color:'#fff'}}>Log In</h2> <br />
             
             <div className={styles.actualForm}>
               <input className={styles.inputField} type="text"   placeholder='Username' onChange={(e) => {setSignInUsername(e.target.value);}}/>

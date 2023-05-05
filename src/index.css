@@ -5,7 +5,7 @@
   --header-height: 3.5rem;
   --nav-width: 219px;
 
-  --first-color: #3858d6;
+  --first-color: #eb7724;
   --first-color-alt:	#2948c7;
   --first-color-light: #5670d7;
   --first-color-lighten: #f0f3ff;
@@ -57,6 +57,7 @@ body{
   font-size: var(--normal-font-size);
   background-color: var(--body-color);
   color: var(--text-color);
+  overflow-x: hidden;
 }
 
 h1, h2, h3{
