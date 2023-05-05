@@ -23,6 +23,7 @@ export const EditProfile = () => {
     formData.append("username", "Testerbro");
     formData.append("location", "Your mom's house");
     formData.append("bio", "I dont really like biology");
+    formData.append("shortIntro", "I am a rizz developer");
     formData.append("socialGithub", "https://github.com/Aryan-Sawale");
     formData.append("socialLinkedIn", "https://github.com/Aryan-Sawale");
     formData.append("socialTwitter", "https://github.com/Aryan-Sawale");
