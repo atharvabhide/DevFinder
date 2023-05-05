@@ -22,7 +22,7 @@ export const Home = () => {
 
   
   
-  const [value, setValue] = useState("~/hello/welcome-to-devFinder/home main*");
+  const [value, setValue] = useState(<span style={{color: 'red'}}>~/hello/welcome-to-devFinder/home main*</span>);
 
   const handleChange = (event) => {
     setValue(event.target.value);
@@ -53,11 +53,11 @@ export const Home = () => {
               <div className={styles.terminalHeader}>
                 <div className={styles.dots}>
                 <VscCircleLargeFilled style={{color: '#fe5e61'}} />
-                <VscCircleLargeFilled style={{color: '#fdba33', marginLeft: '8px'}} />
-                <VscCircleLargeFilled style={{color: '#23cc45', marginLeft: '8px'}} />
+                <VscCircleLargeFilled style={{color: '#fdba33', marginLeft: '4px'}} />
+                <VscCircleLargeFilled style={{color: '#23cc45', marginLeft: '4px'}} />
                 </div>
                 
-                <FaFolder style={{color: 'blue'}} />
+                <FaFolder className={styles.folderIcon} style={{color: 'blue'}} />
                 <p className={styles.folderName}>~/hello/welcome-to-devFinder/home</p>
               </div>
 

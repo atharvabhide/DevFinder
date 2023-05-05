@@ -32,16 +32,7 @@ export const Pagination = ({ currentPage, totalPages, onPageChange }) =>  {
         {/*Add this line disabled={currentPageNumber === 1} once pagination is sorted */}
         <GrFormPrevious size={25} />
       </button>
-      {pageNumbers.map((pageNumber) => (
-        <p
-          key={pageNumber}
-          onClick={() => handlePageChange(pageNumber) }
-          disabled={pageNumber === currentPageNumber}
-        >
-        {/*Add this line disabled={pageNumber === currentPageNumber} once pagination is sorted */}
-          
-        </p>
-      ))}
+      
       <p>Page {currentPageNumber} of {totalPages}</p>
       <button className={styles.btn} onClick={handleNextPage} disabled={currentPageNumber === totalPages} > 
       {/*Add this line disabled={currentPageNumber === totalPages} once pagination is sorted */}

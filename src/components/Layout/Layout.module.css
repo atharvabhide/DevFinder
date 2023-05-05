@@ -8,11 +8,10 @@
     padding-right: 2em;
     background-color: #000;
 }
-@media screen and (width < 768px){
+@media screen and (width <= 768px){
     .layout{
         width: 100%;
         margin: 0;
         padding-right: 0;
-
     }
 }

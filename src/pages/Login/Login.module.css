@@ -287,12 +287,16 @@ transition: transform 0.6s ease-in-out;
         left: 0%;
         height: 27%;
         top: 80%;
-        margin-top: -1.85em;
+        margin-top: 1.85em;
         z-index: 10;
     }
     
     .leftOverlayPanel{
         display: none;
+    }
+    .container{
+        height: 105vh;
+       
     }
     
 

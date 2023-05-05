@@ -52,7 +52,7 @@
     position: fixed;
     top: 0;
     left: 0;
-    height: 100vh;
+    height: 105vh;
     padding: 1rem 0rem 0;
     /* background-color: var(--container-color); */
     background-color: #0f0f12;
@@ -196,7 +196,7 @@ nav::-webkit-scrollbar{
     }
 }
   
-@media screen and (min-width: 851px) {
+@media screen and (min-width: 769px) {
   body {
     padding: 1rem 3rem 0 3rem;
   }
@@ -268,3 +268,4 @@ nav::-webkit-scrollbar{
   }
    
 }
+
