@@ -5,6 +5,8 @@ from django.dispatch import receiver
 from django.core.mail import send_mail
 import uuid
 from django.conf import settings
+from django.template.loader import render_to_string
+from django.utils.html import strip_tags
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, null=True, blank=True)
@@ -37,15 +39,15 @@ def createProfile(sender, instance, created, **kwargs):
             email=user.email,
             name=user.first_name,
         )
-        subject = 'Welcome to DevFinder'
-        message = 'We are glad you chose us!'
-        send_mail(
-            subject,
-            message,
-            settings.EMAIL_HOST_USER,
-            [profile.email],
-            fail_silently= False
-        )
+        subject = "Welcome to DevFinder!"
+        to_email = [profile.email]
+        html_content = render_to_string('users/welcome_email.html')
+        text_content = strip_tags(html_content)
+        send_mail(subject, 
+                text_content, 
+                settings.EMAIL_HOST_USER, 
+                to_email, 
+                html_message=html_content)
 
 @receiver(post_delete, sender=Profile)
 def profileDeleted(sender, instance, **kwargs):
