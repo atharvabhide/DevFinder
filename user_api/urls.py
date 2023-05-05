@@ -1,4 +1,5 @@
-from django.urls import path, re_path, include
+from django.urls import path, re_path, include  
+from rest_framework import routers
 from .views import (
     ProfileListView, ProfileCreateView, 
     ProfileRetrieveView, ProfileUpdateView, 
@@ -8,6 +9,8 @@ from .views import (
     ListMessageAPIView, RetrieveMessageAPIView,CreateMessageAPIView,
     register_by_access_token, authentication_test, ImageModView
 )
+
+router = routers.DefaultRouter()
 
 urlpatterns = [
 
@@ -29,7 +32,7 @@ urlpatterns = [
     path('profiles/<str:pk>/skills/<str:sk>/delete/', SkillDestroyView.as_view(), name='skill-delete'),
 
     path('profiles/<str:pk>/messages/', ListMessageAPIView.as_view(), name='message-list'),
-    path('profiles/<str:pk>/messages/create', ListMessageAPIView.as_view(), name='message-create'),
+    path('profiles/<str:pk>/messages/create/', CreateMessageAPIView.as_view(), name='message-create'),
     path('profiles/<str:pk>/messages/<str:sk>/', RetrieveMessageAPIView.as_view(), name='view-message'),
     path('image/mod/', ImageModView.as_view(), name = 'image-moderation'),
 ]

@@ -35,7 +35,7 @@ class ProfileSerializer(serializers.HyperlinkedModelSerializer):
 
 
 
-class MessageSerializer(serializers.HyperlinkedModelSerializer):
+class MessageSerializer(serializers.ModelSerializer):
     sender = serializers.HyperlinkedRelatedField(view_name='profile-detail', read_only=True)
     recipient = serializers.HyperlinkedRelatedField(view_name='profile-detail', read_only=True)
     name = serializers.SerializerMethodField()
@@ -43,7 +43,7 @@ class MessageSerializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
         model = Message
-        fields = ['url', 'id', 'subject', 'body', 'sender', 'recipient', 'name', 'email', 'is_read', 'created_at', 'updated_at']
+        fields = '__all__'
 
     def get_name(self, obj):
         return obj.sender.user.username if obj.sender else None

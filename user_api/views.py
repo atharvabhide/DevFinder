@@ -20,7 +20,7 @@ from rest_framework.parsers import MultiPartParser
 from PIL import Image
 from io import BytesIO
 from rest_framework.views import APIView
-
+from rest_framework import viewsets
 
 @api_view(['POST'])
 @permission_classes([AllowAny])
@@ -226,6 +226,9 @@ class CreateMessageAPIView(generics.CreateAPIView):
     def get_queryset(self):
         profile_pk = self.kwargs.get('pk')
         return Profile.objects.filter(project_id=profile_pk)
+    
+# Model viewsets
+# APIView
 
 
 class SimilarUserView(ListAPIView):
