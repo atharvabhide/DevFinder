@@ -1,7 +1,7 @@
 .headerSearch{
     display: flex;
     padding: 0.5rem 1rem;
-    background-color: var(--first-color-light);
+    background-color: var(--first-color);
     border-radius: 0.25rem;
 }
 .headerInput{
@@ -10,7 +10,7 @@
     font-size: 0.9rem;
     border: none;
     outline: none;
-    background-color: var(--first-color-light);
+    background-color: var(--first-color);
     color: #fff;
 }
 .headerInput::placeholder{

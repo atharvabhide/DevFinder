@@ -54,7 +54,7 @@ ul{
     transition: 0.1s;
 }
 .footerCol ul li a:hover{
-    color: #3858d6;
+    color: #eb7724;
     padding:0 1.3px;
 }
 .logo{
@@ -87,7 +87,7 @@ ul{
 }
 .button{
     background: none;
-    background-color: #3858d6;
+    background-color: #eb7724;
     outline: none;
     border: none;
     padding: 0 1rem;
@@ -95,7 +95,7 @@ ul{
     cursor: pointer;
 }
 .button:hover{
-    background-color: var(--first-color-light);
+    background-color: #7e7e7e;
 }
 .connectField{
     display: flex;
