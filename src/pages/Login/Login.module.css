@@ -2,10 +2,10 @@
     width: 100%;
     height: 90vh;
     display: flex;
-    background-color: #D4F1F4;
+    background-color: #2e2c2c;
 }
 .container{
-    background-color: #fff;
+    background-color: #000;
  border-radius: 10px;
  box-shadow: 0 7px 7px rgba(0, 0, 0, 0.25), 0 5px 5px rgba(0, 0, 0, 0.22);
  position: relative;
@@ -22,6 +22,7 @@
  min-height: 80vh;
 }
 .signUpContainer{
+    
     position: absolute;
   top: 0;
   height: 100%;
@@ -41,7 +42,7 @@
  z-index: 2;
 }
 form{
-    background-color: #ffffff;
+    background-color: #000;
  display: flex;
  align-items: center;
  justify-content: center;
@@ -51,22 +52,27 @@ form{
  text-align: center;
 }
 .title{
+    font-size: 2em;
+    color: #fff;
     font-weight: bold;
     margin: 0;
 }
 .inputField{
-    background-color: #eee;
- border: none;
+    background-color: #2e2c2c;
+ border: 10px;
+ 
+ border-color: #eb7724;
  padding: 12px 15px;
  margin: 8px 0;
  width: 100%;
  border-radius: 4px;
+ color: #eb7724;
 }
 .button{
     border-radius: 20px;
     border: none;
     outline: none;
-    background-color: #05445E;
+    background-color: #eb7724;
     color: #ffffff;
     font-size: 12px;
     font-weight: bold;
@@ -78,8 +84,8 @@ form{
     
 }
 .button:hover{
-    background: #D4F1F4;
-    color: #05445E;
+    background: #ffffff;
+    color: #eb7724;
 }
 .button:active{
     transform: scale(0.95);
@@ -90,9 +96,9 @@ form{
 .ghostButton{
     border-radius: 20px;
     /* border: 1px solid #05445E; */
-    background-color: #75E6DA;
-    border-color: #75E6DA;
-    color: #333;
+    background-color: #000;
+    border-color: #eb7724;
+    color: #fff;
     font-size: 12px;
     font-weight: bold;
     padding: 12px 45px;
@@ -102,11 +108,11 @@ form{
     transition: transform 80ms ease-in;
 }
 .ghostButton:hover{
-    background: #05445E;
-    color: #75E6DA; 
+    background: #fff;
+    color: #eb7724; 
 }
 .link{
-    color: #333;
+    color: #eb7724;
  font-size: 14px;
  text-decoration: none;
  margin: 15px 0;
@@ -126,7 +132,7 @@ z-index: 5;
 .overlay{
     background: #ff416c;
 /* background: -webkit-linear-gradient(to right, #ff4b2b, #ff416c); */
-background: linear-gradient(to bottom right, var(--first-color), #2367b9);
+background: linear-gradient(to bottom right, var(--first-color), #d56d22);
 background-repeat: no-repeat;
 background-size: cover;
 background-position: 0 0;
@@ -168,6 +174,7 @@ transition: transform 0.6s ease-in-out;
     transform: translateX(-20%);
 }
 .rightOverlayPanel{
+    
     position: absolute;
      display: flex;
      align-items: center;
@@ -184,6 +191,7 @@ transition: transform 0.6s ease-in-out;
      transform: translateX(0);
 }
 .paragraph{
+    color: #fff;
     font-size: 14px;
    font-weight: 100;
    line-height: 20px;
@@ -204,8 +212,11 @@ transition: transform 0.6s ease-in-out;
     /* border-radius: 100vmax; */
 }
 .googleBtn:hover{
-    background: #333;
+    background: #2e2c2c;
     color: #fff;
+}
+.googleBtn{
+    background: #fff;
 }
 
 
