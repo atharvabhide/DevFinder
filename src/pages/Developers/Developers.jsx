@@ -8,6 +8,7 @@ import {Footer} from '../../components/Footer/Footer'
 import { Link } from 'react-router-dom'
 import { SearchBar } from '../../components/SearchBar/SearchBar'
 import axios from 'axios'
+import { baseURL } from '../../utils/config'
 
 
 export const Developers = () => {
@@ -15,7 +16,7 @@ export const Developers = () => {
   const [users, setUsers] = useState([]);
 
   const fetchDevelopers = async () => {
-    const response = await axios.get("http://127.0.0.1:8000/user-api/profiles/");
+    const response = await axios.get(`${baseURL}user-api/profiles/`);
     const items = response.data.results;
     console.log(items);
     setUsers(items);
