@@ -23,6 +23,10 @@ export const AccountInfo = (props) => {
       // console.log(profileResponse);
       console.log(profileResponse.data);
       setProfile(profileResponse.data);
+
+      // projects
+      const projectsResponse = await api.get(`/user-api/profiles/${userPK}/projects/`)
+      console.log(projectsResponse);
     }
 
     useEffect(() => {
