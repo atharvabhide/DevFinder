@@ -32,7 +32,7 @@ urlpatterns = [
     path('profiles/<str:pk>/skills/<str:sk>/delete/', SkillDestroyView.as_view(), name='skill-delete'),
 
     path('profiles/<str:pk>/messages/', ListMessageAPIView.as_view(), name='message-list'),
-    path('profiles/<str:pk>/messages/create/', CreateMessageAPIView.as_view(), name='message-create'),
+    path('profiles/<str:pk>/create-message/', CreateMessageAPIView.as_view(), name='message-create'),
     path('profiles/<str:pk>/messages/<str:sk>/', RetrieveMessageAPIView.as_view(), name='view-message'),
     path('image/mod/', ImageModView.as_view(), name = 'image-moderation'),
 ]

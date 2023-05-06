@@ -20,7 +20,7 @@ from rest_framework.parsers import MultiPartParser
 from PIL import Image
 from io import BytesIO
 from rest_framework.views import APIView
-from rest_framework import viewsets
+from rest_framework import serializers
 
 @api_view(['POST'])
 @permission_classes([AllowAny])
@@ -222,13 +222,16 @@ class RetrieveMessageAPIView(generics.RetrieveAPIView):
 class CreateMessageAPIView(generics.CreateAPIView):
     serializer_class = MessageSerializer
     permission_classes = [IsAuthenticated]
-    
-    def get_queryset(self):
+
+    def perform_create(self, serializer):
         profile_pk = self.kwargs.get('pk')
-        return Profile.objects.filter(project_id=profile_pk)
+        try:
+            profile = Profile.objects.get(pk=profile_pk)
+        except Profile.DoesNotExist:
+            raise serializers.ValidationError(f"Profile with ID {profile_pk} does not exist")
+        serializer.save(sender=self.request.user.profile, recipient=profile)
     
-# Model viewsets
-# APIView
+
 
 
 class SimilarUserView(ListAPIView):

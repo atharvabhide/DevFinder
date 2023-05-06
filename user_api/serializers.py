@@ -51,16 +51,14 @@ class MessageSerializer(serializers.ModelSerializer):
     def get_email(self, obj):
         return obj.sender.user.email if obj.sender else None
     
-    def create(self, validated_data):
-        profile_pk = self.context['view'].kwargs.get('pk')
+    def perform_create(self, serializer):
+        profile_pk = self.kwargs.get("pk")
         try:
             profile = Profile.objects.get(pk=profile_pk)
-        except profile.DoesNotExist:
-            raise serializers.ValidationError(f"Project with ID {profile_pk} does not exist")
+        except Profile.DoesNotExist:
+            raise serializers.ValidationError(f"Profile with ID {profile_pk} does not exist")
+        serializer.save(sender=self.request.user.profile, recipient=profile)
 
-        return Profile.objects.create(
-            profile=profile,
-            body=validated_data['body'],
-            subject = validated_data['subject'],
-        )
+
+
 
