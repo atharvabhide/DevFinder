@@ -34,13 +34,12 @@ export const IndividualDeveloper = () => {
   }, [])
   
   const messageTest = {
-    "bruh": "okay"
+    "body": "bruhhhhhh"
   }
   const sendMessage = async () => {
-    console.log("TODO");
     const profileUrl = location.state.url;
-    const messageData = await api.get(`${profileUrl}messages/`);
-    console.log("message data ", messageData);
+    const response = await api.post(`${profileUrl}create-message/`, messageTest);
+    console.log(response);
   }
 
   return (
