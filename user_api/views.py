@@ -267,12 +267,16 @@ class ImageModView(APIView):
         else:
             return Response({'prediction': 'image is not nsfw'})
 
-class ProjectRetrieveView(APIView):
+class ProjectRetrieveView(generics.ListAPIView):
     authentication_classes = [JWTAuthentication]
     permission_classes = [IsAuthenticated]
+    pagination_class = PageNumberPagination
+
+    def get_queryset(self):
+        profile = Profile.objects.get(user=self.request.user)
+        return Project.objects.filter(owner=profile)
+    
+    serializer_class = ProjectSerializer
 
     def get(self, request, *args, **kwargs):
-        profile = Profile.objects.get(user=request.user)
-        project = Project.objects.filter(owner=profile)
-        serializer = ProjectSerializer(project)
-        return Response(serializer.data)
+        return super().get(request, *args, **kwargs)
