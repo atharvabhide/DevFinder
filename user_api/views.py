@@ -264,3 +264,13 @@ class ImageModView(APIView):
             return Response({'prediction': 'image is nsfw'})
         else:
             return Response({'prediction': 'image is not nsfw'})
+
+class ProjectRetrieveView(APIView):
+    authentication_classes = [JWTAuthentication]
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request, *args, **kwargs):
+        profile = Profile.objects.get(user=request.user)
+        project = Project.objects.filter(owner=profile)
+        serializer = ProjectSerializer(project)
+        return Response(serializer.data)

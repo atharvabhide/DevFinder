@@ -7,7 +7,8 @@ from .views import (
     SkillCreateView, SkillRetrieveView, CurrentUser,
     SkillUpdateView, SkillDestroyView, 
     ListMessageAPIView, RetrieveMessageAPIView,CreateMessageAPIView,
-    register_by_access_token, authentication_test, ImageModView
+    register_by_access_token, authentication_test, ImageModView,
+    ProjectRetrieveView,
 )
 
 router = routers.DefaultRouter()
@@ -23,6 +24,7 @@ urlpatterns = [
     path('profiles/create/', ProfileCreateView.as_view(), name='profile-create'),
 
     path('profiles/<str:pk>/', ProfileRetrieveView.as_view(), name='profile-detail'),
+    path('profiles/<str:pk>/projects/', ProjectRetrieveView.as_view(), name='project-list'),
     path('profiles/<str:pk>/update/', ProfileUpdateView.as_view(), name='profile-update'),
     path('profiles/<str:pk>/delete/', ProfileDestroyView.as_view(), name='profile-delete'),
     path('profiles/<str:pk>/skills/', SkillListView.as_view(), name='skill-list'),
