@@ -1,4 +1,5 @@
 from .models import Profile, Skill, Message
+from project_api.models import Project 
 from .serializers import ProfileSerializer, SkillSerializer, UserSerializer, MessageSerializer
 from rest_framework.generics import ListAPIView, RetrieveAPIView, DestroyAPIView, UpdateAPIView, CreateAPIView
 from rest_framework.permissions import IsAuthenticated
@@ -8,6 +9,7 @@ from rest_framework_simplejwt.authentication import JWTAuthentication
 from rest_framework import generics
 from rest_framework.response import Response
 from .serializers import RegisterSerializer, UserSerializer
+from project_api.serializers import ProjectSerializer
 from rest_framework import status
 from rest_framework.response import Response
 from django.db.models import Q
