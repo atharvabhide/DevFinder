@@ -9,10 +9,12 @@ import { useAxios } from '../../utils/useAxios';
 import { AuthContext } from '../../context/AuthContext';
 import { ProjectLongCard } from '../../components/ProjectLongCard/ProjectLongCard'
 import { Link } from 'react-router-dom'
+import Image from '../../assets/banner2.jpg'
 
 export const AccountInfo = (props) => {
     
     const [profile, setProfile] = useState([]);
+    const [project, setProject] = useState([]);
     const api = useAxios();
 
     const fetchProfile = async () => {
@@ -20,13 +22,19 @@ export const AccountInfo = (props) => {
       // console.log(response);
       const userPK = response.data.uuid;
       const profileResponse = await api.get(`/user-api/profiles/${userPK}/`)
-      // console.log(profileResponse);
+      console.log(profileResponse);
       console.log(profileResponse.data);
       setProfile(profileResponse.data);
     }
 
+    const fetchProjects = async() => {
+      const projectResponse = await api.get("/project-api/projects/");
+      setProject(projectResponse.data);
+    }
+
     useEffect(() => {
       fetchProfile();
+      fetchProjects
     }, [])
 
 
@@ -103,50 +111,14 @@ export const AccountInfo = (props) => {
             <div className={styles.developerInfo}>
               <div className={styles.about}>
                 <h2><b>ABOUT ME</b></h2>
-                {isEditing ? (
-                <div>
-                    <textarea value={about} onChange={handleAboutChange} />
-                    <button onClick={handleSave}>Save</button>
-                    <button onClick={handleCancel}>Cancel</button>
-                </div>
-                ) : (
-                <div>
-                <p>{about}</p>
-                <button onClick={handleEdit}>Edit</button>
-                </div>
-                )}
+                
                 
               </div><hr />
               <div className={styles.skillSection}>
                 <h2>SKILLS</h2>
-                {skills && skills.length > 0 ? (
-                    <ul>
-                    {skills.map(skill => (
-                        <li key={skill.name}>
-                        <h3>{skill.name}</h3>
-                        <p>{skill.description}</p>
-                        </li>
-                    ))}
-                    </ul>
-                ) : (
-                    <p>No skills to display</p>
-                )}
+                
 
-                {isAddingSkill ? (
-                    <div>
-                    <label>Name:</label>
-                    <input type="text" value={newSkill.name} onChange={handleNewSkillNameChange} />
-                    <label>Description:</label>
-                    <textarea value={newSkill.description} onChange={handleNewSkillDescriptionChange} />
-                    <button onClick={handleSaveSkill}>Save</button>
-                    <button onClick={handleCancelSkill}>Cancel</button>
-                    </div>
-                ) : (
-                    <div>
-                    <p></p>
-                    <button onClick={handleAddSkill}>Add Skill</button>
-                    </div>
-                )}
+                
 
 
 
@@ -161,7 +133,30 @@ export const AccountInfo = (props) => {
               </div><hr />
                 <h2>PROJECTS</h2>
               <div className={styles.projectSection}>
-                  <ProjectLongCard />
+                  <ProjectLongCard
+                    title="Project1"
+                    owner="abcxyz" 
+                    about="ahhhhhhhhh"
+                    image={Image}
+                  />
+                  <ProjectLongCard
+                    title="Project1"
+                    owner="abcxyz" 
+                    about="ahhhhhhhhh"
+                    image={Image}
+                  />
+                  <ProjectLongCard
+                    title="Project1"
+                    owner="abcxyz" 
+                    about="ahhhhhhhhh"
+                    image={Image}
+                  />
+                  <ProjectLongCard
+                    title="Project1"
+                    owner="abcxyz" 
+                    about="ahhhhhhhhh"
+                    image={Image}
+                  />
                 
               </div>
 

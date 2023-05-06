@@ -46,7 +46,7 @@ export const Navbar = () => {
                 (
                 
                     <ul className="account">
-                        <li class="dropdown">
+                        <li className   ="dropdown">
                             <FiUser className="accountImage" size={40} />
                             <ul className="dropdownList">
                             <li className="option">

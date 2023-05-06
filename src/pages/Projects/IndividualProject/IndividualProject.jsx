@@ -39,7 +39,7 @@ export const IndividualProject = (props) => {
         const reviewData = await api.get(`${url}reviews/`);
         console.log(reviewData);
         console.log(reviewData.data);
-        setReviews(reviewData.data);
+        setReviews(reviewData.data.results);
       } catch (err) {
         // handle errors for this specific await statement
         console.error("Error fetching reviews:", err);
