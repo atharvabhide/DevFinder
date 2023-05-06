@@ -1,0 +1,55 @@
+.projectImage{
+    height: 50px;
+}
+.projectCard{
+    background: #333;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-top: 1em;
+    padding: 1em;
+    border-radius: 8px;
+    position: relative;
+    max-width: 43vw;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    /* cursor: pointer; */
+    
+}
+.projectInfo{
+    color: #fff;
+}
+.links{
+    position: absolute;
+    right: 15%;
+    display: grid;
+    cursor: pointer;
+}
+.icon{
+    color: aliceblue;
+}
+.icon:hover{
+    color: var(--first-color);
+}
+.about{
+    max-width: 30vw;
+    /* background: red; */
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+}
+.editButton{
+    position: absolute;
+    right: 0.5%;
+    top: 7%;
+    background: none;
+    border: none;
+    outline: none;
+    color: #fff;
+    /* background-color: #eee; */
+    cursor: pointer;
+    
+}
+.editButton:hover{
+    color: var(--first-color-alt)
+}

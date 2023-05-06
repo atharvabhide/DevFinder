@@ -22,7 +22,8 @@ export const Home = () => {
 
   
   
-  const [value, setValue] = useState(<span style={{color: 'red'}}>~/hello/welcome-to-devFinder/home main*</span>);
+  const [value, setValue] = useState("~/hello/welcome-to-devFinder/home ");
+  const [value2, setValue2] = useState("main*")
 
   const handleChange = (event) => {
     setValue(event.target.value);
@@ -30,6 +31,7 @@ export const Home = () => {
   const handleKeyDown = (event) => {
     if (event.key === 'Backspace' && value === '') {
       setValue(defaultText);
+      setValue2(defaultText);
     }
   }
   
@@ -61,9 +63,10 @@ export const Home = () => {
                 <p className={styles.folderName}>~/hello/welcome-to-devFinder/home</p>
               </div>
 
-            <textarea value={value} onChange={handleChange} onKeyDown={handleKeyDown} className={styles.terminal} name="" id="" cols="60" rows="20">
-              
-            </textarea>
+            <div spellCheck="false" contentEditable onChange={handleChange} onKeyDown={handleKeyDown} className={styles.terminal}>
+            <label style={{color: '#eb7724'}}>{value}</label>
+            <label >{value2}</label>
+            </div>
           </div>
           
           
