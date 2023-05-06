@@ -13,6 +13,7 @@ import { useLocation } from 'react-router-dom'
 export const IndividualDeveloper = () => {
 
   const [profile, setProfile] = useState();
+  const [project, setProject] = useState([]);
   const api = useAxios();
 
   const location = useLocation();
@@ -24,9 +25,11 @@ export const IndividualDeveloper = () => {
     console.log(response.data);
     setProfile(response.data)
 
-    // console.log(`${profileUrl}messages/`);
-    // const messageData = await api.get(`${profileUrl}messages/`);
-    // console.log(messageData);
+
+    // projects
+    const projectsResponse = await api.get(`${profileUrl}projects/`)
+    console.log(projectsResponse);
+    setProject(projectsResponse.data.results);
   }
   
   useEffect(() => {

@@ -29,6 +29,7 @@ export const AccountInfo = (props) => {
       // projects
       const projectsResponse = await api.get(`/user-api/profiles/${userPK}/projects/`)
       console.log(projectsResponse);
+      setProject(projectsResponse.data.results)
     }
 
     const fetchProjects = async() => {

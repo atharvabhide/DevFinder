@@ -9,6 +9,7 @@ import {Footer} from '../../components/Footer/Footer'
 import { useState, useEffect } from 'react'
 import axios from 'axios'
 import { Pagination } from '../../components/Pagination/Pagination'
+import { baseURL } from '../../utils/config';
 
 
 export const Projects = () => {
@@ -27,7 +28,7 @@ export const Projects = () => {
 
   useEffect(() => {
     axios
-      .get(`http://127.0.0.1:8000/project-api/projects/?page=${currentPage}&per_page=${itemsPerPage}`)
+      .get(`${baseURL}project-api/projects/?page=${currentPage}&per_page=${itemsPerPage}`)
       .then(response => {
         const data = response.data;
         const projects = data.results;
