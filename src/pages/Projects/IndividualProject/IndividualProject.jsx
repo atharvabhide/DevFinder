@@ -39,7 +39,11 @@ export const IndividualProject = (props) => {
         const reviewData = await api.get(`${url}reviews/`);
         console.log(reviewData);
         console.log(reviewData.data);
-        setReviews(reviewData.data.results);
+
+        // const reversedReviews = reviewData.data.results.reverse();
+        // setReviews(reversedReviews);
+
+        setReviews(reviewData.data.results)
       } catch (err) {
         // handle errors for this specific await statement
         console.error("Error fetching reviews:", err);
@@ -56,18 +60,24 @@ export const IndividualProject = (props) => {
   const [reviewBody, setReviewBody] = useState("");
 
   const reviewTest = {
-    "body": "This is the 4th review",
+    "body": reviewBody,
   }
+
+  const [shouldFetchProject, setShouldFetchProject] = useState(false);
 
   const createReview = async () => {
     console.log(reviewBody);
     const response = await api.post(`${url}reviews/create/`, { "body": reviewBody });
     console.log(response);
+
+    setShouldFetchProject(true);
   }
 
   useEffect(() => {
     fetchProject(); 
-  }, [])
+
+    setShouldFetchProject(false);
+  }, [shouldFetchProject])
 
 
   return (
