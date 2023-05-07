@@ -88,27 +88,27 @@ export const EditProfile = () => {
       console.log("value ", value);
     }
   
-    // for (const value of imageData.values()) {
-    //   console.log("value ", value);
-    // }
-    // const responseNSFW = await api.post(`${baseURL}project-api/image/mod/`, imageData);
-    // console.log(responseNSFW);
+    for (const value of imageData.values()) {
+      console.log("value ", value);
+    }
+    const responseNSFW = await api.post(`${baseURL}project-api/image/mod/`, imageData);
+    console.log(responseNSFW);
 
-    // if (responseNSFW.data.prediction != "image is nsfw")
-    // {
-    //   const profileUrl = location.state.url;
-    //   const response = await api.post(`${profileUrl}update/`, formData);
-    //   console.log(response);
-    //   navigate(`/account/`);
-    // }
-    // else {
-    //   alert("No NSFW images allowed")
-    // }
+    if (responseNSFW.data.prediction != "image is nsfw")
+    {
+      const profileUrl = location.state.url;
+      const response = await api.post(`${profileUrl}update/`, formData);
+      console.log(response);
+      navigate(`/account/`);
+    }
+    else {
+      alert("No NSFW images allowed")
+    }
   
-    const profileUrl = location.state.url;
-    const response = await api.post(`${profileUrl}update/`, formData);
-    console.log(response);
-    navigate(`/account/`);
+    // const profileUrl = location.state.url;
+    // const response = await api.post(`${profileUrl}update/`, formData);
+    // console.log(response);
+    // navigate(`/account/`);
   }
 
   return (
