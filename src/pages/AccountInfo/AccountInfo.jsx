@@ -6,29 +6,32 @@ import { ShortProjectCard } from '../Developers/IndividualDeveloper/IndividualDe
 import ProjectImage from '../../assets/banner2.jpg'
 import { useState, useContext } from 'react'
 import { useAxios } from '../../utils/useAxios';
-import { AuthContext } from '../../context/AuthContext';
 import { ProjectLongCard } from '../../components/ProjectLongCard/ProjectLongCard'
 import { Link } from 'react-router-dom'
 import Image from '../../assets/banner2.jpg'
+import { AuthContext } from '../../context/AuthContext';
 
 export const AccountInfo = (props) => {
     
-    const [profile, setProfile] = useState([]);
+    const { currentUUID } = useContext(AuthContext);
+    // console.log(currentUUID);
+
+    const [profile, setProfile] = useState([]); 
     const [project, setProject] = useState([]);
     const api = useAxios();
 
     const fetchProfile = async () => {
-      const response = await api.get("/user-api/current-user/");
+      // const response = await api.get("/user-api/current-user/");
       // console.log(response);
-      const userPK = response.data.uuid;
-      const profileResponse = await api.get(`/user-api/profiles/${userPK}/`)
-      console.log(profileResponse);
-      console.log(profileResponse.data);
+      // const userPK = response.data.uuid;
+      const profileResponse = await api.get(`/user-api/profiles/${currentUUID}/`)
+      // console.log(profileResponse);
+      console.log("profile data", profileResponse.data);
       setProfile(profileResponse.data);
 
       // projects
-      const projectsResponse = await api.get(`/user-api/profiles/${userPK}/projects/`)
-      console.log(projectsResponse);
+      const projectsResponse = await api.get(`/user-api/profiles/${currentUUID}/projects/`)
+      console.log("projects", projectsResponse);
       setProject(projectsResponse.data.results)
     }
 
@@ -46,54 +49,79 @@ export const AccountInfo = (props) => {
       const response = await api.delete(`${url}delete/`)
     }
 
-
-    const [isEditing, setIsEditing] = useState(false);
-    const [about, setAbout] = useState(props.about);
     const [skills, setSkills] = useState(props.skills);
-    const [newSkill, setNewSkill] = useState({ name: '', description: '' });
-    const [isAddingSkill, setIsAddingSkill] = useState(false);
+    
+    const fetchSkills = async () => {
+      const response = await api.get(`/user-api/profiles/${currentUUID}/skills/`);
+      console.log("skills", response);
+      setSkills(response.data);
+    }
 
-    function handleEdit() {
-        setIsEditing(true);
-      }
-    
-      function handleSave() {
-        // Make API call to save changes to backend
+    useEffect(() => {
+      fetchSkills();
+    }, [])
 
-        setIsEditing(false);
-      }
-    
-      function handleCancel() {
-        setIsEditing(false);
-        setAbout(props.about); // Reset to original about text
-      }
-    
-      function handleAboutChange(event) {
-        setAbout(event.target.value);
-      }
+    const dummySkill = {
+      name: "Django",
+    }
 
-      function handleAddSkill() {
-        setIsAddingSkill(true);
-      }
-    
-      function handleSaveSkill() {
-        // setSkills([...skills, newSkill]);
-        setIsAddingSkill(false);
-        setNewSkill({ name: '', description: '' });
-      }
-    
-      function handleCancelSkill() {
-        setIsAddingSkill(false);
-        setNewSkill({ name: '', description: '' });
-      }
+    const addSkill = async () => {
+      const response = await api.post(`/user-api/profiles/${currentUUID}/skills/create/`, dummySkill);
+      console.log(response);
+    }
 
-      function handleNewSkillNameChange(event) {
-        setNewSkill({ ...newSkill, name: event.target.value });
-      }
+    const deleteSkill = async (skillId) => {
+      const response = await api.delete(`/user-api/profiles/${currentUUID}/skills/${skillId}/delete/`)
+      console.log(response);
+    }
+
+    // const [isEditing, setIsEditing] = useState(false);
+    // const [about, setAbout] = useState(props.about);
+    // const [skills, setSkills] = useState(props.skills);
+    // const [newSkill, setNewSkill] = useState({ name: '', description: '' });
+    // const [isAddingSkill, setIsAddingSkill] = useState(false);
+
+    // function handleEdit() {
+    //     setIsEditing(true);
+    //   }
     
-      function handleNewSkillDescriptionChange(event) {
-        setNewSkill({ ...newSkill, description: event.target.value });
-      }
+    //   function handleSave() {
+    //     // Make API call to save changes to backend
+
+    //     setIsEditing(false);
+    //   }
+    
+    //   function handleCancel() {
+    //     setIsEditing(false);
+    //     setAbout(props.about); // Reset to original about text
+    //   }
+    
+    //   function handleAboutChange(event) {
+    //     setAbout(event.target.value);
+    //   }
+
+    //   function handleAddSkill() {
+    //     setIsAddingSkill(true);
+    //   }
+    
+    //   function handleSaveSkill() {
+    //     // setSkills([...skills, newSkill]);
+    //     setIsAddingSkill(false);
+    //     setNewSkill({ name: '', description: '' });
+    //   }
+    
+    //   function handleCancelSkill() {
+    //     setIsAddingSkill(false);
+    //     setNewSkill({ name: '', description: '' });
+    //   }
+
+    //   function handleNewSkillNameChange(event) {
+    //     setNewSkill({ ...newSkill, name: event.target.value });
+    //   }
+    
+    //   function handleNewSkillDescriptionChange(event) {
+    //     setNewSkill({ ...newSkill, description: event.target.value });
+    //   }
 
   return (
     <div className={styles.wrapper}>
@@ -124,8 +152,14 @@ export const AccountInfo = (props) => {
                 
               </div><hr />
               <div className={styles.skillSection}>
-                <h2>SKILLS</h2>
-                
+                <h2 onClick={() => addSkill}>SKILLS</h2>
+                {skills?.map((skill) => (
+                  <>
+                    <div key={skill.id}>{skill.name}</div>
+                    <div onClick={() => deleteSkill(skill.id)}>Delete</div>
+                    <br />
+                  </>
+                ))}  
 
                 
 
