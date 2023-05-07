@@ -36,26 +36,23 @@ export const ProjectForm = () => {
   return (
     <>
         <div className={styles.wrapper}>
-            <form action="" className={styles.formContainer} onSubmit={(e) => {e.preventDefault();}}>
-                <input className={styles.inputField} type="text"  placeholder='Title' /><br />
-                {/* <textarea className={styles.bio} name="description" id="" cols="30" rows="10" placeholder='Description'></textarea> */}
-                <input className={styles.inputField} type="text"  placeholder='Username' /><br />
-                <input className={styles.inputField} type="file" placeholder='Hello' onChange={(e) => {console.log(e.target.files[0]); setSelectedFile(e.target.files[0]);}} /><br />
-                <input className={styles.inputField} type="url" placeholder='Demo Link' /><br />
-                <input className={styles.inputField} type="url"  placeholder='Source Code' />
+        <form className={styles.form} action="" onSubmit={(e) => {e.preventDefault();}}>
+            <p className={styles.formTitle}>Add Project</p>
+            <input type="text" className={styles.inputField} placeholder='Title'  />
+            <textarea className={styles.bio} name="Bio" id="" cols="30" rows="10" placeholder='About' ></textarea>
+            
+            <div className={styles.uploadContainer}>
+              <label>Project Image</label>
+              <input type="file" onChange={(e) => {console.log(e.target.files[0]); setSelectedFile(e.target.files[0]);}}/> 
+            </div>
+            <input type="url" className={styles.inputField} placeholder='Demo Link' />
+            <input type="url" className={styles.inputField} placeholder='Source Code' /><br />
+            <input type="submit" className={styles.submitButton} value="Submit" onClick={addProject}  />
+            
 
-                <div className={styles.tagSection}>
 
-                
-
-                </div>
-
-
-                <input type="submit" value="Submit" onClick={addProject}></input>
-                
-                
-            </form>
-        </div>
+        </form>
+    </div>
     </>
   )
 }

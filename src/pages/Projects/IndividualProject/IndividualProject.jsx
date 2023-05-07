@@ -101,13 +101,13 @@ export const IndividualProject = (props) => {
                     <img src={myData.featuredImage} className={styles.projectImage} alt="" />
                     <hr />
                     <p className={styles.projectTitle}><b>{myData.title}</b></p>
-                    <p className={styles.projectDeveloper}><i>By wolfmartel</i></p><br />
+                    <p className={styles.projectDeveloper}><i>By {myData.owner}</i></p><br />
                     <p className={styles.aboutProject}><b>ABOUT THE PROJECT</b></p>
                     <p className={styles.aboutInfo}>{myData.description}</p>
                     
                     <hr />
                     <p className={styles.feedback}><b>Feedback</b></p>
-                    <p className={styles.feedbackInfo}>{props.feedbackCount} Positive Feedback (80 votes)</p>
+                    <p className={styles.feedbackInfo}>{myData.voteRatio}% Positive Feedback ({myData.voteTotal} votes)</p>
 
                     <textarea className={styles.commentSection} id="" onChange={(e) => {setReviewBody(e.target.value);}}></textarea>
 

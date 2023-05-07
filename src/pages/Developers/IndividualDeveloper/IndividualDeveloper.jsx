@@ -8,15 +8,21 @@ import {TiLocation} from 'react-icons/ti'
 import { useState, useEffect } from 'react'
 import axios from 'axios'
 import { useAxios } from '../../../utils/useAxios'
-import { useLocation } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
+import { Modal } from '../../../components/Modal/Modal'
 
 export const IndividualDeveloper = () => {
 
   const [profile, setProfile] = useState();
   const [project, setProject] = useState([]);
+  const [show, setShow] = useState(false);
+
+  const navigate = useNavigate();
+  
   const api = useAxios();
 
   const location = useLocation();
+  
 
   const fetchProfile = async () => {
     console.log(location);
@@ -53,16 +59,17 @@ export const IndividualDeveloper = () => {
             <div className={styles.developerProfile}>
               <div className={styles.developerCard}>
                 <div>
-                <img src={ProfileImage} className={styles.developerImage} alt="" />
+                <img src={profile?.profileImage} className={styles.developerImage} alt="" />
                 </div>
                 <div>
                 <p className={styles.developerName}><b>{profile?.username}</b></p>
-                <p className={styles.developerPosition}>Backend engineer</p>
+                <p className={styles.developerPosition}>{profile?.shortIntro}</p>
                 
-                <p className={styles.developerLocation}><TiLocation size={22} />: Pune</p>
+                <p className={styles.developerLocation}><TiLocation size={22} />: </p>
 
-                <button className={styles.sendBtn} onClick={sendMessage}>Send Message</button>
+                <button className={styles.sendBtn} onClick={()=>{sendMessage; navigate('/send-message')}}>Send Message</button>
                 </div>
+                
 
               </div>
 
@@ -70,7 +77,7 @@ export const IndividualDeveloper = () => {
             <div className={styles.developerInfo}>
               <div className={styles.about}>
                 <h2><b>ABOUT ME</b></h2>
-                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Itaque totam cumque eum quod doloribus obcaecati corporis illo excepturi a rerum, accusantium temporibus. Mollitia, sequi. Expedita, veniam dolorem voluptatum iusto repellendus voluptatem recusandae ab quidem ipsum eaque provident consequuntur consequatur officiis laborum a minima facilis alias sunt quasi commodi dignissimos voluptatibus eos sapiente fugiat. Error, ea iste quo animi, laborum saepe quod consectetur et odio totam eos ducimus incidunt commodi id!</p>
+                <p>{profile?.bio}</p>
               </div><hr />
               <div className={styles.skillSection}>
                 <h2>SKILLS</h2>
@@ -102,6 +109,7 @@ export const IndividualDeveloper = () => {
               </div><hr />
                 <h2>PROJECTS</h2>
               <div className={styles.projectSection}>
+
               <ShortProjectCard
                 image={ProjectImage}
                 projectName="Portfolio"
@@ -109,20 +117,7 @@ export const IndividualDeveloper = () => {
                 projectFeedback="78%"
                 voteCount="80" 
               />
-              <ShortProjectCard
-                image={ProjectImage}
-                projectName="Portfolio"
-                projectDeveloper="wolfmartel"
-                projectFeedback="78%"
-                voteCount="80" 
-              />
-                <ShortProjectCard
-                  image={ProjectImage}
-                  projectName="Portfolio"
-                  projectDeveloper="wolfmartel"
-                  projectFeedback="78%"
-                  voteCount="80" 
-                />
+              
                 
               </div>
 
