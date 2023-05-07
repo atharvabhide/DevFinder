@@ -152,7 +152,7 @@ export const AccountInfo = (props) => {
                 
               </div><hr />
               <div className={styles.skillSection}>
-                <h2 onClick={() => addSkill}>SKILLS</h2>
+                <h2 onClick={() => addSkill()}>SKILLS</h2>
                 {skills?.map((skill) => (
                   <>
                     <div key={skill.id}>{skill.name}</div>
