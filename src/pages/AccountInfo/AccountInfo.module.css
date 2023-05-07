@@ -142,6 +142,27 @@
     background-color: #75E6DA;
     color: #333;
 }
+.addSkill{
+
+    background: #fff;
+    border: none;
+    outline: none;
+    display: flex;
+    align-items: center;
+    border-radius: 4px;
+    padding: 4px 8px;
+    cursor: pointer;
+ 
+}
+.skillHeader{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+
+
+
 
 @media screen and (max-width: 1170px) {
     .projectSection{
