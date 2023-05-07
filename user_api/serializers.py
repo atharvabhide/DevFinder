@@ -14,15 +14,18 @@ class RegisterSerializer(serializers.ModelSerializer):
         user = User.objects.create_user(first_name = validated_data['first_name'], username = validated_data['username'], email = validated_data['email'] , password = validated_data['password'])
         return user
 
-class SkillSerializer(serializers.HyperlinkedModelSerializer):
-    class Meta:
-        model = Skill
-        fields = '__all__'
-
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = '__all__'
+
+class SkillSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Skill
+        fields = '__all__'
+    
+    def __str__(self) -> str:
+        return self.name
 
 class ProfileSerializer(serializers.HyperlinkedModelSerializer):
     # user = UserSerializer()
@@ -32,8 +35,6 @@ class ProfileSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Profile
         exclude = ['user']
-
-
 
 class MessageSerializer(serializers.ModelSerializer):
     sender = serializers.HyperlinkedRelatedField(view_name='profile-detail', read_only=True)

@@ -185,80 +185,90 @@ class ProfileDestroyView(DestroyAPIView, ProfileRetrieveView):
     def delete(self, request, *args, **kwargs):
         return self.destroy(request, *args, **kwargs)
 
-class SkillListView(ListAPIView):
+class SkillListView(APIView):
     """ 
     API endpoint that allows skills to be viewed.
     
     Authentication required."""
-    queryset = Skill.objects.all()
-    serializer_class = SkillSerializer
     authentication_classes = [JWTAuthentication]
     permission_classes = [IsAuthenticated]
 
+    def get(self, request, *args, **kwargs):
+        uuid = self.request.get_full_path().split('/profiles/')[1].split('/')[0]
+        profile = Profile.objects.get(id=uuid)
+        skills = Skill.objects.filter(owner=profile)
+        serializer = SkillSerializer(skills, many=True, context={'request': request})
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
     def post(self, request, *args, **kwargs):
         return self.list(request, *args, **kwargs)
-    
-    def get(self, request, *args, **kwargs):
-        return self.list(request, *args, **kwargs)
 
-class SkillCreateView(CreateAPIView, SkillListView):
+class SkillCreateView(APIView):
     """ 
     API endpoint that allows skills to be created.
     
     Authentication required."""
-    queryset = Skill.objects.all()
-    serializer_class = SkillSerializer
     authentication_classes = [JWTAuthentication]
     permission_classes = [IsAuthenticated]
 
     def post(self, request, *args, **kwargs):
-        return self.create(request, *args, **kwargs)
+        user = self.request.user
+        profile = Profile.objects.get(user=user)
+        serializer = SkillSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save(owner=profile)
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     
-    def post(self, request, *args, **kwargs):
-        return self.create(request, *args, **kwargs)
-    
-class SkillRetrieveView(RetrieveAPIView):
+class SkillRetrieveView(APIView):
     """ 
     API endpoint that allows a skill to be viewed.
     
     Authentication required."""
-    queryset = Skill.objects.all()
-    serializer_class = SkillSerializer
-    
-    def get(self, request, *args, **kwargs):
-        return self.retrieve(request, *args, **kwargs)
+    authentication_classes = [JWTAuthentication]
+    permission_classes = [IsAuthenticated]
 
-class SkillUpdateView(UpdateAPIView, SkillRetrieveView):
+    def get(self, request, *args, **kwargs):
+        uuid = self.request.get_full_path().split('/profiles/')[1].split('/')[0]
+        profile = Profile.objects.get(id=uuid)
+        skills = Skill.objects.filter(owner=profile).filter(id=kwargs['pk'])
+        serializer = SkillSerializer(skills, many=True, context={'request': request})
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+class SkillUpdateView(APIView):
     """ 
     API endpoint that allows a skill to be updated.
     
     Authentication required."""
-    queryset = Skill.objects.all()
-    serializer_class = SkillSerializer
     authentication_classes = [JWTAuthentication]
     permission_classes = [IsAuthenticated]
 
-    def post(self, request, *args, **kwargs):
-        return self.update(request, *args, **kwargs)
-    
     def put(self, request, *args, **kwargs):
-        return self.update(request, *args, **kwargs)
+        uuid_profile = self.request.get_full_path().split('/profiles/')[1].split('/')[0]
+        uuid_skill = self.request.get_full_path().split('/skills/')[1].split('/')[0]
+        profile = Profile.objects.get(id=uuid_profile)
+        skill = Skill.objects.filter(owner=profile).filter(id=uuid_skill)
+        serializer = SkillSerializer(skill, context={'request': request}, data=dict(skill))
+        if (serializer.is_valid()):
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-class SkillDestroyView(DestroyAPIView, SkillRetrieveView):
+class SkillDestroyView(APIView):
     """ 
     API endpoint that allows a skill to be deleted.
     
     Authentication required."""
-    queryset = Skill.objects.all()
-    serializer_class = SkillSerializer
     authentication_classes = [JWTAuthentication]
     permission_classes = [IsAuthenticated]
 
-    def post(self, request, *args, **kwargs):
-        return self.destroy(request, *args, **kwargs)
-    
     def delete(self, request, *args, **kwargs):
-        return self.destroy(request, *args, **kwargs)
+        uuid_profile = self.request.get_full_path().split('/profiles/')[1].split('/')[0]
+        uuid_skill = self.request.get_full_path().split('/skills/')[1].split('/')[0]
+        profile = Profile.objects.get(id=uuid_profile)
+        skill = Skill.objects.filter(owner=profile).filter(id=uuid_skill)
+        skill.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
 
 class ListMessageAPIView(generics.ListAPIView):
     """ 
