@@ -7,9 +7,12 @@ import ProjectImage from '../../assets/banner2.jpg'
 import { useState, useContext } from 'react'
 import { useAxios } from '../../utils/useAxios';
 import { ProjectLongCard } from '../../components/ProjectLongCard/ProjectLongCard'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import Image from '../../assets/banner2.jpg'
 import { AuthContext } from '../../context/AuthContext';
+import {BsPlus} from 'react-icons/bs'
+import { AddSkillModal } from '../../components/AddSkillModal/AddSkillModal'
+
 
 export const AccountInfo = (props) => {
     
@@ -18,7 +21,9 @@ export const AccountInfo = (props) => {
 
     const [profile, setProfile] = useState([]); 
     const [project, setProject] = useState([]);
+    const [show, setShow] = useState(false);
     const api = useAxios();
+    const navigate = useNavigate();
 
     const fetchProfile = async () => {
       // const response = await api.get("/user-api/current-user/");
@@ -152,10 +157,16 @@ export const AccountInfo = (props) => {
                 
               </div><hr />
               <div className={styles.skillSection}>
-                <h2 onClick={() => addSkill()}>SKILLS</h2>
+                <div className={styles.skillHeader}>
+                <h2 >SKILLS</h2>
+                <button onClick={() =>  setShow(true)} className={styles.addSkill}><BsPlus size={22} /></button>
+                <AddSkillModal onClose={()=> setShow(false)} show={show} />
+                
+                </div>
                 {skills?.map((skill) => (
                   <>
-                    <div key={skill.id}>{skill.name}</div>
+                    <button className={styles.otherSkillsBtn}>{skill.name}</button>
+
                     <div onClick={() => deleteSkill(skill.id)}>Delete</div>
                     <br />
                   </>
@@ -168,13 +179,16 @@ export const AccountInfo = (props) => {
               </div><hr />
               <h2>OTHER SKILLS</h2><br />
               <div className={styles.otherSkills}>
-                <button className={styles.otherSkillsBtn}>Communication</button>
                 <button className={styles.otherSkillsBtn}>Leadership</button>
                 <button className={styles.otherSkillsBtn}>Communication</button>
                 <button className={styles.otherSkillsBtn}>Communication</button>
 
               </div><hr />
+                <div className={styles.skillHeader}>
                 <h2>PROJECTS</h2>
+                <button onClick={()=>navigate('/add-project')} className={styles.addSkill}><BsPlus size={22} /></button>
+                
+                </div>
                 <br />
                 {project.map((proj) => (
                   <>
@@ -221,3 +235,6 @@ export const AccountInfo = (props) => {
           </div>
   )
 }
+
+
+
