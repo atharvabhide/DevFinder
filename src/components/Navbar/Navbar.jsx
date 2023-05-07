@@ -50,7 +50,7 @@ export const Navbar = () => {
                             <FiUser className="accountImage" size={40} />
                             <ul className="dropdownList">
                             <li className="option">
-                                <Link to="/account" className="dropdownLink">Edit Profile</Link>
+                                <Link to="/account" className="dropdownLink">My Profile</Link>
                             </li>
                             <li className="option">
                                 <Link onClick={handleLogout}>Log out</Link>

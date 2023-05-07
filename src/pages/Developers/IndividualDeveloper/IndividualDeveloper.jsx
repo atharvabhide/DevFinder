@@ -37,6 +37,7 @@ export const IndividualDeveloper = () => {
   }, [])
   
   const messageTest = {
+    "subject": "te kay asta?",
     "body": "bruhhhhhh"
   }
   const sendMessage = async () => {
