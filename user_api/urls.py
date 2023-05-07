@@ -1,5 +1,7 @@
 from django.urls import path, re_path, include  
 from rest_framework import routers
+from rest_framework.views import APIView
+from rest_framework.response import Response
 from .views import (
     ProfileListView, ProfileCreateView, 
     ProfileRetrieveView, ProfileUpdateView, 
@@ -11,10 +13,37 @@ from .views import (
     ProjectRetrieveView,
 )
 
+class UserRootAPIView(APIView):
+    """
+    API endpoint that lists all the User APIs.
+
+    No authentication required. 
+    """
+    def get(self, request):
+        return Response({
+        'user-list': 'profiles/',
+        'user-create': 'profiles/create/',
+        'user-detail': 'profiles/<str:pk>/',
+        'user-update': 'profiles/<str:pk>/update/',
+        'user-delete': 'profiles/<str:pk>/delete/',
+        'user-skills': 'profiles/<str:pk>/skills/',
+        'user-skills-create': 'profiles/<str:pk>/skills/create/',
+        'user-skills-detail': 'profiles/<str:pk>/skills/<str:sk>/',
+        'user-skills-update': 'profiles/<str:pk>/skills/<str:sk>/update/',
+        'user-skills-delete': 'profiles/<str:pk>/skills/<str:sk>/delete/',
+        'user-messages': 'profiles/<str:pk>/messages/',
+        'user-messages-create': 'profiles/<str:pk>/create-message/',
+        'user-messages-detail': 'profiles/<str:pk>/messages/<str:sk>/',
+        'current-user': 'current-user/',
+        'register-by-access-token': 'register-by-access-token/',
+        'authentication-test': 'authentication-test/',
+        'image-moderation': 'image/mod/',
+        })
+
 router = routers.DefaultRouter()
 
 urlpatterns = [
-
+    path('', UserRootAPIView.as_view(), name='user-api-root'),
     re_path('register-by-access-token/' + r'social/(?P<backend>[^/]+)/$', register_by_access_token),
     path('authentication-test/', authentication_test),
 

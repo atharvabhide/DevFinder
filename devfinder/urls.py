@@ -13,15 +13,31 @@ from rest_framework_simplejwt.views import (
     TokenRefreshView
 )
 
-# class APIRootView(APIView):
-#     def get(self, request):
-#         return Response({
-#             "message" : "Welcome to DevFinder Backend API",
-#         })
+class APIRootView(APIView):
+    """
+    API endpoint that lists all the APIs.
+
+    No authentication required. 
+    """
+    def get(self, request):
+        return Response({
+        'admin': '/admin/',
+        'user-api': '/user-api/',
+        'project-api': '/project-api/',
+        'api-auth': 'api/auth/',
+        'api-token-auth': 'api/token/[name="token_obtain_pair"]',
+        'api-token-refresh': "api/token/refresh/[name='token_refresh']",
+        'social-auth': "social-auth/",
+        'reset_password': "reset_password/[name='reset_password']",
+        'reset_password_sent':"reset_passwword_sent/[name='password_reset_done']",
+        'reset_password_confirm': "reset/<uidb64>/<token>[name='password_reset_confirm']",
+        'reset_password_complete': "reset_password_complete [name='password_reset_complete']",
+        'media': "^media/(?P<path>.*)$",
+        })
 
 urlpatterns = [
 
-    # path('', APIRootView.as_view(), name='api-root'),
+    path('', APIRootView.as_view(), name='api-root'),
 
     path('admin/', admin.site.urls),
     path('user-api/', include('user_api.urls')),

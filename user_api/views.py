@@ -28,6 +28,10 @@ from rest_framework import serializers
 @permission_classes([AllowAny])
 @psa()
 def register_by_access_token(request, backend):
+    """ 
+    Register a new user using an access token from a social provider.
+    
+    No authentication required."""
     token = request.data.get('access_token')
     user = request.backend.do_auth(token)
     if user:
@@ -59,6 +63,10 @@ def register_by_access_token(request, backend):
 
 @api_view(['GET', 'POST'])
 def authentication_test(request):
+    """ 
+    Test authentication.
+    
+    Authentication required."""
     print(request.user)
     return Response(
         {
@@ -70,11 +78,19 @@ def authentication_test(request):
 # get hyperlink of user who is currently logged in
 @api_view(['GET'])
 def current_profile_hyperlink(request):
+    """ 
+    Get hyperlink of user who is currently logged in.
+    
+    Authentication required."""
     profile = Profile.objects.get(user=request.user)
     serializer = ProfileSerializer(profile, context={'request': request})
     return Response(serializer.data, status=status.HTTP_200_OK)
 
 class ProfileCreateView(generics.GenericAPIView):
+    """ 
+    API endpoint that creates a profile.
+    
+    Authentication required."""
     serializer_class = RegisterSerializer
     def post(self, request, *args,  **kwargs):
         serializer = self.get_serializer(data=request.data)
@@ -86,6 +102,10 @@ class ProfileCreateView(generics.GenericAPIView):
         })
 
 class UsersPagination(PageNumberPagination):
+    """ 
+    Pagination for users.
+    
+    Authentication required."""
     page_size_query_param = 'page_size'
 
     def get_page_size(self, request):
@@ -95,6 +115,10 @@ class UsersPagination(PageNumberPagination):
         return total_profiles
 
 class ProfileListView(ListAPIView):
+    """ 
+    API endpoint that allows users to be viewed.
+    
+    Authentication required."""
     pagination_class = UsersPagination
     queryset = Profile.objects.all()
     serializer_class = ProfileSerializer
@@ -103,6 +127,10 @@ class ProfileListView(ListAPIView):
         return self.list(request, *args, **kwargs)
     
 class ProfileRetrieveView(RetrieveAPIView):
+    """ 
+    API endpoint that allows a user to be viewed.
+    
+    Authentication required."""
     queryset = Profile.objects.all()
     serializer_class = ProfileSerializer
     permission_classes = [IsAuthenticated]
@@ -112,6 +140,10 @@ class ProfileRetrieveView(RetrieveAPIView):
         return self.retrieve(request, *args, **kwargs)
 
 class ProfileUpdateView(UpdateAPIView, ProfileRetrieveView):
+    """ 
+    API endpoint that allows a user to be updated.
+    
+    Authentication required."""
     queryset = Profile.objects.all()
     serializer_class = ProfileSerializer
     authentication_classes = [JWTAuthentication]
@@ -138,6 +170,10 @@ class ProfileUpdateView(UpdateAPIView, ProfileRetrieveView):
         return Response(serializer.data, status=status.HTTP_200_OK)
 
 class ProfileDestroyView(DestroyAPIView, ProfileRetrieveView):
+    """ 
+    API endpoint that allows a user to be deleted.
+    
+    Authentication required."""
     queryset = Profile.objects.all()
     serializer_class = ProfileSerializer
     authentication_classes = [JWTAuthentication]
@@ -150,6 +186,10 @@ class ProfileDestroyView(DestroyAPIView, ProfileRetrieveView):
         return self.destroy(request, *args, **kwargs)
 
 class SkillListView(ListAPIView):
+    """ 
+    API endpoint that allows skills to be viewed.
+    
+    Authentication required."""
     queryset = Skill.objects.all()
     serializer_class = SkillSerializer
     authentication_classes = [JWTAuthentication]
@@ -162,6 +202,10 @@ class SkillListView(ListAPIView):
         return self.list(request, *args, **kwargs)
 
 class SkillCreateView(CreateAPIView, SkillListView):
+    """ 
+    API endpoint that allows skills to be created.
+    
+    Authentication required."""
     queryset = Skill.objects.all()
     serializer_class = SkillSerializer
     authentication_classes = [JWTAuthentication]
@@ -174,6 +218,10 @@ class SkillCreateView(CreateAPIView, SkillListView):
         return self.create(request, *args, **kwargs)
     
 class SkillRetrieveView(RetrieveAPIView):
+    """ 
+    API endpoint that allows a skill to be viewed.
+    
+    Authentication required."""
     queryset = Skill.objects.all()
     serializer_class = SkillSerializer
     
@@ -181,6 +229,10 @@ class SkillRetrieveView(RetrieveAPIView):
         return self.retrieve(request, *args, **kwargs)
 
 class SkillUpdateView(UpdateAPIView, SkillRetrieveView):
+    """ 
+    API endpoint that allows a skill to be updated.
+    
+    Authentication required."""
     queryset = Skill.objects.all()
     serializer_class = SkillSerializer
     authentication_classes = [JWTAuthentication]
@@ -193,6 +245,10 @@ class SkillUpdateView(UpdateAPIView, SkillRetrieveView):
         return self.update(request, *args, **kwargs)
 
 class SkillDestroyView(DestroyAPIView, SkillRetrieveView):
+    """ 
+    API endpoint that allows a skill to be deleted.
+    
+    Authentication required."""
     queryset = Skill.objects.all()
     serializer_class = SkillSerializer
     authentication_classes = [JWTAuthentication]
@@ -204,8 +260,11 @@ class SkillDestroyView(DestroyAPIView, SkillRetrieveView):
     def delete(self, request, *args, **kwargs):
         return self.destroy(request, *args, **kwargs)
 
-
 class ListMessageAPIView(generics.ListAPIView):
+    """ 
+    API endpoint that allows messages to be viewed.
+    
+    Authentication required."""
     serializer_class = MessageSerializer
 
     def get_queryset(self):
@@ -214,14 +273,20 @@ class ListMessageAPIView(generics.ListAPIView):
         unread_count = message_requests.filter(is_read=False).count()
         self.unread_count = unread_count
         return message_requests
-
-
+    
 class RetrieveMessageAPIView(generics.RetrieveAPIView):
+    """ 
+    API endpoint that allows a message to be viewed.
+    
+    Authentication required."""
     serializer_class = MessageSerializer
     queryset = Message.objects.all()
 
-
 class CreateMessageAPIView(generics.CreateAPIView):
+    """ 
+    API endpoint that allows a message to be created.
+    
+    Authentication required."""
     serializer_class = MessageSerializer
     permission_classes = [IsAuthenticated]
 
@@ -232,11 +297,12 @@ class CreateMessageAPIView(generics.CreateAPIView):
         except Profile.DoesNotExist:
             raise serializers.ValidationError(f"Profile with ID {profile_pk} does not exist")
         serializer.save(sender=self.request.user.profile, recipient=profile)
-    
-
-
 
 class SimilarUserView(ListAPIView):
+    """ 
+    API endpoint that allows a user to be viewed.
+    
+    Authentication required."""
     serializer_class = UserSerializer
 
     def get_queryset(self):
@@ -251,10 +317,18 @@ class SimilarUserView(ListAPIView):
         return similar_users
 
 class CurrentUser(RetrieveAPIView):
+    """ 
+    API endpoint that allows a user to be viewed.
+    
+    Authentication required."""
     def get(self, request, *args, **kwargs):
         return Response({'uuid': str(request.user.profile.id)})
     
 class ImageModView(APIView):
+    """ 
+    API endpoint that allows a user to be viewed.
+    
+    Authentication required."""
     parser_classes = (MultiPartParser,)
     def post(self, request, format=None):
         if 'image' not in request.data:
@@ -268,6 +342,10 @@ class ImageModView(APIView):
             return Response({'prediction': 'image is not nsfw'})
 
 class ProjectRetrieveView(generics.ListAPIView):
+    """ 
+    API endpoint that allows a project to be viewed.
+    
+    Authentication required."""
     authentication_classes = [JWTAuthentication]
     permission_classes = [IsAuthenticated]
     pagination_class = PageNumberPagination

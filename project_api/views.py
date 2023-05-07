@@ -111,6 +111,11 @@ class ProjectDestroyView(generics.DestroyAPIView, ProjectRetrieveView):
 
 
 class TagCreateView(generics.CreateAPIView):
+    """ 
+    API endpoint that creates a tag.
+    
+    Authentication required.
+    """
     serializer_class = TagSerializer
 
     def create(self, request, *args, **kwargs):
@@ -131,6 +136,10 @@ class TagCreateView(generics.CreateAPIView):
         return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
 
 class TagListView(generics.ListAPIView):
+    """ 
+    API endpoint that lists all tags.
+    
+    No authentication required."""
     serializer_class = TagSerializer
     lookup_field = 'pk'
     def get_queryset(self):
@@ -139,6 +148,10 @@ class TagListView(generics.ListAPIView):
 
 
 class ReviewCreateView(generics.CreateAPIView):
+    """ 
+    API endpoint that creates a review.
+    
+    Authentication required."""
     serializer_class = ReviewSerializer
     permission_classes = [IsAuthenticated]
     
@@ -147,16 +160,21 @@ class ReviewCreateView(generics.CreateAPIView):
         return Review.objects.filter(project_id=project_pk)
 
 class ReviewListView(generics.ListAPIView):
+    """ 
+    API endpoint that lists all reviews.
+    
+    No authentication required."""
     serializer_class = ReviewSerializer
 
     def get_queryset(self):
         project_pk = self.kwargs.get('pk')
         return Review.objects.filter(project__pk=project_pk)
 
-
-
-            
 class ReviewModView(APIView):
+    """ 
+    API endpoint that checks if a review contains profanity.
+    
+    No authentication required."""
     def post(self, request):
         review = request.data['comment']
         if predict([review])[0] == 1:
@@ -165,6 +183,10 @@ class ReviewModView(APIView):
             return Response({"prediction": "Review is clean"})
 
 class ImageModView(APIView):
+    """ 
+    API endpoint that checks if an image is NSFW.
+    
+    No authentication required."""
     parser_classes = (MultiPartParser,)
     def post(self, request, format=None):
         if 'image' not in request.data:
