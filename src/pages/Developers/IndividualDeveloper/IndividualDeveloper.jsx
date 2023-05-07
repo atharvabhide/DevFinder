@@ -28,13 +28,13 @@ export const IndividualDeveloper = () => {
     console.log(location);
     const profileUrl = location.state.url;
     const response = await api.get(profileUrl);
-    console.log(response.data);
+    console.log("profile", response.data);
     setProfile(response.data)
 
 
     // projects
     const projectsResponse = await api.get(`${profileUrl}projects/`)
-    console.log(projectsResponse);
+    console.log("projects", projectsResponse);
     setProject(projectsResponse.data.results);
   }
   
@@ -109,14 +109,22 @@ export const IndividualDeveloper = () => {
               </div><hr />
                 <h2>PROJECTS</h2>
               <div className={styles.projectSection}>
+              
+              {project.map((proj) => (
+                <ShortProjectCard
+                image={proj.featuredImage}
+                projectName={proj.title}
+                projectDeveloper={proj.owner}
+              />
+              ))}
 
-              <ShortProjectCard
+              {/* <ShortProjectCard
                 image={ProjectImage}
                 projectName="Portfolio"
                 projectDeveloper="wolfmartel"
                 projectFeedback="78%"
                 voteCount="80" 
-              />
+              /> */}
               
                 
               </div>
@@ -142,7 +150,7 @@ export const ShortProjectCard = (props) => {
       <ul className={styles.projectInfo}>
         <li className={styles.projectTitle}><b>{props.projectName}</b></li>
         <li className={styles.projectDeveloper}>by {props.projectDeveloper}</li>
-        <li className={styles.projectFeedback}>{props.projectFeedback} Positive Feedback({props.voteCount} votes)</li>
+        {/* <li className={styles.projectFeedback}>{props.projectFeedback} Positive Feedback({props.voteCount} votes)</li> */}
       </ul>
             
     </div>
