@@ -148,4 +148,3 @@ export const ShortProjectCard = (props) => {
     </div>
   )
 }
-
