@@ -42,6 +42,10 @@ export const AccountInfo = (props) => {
       fetchProjects
     }, [])
 
+    const deleteProject = async (url) => {
+      const response = await api.delete(`${url}delete/`)
+    }
+
 
     const [isEditing, setIsEditing] = useState(false);
     const [about, setAbout] = useState(props.about);
@@ -137,6 +141,16 @@ export const AccountInfo = (props) => {
 
               </div><hr />
                 <h2>PROJECTS</h2>
+                <br />
+                {project.map((proj) => (
+                  <>
+                    <div>{proj.title}</div>
+                    <div>{proj.owner}</div>
+                    <div onClick={() => deleteProject(proj.url)}>Delete</div>
+                    <Link to={`/update-project`} state={{url: proj.url}}><div>Update</div></Link>
+                    <br />
+                  </>
+                ))}
               <div className={styles.projectSection}>
                   <ProjectLongCard
                     title="Project1"

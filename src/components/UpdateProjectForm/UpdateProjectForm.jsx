@@ -1,14 +1,29 @@
-import React, { useState } from 'react'
-import styles from './ProjectForm.module.css'
+import React, { useEffect, useState } from 'react'
+import styles from './UpdateProjectForm.module.css'
 import { useAxios } from "../../utils/useAxios"
 import { baseURL } from '../../utils/config'
+import { useLocation } from 'react-router-dom'
+import { locale } from 'dayjs'
 
-export const ProjectForm = () => {
+export const UpdateProjectForm = () => {
 
   const api = useAxios();
+  const location = useLocation();
+
+  const [project, setProject] = useState();
+
+  const fetchProject = async () => {
+    const response = await api.get(`${location.state.url}`)
+    console.log(response);
+    setProject(response.data);
+  }
+
+  useEffect(() => {
+    fetchProject();
+  }, [])
 
   const dummyData = {
-    title: "Title of my asdasdlife",
+    title: "Updated title aasdasdlife",
     description: "This is some descriptionnnnnn",
     demoLink: "https://github.com/atharvabhide/DevFinder/tree/dev/backend",
     sourceLink: "https://github.com/atharvabhide/DevFinder/tree/dev/backend",
@@ -20,7 +35,20 @@ export const ProjectForm = () => {
   const [demoLink, setDemoLink] = useState("");
   const [sourceLink, setSourceLink] = useState("");
 
-  const addProject = async () => {
+  // const addProject = async () => {
+  //   const formData = new FormData();
+
+  //   formData.append("title", dummyData.title);
+  //   formData.append("description", dummyData.description);
+  //   formData.append("demoLink", dummyData.demoLink);
+  //   formData.append("sourceLink", dummyData.sourceLink);
+  //   formData.append("featuredImage", selectedFile);
+
+  //   const response = await api.post(`${baseURL}project-api/projects/create/`, formData);
+  //   console.log(response);
+  // }
+
+  const updateProject = async () => {
     const formData = new FormData();
 
     formData.append("title", dummyData.title);
@@ -29,7 +57,7 @@ export const ProjectForm = () => {
     formData.append("sourceLink", dummyData.sourceLink);
     formData.append("featuredImage", selectedFile);
 
-    const response = await api.post(`${baseURL}project-api/projects/create/`, formData);
+    const response = await api.patch(`${location.state.url}update/`, formData);
     console.log(response);
   }
 
@@ -51,7 +79,7 @@ export const ProjectForm = () => {
                 </div>
 
 
-                <input type="submit" value="Submit" onClick={addProject}></input>
+                <input type="submit" value="Submit" onClick={updateProject}></input>
                 
                 
             </form>
