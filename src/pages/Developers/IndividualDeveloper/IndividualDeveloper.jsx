@@ -67,7 +67,7 @@ export const IndividualDeveloper = () => {
                 
                 <p className={styles.developerLocation}><TiLocation size={22} />: </p>
 
-                <button className={styles.sendBtn} onClick={()=>{sendMessage; navigate('/send-message')}}>Send Message</button>
+                <button className={styles.sendBtn} onClick={()=>{navigate('/send-message', {state: {url: location.state.url}})}}>Send Message</button>
                 </div>
                 
 
