@@ -10,6 +10,7 @@ import { IndividualDeveloper } from '../pages/Developers/IndividualDeveloper/Ind
 // import {SignUp} from '../pages/ForgotPassword/SignUp'
 
 import { AddProject } from '../pages/Projects/IndividualProject/AddProject/AddProject'
+import { UpdateProject } from '../pages/Projects/IndividualProject/UpdateProject/UpdateProject'
 import { Modal } from './Modal/Modal'
 import { AccountInfo } from '../pages/AccountInfo/AccountInfo'
 import { EditProfile } from '../pages/AccountInfo/EditProfile/EditProfile'
@@ -28,6 +29,7 @@ export const ManageRoutes = () => {
       <Route path="/login" element={<Login />} />
       {/* <Route path="/signup" element={<SignUp />} /> */}
       <Route path="/add-project" element={<AddProject />} />
+      <Route path="/update-project" element={<UpdateProject />} />
       <Route path="/modal" element={<Modal />} />
       <Route path="/account" element={<AccountInfo />} />
       <Route path="/account/edit" element={<EditProfile />} />

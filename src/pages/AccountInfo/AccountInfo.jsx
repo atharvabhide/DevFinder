@@ -147,6 +147,7 @@ export const AccountInfo = (props) => {
                     <div>{proj.title}</div>
                     <div>{proj.owner}</div>
                     <div onClick={() => deleteProject(proj.url)}>Delete</div>
+                    <Link to={`/update-project`} state={{url: proj.url}}><div>Update</div></Link>
                     <br />
                   </>
                 ))}
