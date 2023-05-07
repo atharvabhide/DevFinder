@@ -1,5 +1,4 @@
 
-![image](https://drive.google.com/file/d/1VcUz009Z-1D9zryFFlqOSBtCrYLN2EVc/view?usp=sharing)
 # DevFinder - A developer-centric social media
 
 DevFinder is a social platform built for developers. It enables developers to connect, share and learn from each other. Our main motto is to help developers collaborate easily and work in teams efficiently.
