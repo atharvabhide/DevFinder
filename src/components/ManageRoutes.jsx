@@ -15,6 +15,7 @@ import { AccountInfo } from '../pages/AccountInfo/AccountInfo'
 import { EditProfile } from '../pages/AccountInfo/EditProfile/EditProfile'
 import { ForgotPassword } from '../pages/ForgotPassword/ForgotPassword'
 import { ResetPassword } from '../pages/ResetPassword/ResetPassword'
+import { SendMessage } from '../pages/SendMessage/SendMessage'
 
 export const ManageRoutes = () => {
   return (
@@ -33,6 +34,7 @@ export const ManageRoutes = () => {
       <Route path="/account/edit" element={<EditProfile />} />
       <Route path="/forgot-password" element={<ForgotPassword />} />
       <Route path="/reset-password" element={<ResetPassword />} />
+      <Route path="/send-message" element={<SendMessage />} />
       
 
       
