@@ -1,17 +1,20 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import styles from './IndividualDeveloper.module.css'
 import {ProjectCard} from '../../../components/ProjectCard/ProjectCard'
 // import {ShortProjectCard} from '../IndividualDeveloper/ShortProjectCard'
 import ProjectImage from '../../../assets/banner5.jpg'
 import ProfileImage from '../../../assets/nalla.jpg'
 import {TiLocation} from 'react-icons/ti'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useContext } from 'react'
 import axios from 'axios'
 import { useAxios } from '../../../utils/useAxios'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { Modal } from '../../../components/Modal/Modal'
+import { AuthContext } from '../../../context/AuthContext'
 
 export const IndividualDeveloper = () => {
+
+  const {currentUUID} = useContext(AuthContext);
 
   const [profile, setProfile] = useState();
   const [project, setProject] = useState([]);
@@ -41,16 +44,18 @@ export const IndividualDeveloper = () => {
   useEffect(() => {
     fetchProfile();
   }, [])
-  
-  const messageTest = {
-    "subject": "te kay asta?",
-    "body": "bruhhhhhh"
+
+  const [skills, setSkills] = useState([]);
+
+  const fetchSkills = async () => {
+    const response = await api.get(`${location.state.url}skills/`);
+    console.log("skills", response);
+    setSkills(response.data);
   }
-  const sendMessage = async () => {
-    const profileUrl = location.state.url;
-    const response = await api.post(`${profileUrl}create-message/`, messageTest);
-    console.log(response);
-  }
+
+  useEffect(() => {
+    fetchSkills();
+  }, [])
 
   return (
     <>

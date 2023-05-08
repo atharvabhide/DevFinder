@@ -100,7 +100,7 @@ export const Login = () => {
               <input className={styles.inputField} type="password"  placeholder='Password' onChange={(e) => {setSignInPassword(e.target.value);}}/>
               <p className={styles.link} onClick={() => {navigate('/forgot-password')}} >Forgot your password?</p><br />
               {/* <ForgotPassword onClose={() => setShow(true)} show={show} /> */}
-              <button className={styles.button} onClick={()=>{handleLogin; navigate('/account')}}>Sign In</button>
+              <button className={styles.button} onClick={()=>handleLogin()}>Sign In</button>
               <div  className={styles.paragraph}>
                   OR
               </div>
