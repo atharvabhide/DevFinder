@@ -14,15 +14,16 @@ from rest_framework.parsers import MultiPartParser
 from PIL import Image
 import opennsfw2 as nsfw
 from io import BytesIO
+from user_api.models import Profile
 
-# class ProjectsPagination(PageNumberPagination):
-#     page_size_query_param = 'page_size'
+class ProjectsPagination(PageNumberPagination):
+    page_size_query_param = 'page_size'
 
-#     def get_page_size(self, request):
-#         # Get the total count of projects
-#         total_projects = Project.objects.count()
-#         # Set the page size to the total number of projects
-#         return total_projects
+    def get_page_size(self, request):
+        # Get the total count of projects
+        total_projects = Project.objects.count()
+        # Set the page size to the total number of projects
+        return total_projects
 
 
 class ProjectListView(generics.ListAPIView):
@@ -31,7 +32,7 @@ class ProjectListView(generics.ListAPIView):
 
     No authentication required. 
     """
-    pagination_class = PageNumberPagination
+    pagination_class = ProjectsPagination
     queryset = Project.objects.all()
     serializer_class = ProjectSerializer
 
@@ -63,11 +64,10 @@ class ProjectCreateView(generics.CreateAPIView, ProjectListView):
     queryset = Project.objects.all()
     serializer_class = ProjectSerializer
 
-    def post(self, request, *args, **kwargs):
-        return super().post(request, *args, **kwargs)
-    
-    def get(self, request, *args, **kwargs):
-        return super().get(request, *args, **kwargs)
+    def perform_create(self, serializer):
+        user = self.request.user
+        profile = Profile.objects.get(user = user)
+        serializer.save(owner=profile)
 
 class ProjectUpdateView(generics.UpdateAPIView, ProjectRetrieveView):
     """ 
