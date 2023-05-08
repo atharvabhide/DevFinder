@@ -324,7 +324,7 @@ class SimilarUserView(ListAPIView):
             Q(skills__in=current_user_skills) & ~Q(user=self.request.user)
         )
 
-        return similar_users
+        return similar_users[:6]
 
 class CurrentUser(RetrieveAPIView):
     """ 
