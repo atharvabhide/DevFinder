@@ -15,11 +15,11 @@ export const AddSkillModal = (props) => {
   
                       </div>
                       <div className={styles.modalContent}>
-                          <input className={styles.inputField} type="text" placeholder='Enter skill name' />
+                          <input className={styles.inputField} type="text" placeholder='Enter skill name' onChange={(e) => {props.setNewSkill(e.target.value)}}/>
   
                       </div>
                       <div className={styles.modalFooter}>
-                          <button className={styles.modalButton} id={styles.deleteButton}>Add</button>
+                          <button className={styles.modalButton} id={styles.deleteButton} onClick={props.onAdd}>Add</button>
                           <button className={styles.modalButton} id={styles.cancelButton} onClick={props.onClose}>Cancel</button>
                       </div>
   
