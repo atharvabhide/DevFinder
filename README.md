@@ -72,7 +72,7 @@ DevFinder's frontend should be up and running on port 5173
 
 - [@dhananjay-deshmukh](https://www.github.com/dhananjay-deshmukh)
 - [@atharvabhide](https://www.github.com/atharvabhide)
-- [@dhananjay-deshmukh](https://www.github.com/dhananjay-deshmukh)
+- [@Aakash](https://www.github.com/aakvsh)
 
 
 
