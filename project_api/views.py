@@ -63,11 +63,14 @@ class ProjectCreateView(generics.CreateAPIView, ProjectListView):
     queryset = Project.objects.all()
     serializer_class = ProjectSerializer
 
-    def post(self, request, *args, **kwargs):
-        return super().post(request, *args, **kwargs)
+    # def post(self, request, *args, **kwargs):
+    #     return super().post(request, *args, **kwargs)
     
-    def get(self, request, *args, **kwargs):
-        return super().get(request, *args, **kwargs)
+    # def get(self, request, *args, **kwargs):
+    #     return super().get(request, *args, **kwargs)
+    def perform_create(self, serializer):
+        # Set the owner field to the username of the authenticated user
+        serializer.save(owner=self.request.user)
 
 class ProjectUpdateView(generics.UpdateAPIView, ProjectRetrieveView):
     """ 
