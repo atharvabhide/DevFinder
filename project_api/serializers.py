@@ -41,7 +41,10 @@ class ReviewSerializer(serializers.ModelSerializer):
         fields = ['id', 'project', 'body', 'createdAt', 'owner']
 
     def get_owner(self, obj):
-        return obj.owner.user.username if obj.owner else None
+        if obj.owner:
+            return {"username": obj.owner.user.username, "profileImage": obj.owner.user.profile.profileImage.url}
+        else:
+            None
 
     def create(self, validated_data):
         project_pk = self.context['view'].kwargs.get('pk')
