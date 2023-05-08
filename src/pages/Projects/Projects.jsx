@@ -58,8 +58,8 @@ export const Projects = () => {
         image={item.featuredImage}
         projectName={item.title}
         projectDeveloper={item.owner}
-        projectFeedback={item.voteRatio}
-        voteCount={item.voteTotal}
+        // projectFeedback={item.voteRatio}
+        // voteCount={item.voteTotal}
         
       />
       </Link>
