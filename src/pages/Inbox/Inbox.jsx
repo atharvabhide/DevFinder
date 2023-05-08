@@ -60,7 +60,7 @@ export const Inbox = () => {
       </div><br />
       <div className={styles.messageList}>
 
-      {messages.map(items=>
+      {messages?.map(items=>
       <>
       
       <div onClick={()=> setShow(true)}>
