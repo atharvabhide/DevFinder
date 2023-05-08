@@ -1,3 +1,7 @@
+.wrapper{
+    color: #fff;
+}
+
 .developer{
     position: relative;
     display: flex;
@@ -110,6 +114,7 @@
     /* height: 10em; */
 }
 .developerImage{
+    background: url('../../../assets/bg-img.png');
     display: block;
     height: 10em;
     margin: 0 auto;

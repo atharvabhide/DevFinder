@@ -18,10 +18,11 @@
 }
 .projectInfo{
     color: #fff;
+    font-size: 0.875em;
 }
 .links{
     position: absolute;
-    right: 15%;
+    right: 10%;
     display: grid;
     cursor: pointer;
 }
@@ -52,4 +53,19 @@
 }
 .editButton:hover{
     color: var(--first-color-alt)
+}
+.editButton2{
+    position: absolute;
+    right: 0.5%;
+    bottom: 7%;
+    background: none;
+    border: none;
+    outline: none;
+    color: #fff;
+    /* background-color: #eee; */
+    cursor: pointer;
+    
+}
+.editButton2:hover{
+    color: red;
 }
