@@ -15,8 +15,8 @@ export const ProjectForm = () => {
   }
 
   const [selectedFile, setSelectedFile] = useState(null); 
-  const [title, settitle] = useState("");
-  const [description, setdescription] = useState("");
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
   const [demoLink, setDemoLink] = useState("");
   const [sourceLink, setSourceLink] = useState("");
 
@@ -38,16 +38,16 @@ export const ProjectForm = () => {
         <div className={styles.wrapper}>
         <form className={styles.form} action="" onSubmit={(e) => {e.preventDefault();}}>
             <p className={styles.formTitle}>Add Project</p>
-            <input type="text" className={styles.inputField} placeholder='Title'  />
-            <textarea className={styles.bio} name="Bio" id="" cols="30" rows="10" placeholder='About' ></textarea>
+            <input type="text" className={styles.inputField} placeholder='Title' onChange={(e) => {setTitle(e.target.value)}} />
+            <textarea className={styles.bio} name="Bio" id="" cols="30" rows="10" placeholder='About' onChange={(e) => {setDescription(e.target.value)}} ></textarea>
             
             <div className={styles.uploadContainer}>
               <label>Project Image</label>
               <input type="file" onChange={(e) => {console.log(e.target.files[0]); setSelectedFile(e.target.files[0]);}}/> 
             </div>
-            <input type="url" className={styles.inputField} placeholder='Demo Link' />
-            <input type="url" className={styles.inputField} placeholder='Source Code' /><br />
-            <input type="submit" className={styles.submitButton} value="Submit" onClick={addProject}  />
+            <input type="url" className={styles.inputField} placeholder='Demo Link' onChange={(e) => {setDemoLink(e.target.value)}} />
+            <input type="url" className={styles.inputField} placeholder='Source Code' onChange={(e) => {setSourceLink(e.target.value)}}  /><br />
+            <input type="submit" className={styles.submitButton} value="Submit" onClick={addProject}   />
             
 
 
