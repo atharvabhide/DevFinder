@@ -361,7 +361,8 @@ class ProjectRetrieveView(generics.ListAPIView):
     pagination_class = PageNumberPagination
 
     def get_queryset(self):
-        profile = Profile.objects.get(user=self.request.user)
+        uuid_profile = self.request.get_full_path().split('/profiles/')[1].split('/')[0]
+        profile = Profile.objects.get(id=uuid_profile)
         return Project.objects.filter(owner=profile)
     
     serializer_class = ProjectSerializer
