@@ -14,6 +14,7 @@ from rest_framework.parsers import MultiPartParser
 from PIL import Image
 import opennsfw2 as nsfw
 from io import BytesIO
+from user_api.models import Profile
 
 class ProjectsPagination(PageNumberPagination):
     page_size_query_param = 'page_size'
@@ -63,14 +64,10 @@ class ProjectCreateView(generics.CreateAPIView, ProjectListView):
     queryset = Project.objects.all()
     serializer_class = ProjectSerializer
 
-    # def post(self, request, *args, **kwargs):
-    #     return super().post(request, *args, **kwargs)
-    
-    # def get(self, request, *args, **kwargs):
-    #     return super().get(request, *args, **kwargs)
     def perform_create(self, serializer):
-        # Set the owner field to the username of the authenticated user
-        serializer.save(owner=self.request.user)
+        user = self.request.user
+        profile = Profile.objects.get(user = user)
+        serializer.save(owner=profile)
 
 class ProjectUpdateView(generics.UpdateAPIView, ProjectRetrieveView):
     """ 
