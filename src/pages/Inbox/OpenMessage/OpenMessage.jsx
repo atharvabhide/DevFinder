@@ -17,21 +17,21 @@ export const OpenMessage = (props) => {
     const { currentUUID } = useContext(AuthContext);
   console.log(currentUUID);
   
-  const [message, setMessage] = useState();
+  // const [message, setMessage] = useState();
   
   
-  const api = useAxios();
+  // const api = useAxios();
   
-  const fetchMessages = async () => {
-    const response = await api.get(`user-api/profiles/${currentUUID}/messages/`);
-    console.log(response);
-    setMessage(response.data.results);
-    console.log(message);
-  }
+  // const fetchMessages = async () => {
+  //   const response = await api.get(`user-api/profiles/${currentUUID}/messages/`);
+  //   console.log(response);
+  //   setMessage(response.data.results);
+  //   console.log(message);
+  // }
 
-  useEffect(() => {
-    fetchMessages();
-  }, [])
+  // useEffect(() => {
+  //   fetchMessages();
+  // }, [])
 
     
 
