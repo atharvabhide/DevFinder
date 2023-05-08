@@ -23,7 +23,7 @@ export const Inbox = () => {
   const fetchMessages = async () => {
     const response = await api.get(`user-api/profiles/${currentUUID}/messages/`);
     console.log(response);
-    setMessages(response.data.results);
+    setMessages(response.data);
     console.log(messages);
   }
 
@@ -60,7 +60,7 @@ export const Inbox = () => {
       </div><br />
       <div className={styles.messageList}>
 
-      {messages.map(items=>
+      {messages?.map(items=>
       <>
       
       <div onClick={()=> setShow(true)}>

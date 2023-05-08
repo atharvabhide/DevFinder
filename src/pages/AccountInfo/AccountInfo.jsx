@@ -37,7 +37,7 @@ export const AccountInfo = (props) => {
       // projects
       const projectsResponse = await api.get(`/user-api/profiles/${currentUUID}/projects/`)
       console.log("projects", projectsResponse);
-      setProject(projectsResponse.data.results)
+      setProject(projectsResponse.data)
     }
 
     const fetchProjects = async() => {
@@ -136,13 +136,13 @@ export const AccountInfo = (props) => {
             <div className={styles.developerProfile}>
               <div className={styles.developerCard}>
                 <div>
-                <img src={ProfileImage} className={styles.developerImage} alt="" />
+                <img src={profile.profileImage} className={styles.developerImage} alt="" />
                 </div>
                 <div>
-                <p className={styles.developerName}><b>username</b></p>
-                <p className={styles.developerPosition}>Backend engineer</p>
+                <p className={styles.developerName}><b>{profile.username}</b></p>
+                <p className={styles.developerPosition}>{profile.shortIntro}</p>
                 
-                <p className={styles.developerLocation}><TiLocation size={22} />: Pune</p>
+                <p className={styles.developerLocation}><TiLocation size={22} />: {profile.location}</p>
 
                 <Link to={"/account/edit"} state={{url: profile.url}}>
                   <button className={styles.editBtn}>Edit Profile</button>
@@ -155,16 +155,18 @@ export const AccountInfo = (props) => {
             <div className={styles.developerInfo}>
               <div className={styles.about}>
                 <h2><b>ABOUT ME</b></h2>
+                {profile.bio}
                 
                 
               </div><hr />
               <div className={styles.skillSection}>
-                <div className={styles.skillHeader}>
+                <div style={{marginBottom: '1em'}} className={styles.skillHeader}>
                 <h2 >SKILLS</h2>
                 <button onClick={() =>  setShow(true)} className={styles.addSkill}><BsPlus size={22} /></button>
                 <AddSkillModal onClose={()=> setShow(false)} onAdd={() => addSkill()} setNewSkill={setNewSkill} show={show} />
                 
                 </div>
+                <div style={{display: 'flex', justifyContent: 'start', gap: '0.75em'}}>
                 {skills?.map((skill) => (
                   <>
                     <button className={styles.otherSkillsBtn}>{skill.name}</button>
@@ -172,60 +174,63 @@ export const AccountInfo = (props) => {
                     <div onClick={() => deleteSkill(skill.id)}>Delete</div>
                     <br />
                   </>
-                ))}  
+                ))} 
+                </div> 
 
                 
 
 
 
               </div><hr />
-              <h2>OTHER SKILLS</h2><br />
-              <div className={styles.otherSkills}>
-                <button className={styles.otherSkillsBtn}>Leadership</button>
-                <button className={styles.otherSkillsBtn}>Communication</button>
-                <button className={styles.otherSkillsBtn}>Communication</button>
-
-              </div><hr />
+              
                 <div className={styles.skillHeader}>
                 <h2>PROJECTS</h2>
                 <button onClick={()=>navigate('/add-project')} className={styles.addSkill}><BsPlus size={22} /></button>
                 
                 </div>
                 <br />
-                {project.map((proj) => (
+                
+              <div className={styles.projectSection}>
+                  {/* <ProjectLongCard
+                    title="Project1"
+                    owner="abcxyz" 
+                    about="ahhhhhhhhh"
+                    image={Image}
+                  />
+                  <ProjectLongCard
+                    title="Project1"
+                    owner="abcxyz" 
+                    about="ahhhhhhhhh"
+                    image={Image}
+                  />
+                  <ProjectLongCard
+                    title="Project1"
+                    owner="abcxyz" 
+                    about="ahhhhhhhhh"
+                    image={Image}
+                  />
+                  <ProjectLongCard
+                    title="Project1"
+                    owner="abcxyz" 
+                    about="ahhhhhhhhh"
+                    image={Image}
+                  /> */}
+
+                {project?.map((proj) => (
                   <>
-                    <div>{proj.title}</div>
+                    {/* <div>{proj.title}</div>
                     <div>{proj.owner}</div>
                     <div onClick={() => deleteProject(proj.url)}>Delete</div>
                     <Link to={`/update-project`} state={{url: proj.url}}><div>Update</div></Link>
-                    <br />
+                    <br /> */}
+                    <ProjectLongCard
+                      owner={proj.owner} 
+                      title={proj.title}
+                      image={proj.featuredImage}
+              
+                    />
                   </>
                 ))}
-              <div className={styles.projectSection}>
-                  <ProjectLongCard
-                    title="Project1"
-                    owner="abcxyz" 
-                    about="ahhhhhhhhh"
-                    image={Image}
-                  />
-                  <ProjectLongCard
-                    title="Project1"
-                    owner="abcxyz" 
-                    about="ahhhhhhhhh"
-                    image={Image}
-                  />
-                  <ProjectLongCard
-                    title="Project1"
-                    owner="abcxyz" 
-                    about="ahhhhhhhhh"
-                    image={Image}
-                  />
-                  <ProjectLongCard
-                    title="Project1"
-                    owner="abcxyz" 
-                    about="ahhhhhhhhh"
-                    image={Image}
-                  />
                 
               </div>
 

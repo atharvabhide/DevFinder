@@ -58,8 +58,11 @@ ul{
     padding:0 1.3px;
 }
 .logo{
-    width: 7rem;
+    width: 14rem;
     height: auto;
+    margin-top: -3em;
+    margin-bottom: -6em;
+    margin-left: -4.1vw;
 }
 .mail{
     display: flex;

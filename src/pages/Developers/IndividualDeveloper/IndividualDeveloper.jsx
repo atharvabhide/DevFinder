@@ -38,7 +38,7 @@ export const IndividualDeveloper = () => {
     // projects
     const projectsResponse = await api.get(`${profileUrl}projects/`)
     console.log("projects", projectsResponse);
-    setProject(projectsResponse.data.results);
+    setProject(projectsResponse.data);
   }
   
   useEffect(() => {
@@ -115,7 +115,7 @@ export const IndividualDeveloper = () => {
                 <h2>PROJECTS</h2>
               <div className={styles.projectSection}>
               
-              {project.map((proj) => (
+              {project?.map((proj) => (
                 <ShortProjectCard
                 image={proj.featuredImage}
                 projectName={proj.title}

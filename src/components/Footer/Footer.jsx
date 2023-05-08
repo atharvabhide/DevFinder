@@ -2,7 +2,7 @@ import React from 'react'
 import styles from './Footer.module.css'
 import { Link } from 'react-router-dom'
 import {IoIosSend} from 'react-icons/io'
-import Logo from '../../assets/Logo_Light2.png'
+import Logo from '../../assets/logo-dark.png'
 import {HiMailOpen} from 'react-icons/hi'
 
 export const Footer = () => {
@@ -14,7 +14,7 @@ export const Footer = () => {
                     <img className={styles.logo} src={Logo} alt="" />
                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus iste officia praesentium iusto aperiam eaque, neque ab dolores beatae nulla sunt repellendus atque obcaecati velit saepe nisi provident, ullam vel.</p>
                     <div className={styles.mail}>
-                        <HiMailOpen size={34} style={{color: '#3858d6'}} />
+                        <HiMailOpen size={34} style={{color: '#eb7724'}} />
                         <div className={styles.mailInfo}>
                             <p className={styles.mailTitle}>Mail us</p>
                             <p className={styles.mailName}>mail@info.com</p>
@@ -25,10 +25,10 @@ export const Footer = () => {
                     <p className={styles.title}>Useful Links</p>
                     <ul>
                         <li><Link to="#">Home</Link></li>
-                        <li><Link to="#">Developers</Link></li>
-                        <li><Link to="#">Projects</Link></li>
-                        <li><Link to="#">Inbox</Link></li>
-                        <li><Link to="#">Help</Link></li>
+                        <li><Link to="/developers">Developers</Link></li>
+                        <li><Link to="/projects">Projects</Link></li>
+                        <li><Link to="/inbox">Inbox</Link></li>
+                        {/* <li><Link to="#">Help</Link></li> */}
                     </ul>
                 </div>
                 <div className={styles.footerCol}>
