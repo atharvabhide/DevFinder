@@ -6,6 +6,9 @@ import axios from 'axios'
 import { AuthContext } from '../../context/AuthContext';
 import { useContext } from 'react';
 import { useAxios } from '../../utils/useAxios';
+import { OpenMessage } from './OpenMessage/OpenMessage'
+import { Link } from 'react-router-dom'
+import dhanya from '../../assets/dhanya2.jpg'
 
 export const Inbox = () => {
 
@@ -13,6 +16,7 @@ export const Inbox = () => {
   console.log(currentUUID);
   
   const [messages, setMessages] = useState([]);
+  const [show, setShow] = useState(false);
   
   const api = useAxios();
   
@@ -55,9 +59,30 @@ export const Inbox = () => {
         New Messages
       </div><br />
       <div className={styles.messageList}>
-      <InboxCard
+
+      {messages.map(items=>
+      <>
+      
+      <div onClick={()=> setShow(true)}>
+        <InboxCard
+          key={items.id}
+          imageURL={dhanya}
+          username={items.name}
+          subject={items.subject}
+          content={items.body}
+          time={items.createdAt}
+      
         
       />
+      </div>
+      <OpenMessage onClose={()=> setShow(false)} show={show}
+        name={items.name}
+        subject={items.subject}
+        message={items.body} 
+      />
+      </>
+      )}
+      
 
 
       
