@@ -20,7 +20,7 @@ export const Projects = () => {
 
   const [currentPage, setCurrentPage] = useState(1);
   const [data, setData] = useState([]);
-  const itemsPerPage =3;
+  const itemsPerPage =6;
   const totalPages = Math.ceil(data.length / itemsPerPage);
 
   // Using Promises

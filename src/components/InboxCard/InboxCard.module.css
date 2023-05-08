@@ -1,17 +1,23 @@
 .userImage{
-    max-width: 50em;
+    width: 4em;
     height: auto;
 }
 .message{
     border: 1px solid #ccc;
-    max-width: 25em;
+    border-radius: 8px;
+    width: 28vw;
+    height: 25vh;
     padding: 1em;
     display: flex;
     gap: 1em;
-    justify-content: space-evenly;
+    justify-content: start;
     align-items: center;
     cursor: pointer;
     position: relative;
+}
+.messageInfo{
+    margin-top: 1em;
+    color: #fff;
 }
 .username{
     font-size: 0.8rem;
@@ -23,7 +29,7 @@
     /* white-space: nowrap; */
     overflow: hidden !important;
     text-overflow: ellipsis;
-    font-size: 0.5rem;
+    font-size: 0.75rem;
    
 }
 .messageSubject{
