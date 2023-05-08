@@ -14,6 +14,7 @@ import { baseURL } from '../../utils/config'
 export const Developers = () => {
 
   const [users, setUsers] = useState([]);
+  const [searchQuery, setSearchQuery] = useState('');
 
   const fetchDevelopers = async () => {
     const response = await axios.get(`${baseURL}user-api/profiles/`);
@@ -26,17 +27,21 @@ export const Developers = () => {
     fetchDevelopers();
   }, [])
 
+  const filteredUsers = users.filter((user) =>
+    user.username.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
   return (
     <>
       <div className={styles.wrapper}>
         <div className={styles.header}>
             Search For Developers
-            <SearchBar />
+            <SearchBar setSearchQuery={setSearchQuery}/>
         </div>  
 
         <div className={styles.developers}>
 
-          {users.map((items) => (
+          {filteredUsers.map((items) => (
             <Link to="/developers/developer" key={items.url} state={{url: items.url}}>
             <DevCard
               
