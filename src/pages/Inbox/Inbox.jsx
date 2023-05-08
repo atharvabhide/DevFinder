@@ -23,7 +23,7 @@ export const Inbox = () => {
   const fetchMessages = async () => {
     const response = await api.get(`user-api/profiles/${currentUUID}/messages/`);
     console.log(response);
-    setMessages(response.data.results);
+    setMessages(response.data);
     console.log(messages);
   }
 
@@ -31,6 +31,9 @@ export const Inbox = () => {
     fetchMessages();
   }, [])
   
+  const [showModal, setShowModal] = useState(Array(messages.length).fill(false));
+
+
   /* 
   // const [selectedFile, setSelectedFile] = useState();
   // const checkNSFW = async () => {
@@ -60,10 +63,14 @@ export const Inbox = () => {
       </div><br />
       <div className={styles.messageList}>
 
-      {messages?.map(items=>
+      {messages?.map((items, index) =>
       <>
       
-      <div onClick={()=> setShow(true)}>
+      <div onClick={() => {
+      const newModalState = [...showModal];
+      newModalState[index] = true;
+      setShowModal(newModalState);
+      }}>
         <InboxCard
           key={items.id}
           imageURL={dhanya}
@@ -75,7 +82,13 @@ export const Inbox = () => {
         
       />
       </div>
-      <OpenMessage onClose={()=> setShow(false)} show={show}
+      <OpenMessage 
+        onClose={() => {
+          const newModalState = [...showModal];
+          newModalState[index] = false;
+          setShowModal(newModalState);
+        }} 
+        show={showModal[index ]}
         name={items.name}
         subject={items.subject}
         message={items.body} 
