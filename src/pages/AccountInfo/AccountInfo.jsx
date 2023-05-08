@@ -37,7 +37,7 @@ export const AccountInfo = (props) => {
       // projects
       const projectsResponse = await api.get(`/user-api/profiles/${currentUUID}/projects/`)
       console.log("projects", projectsResponse);
-      setProject(projectsResponse.data.results)
+      setProject(projectsResponse.data)
     }
 
     const fetchProjects = async() => {
@@ -192,7 +192,7 @@ export const AccountInfo = (props) => {
                 
                 </div>
                 <br />
-                {project.map((proj) => (
+                {project?.map((proj) => (
                   <>
                     <div>{proj.title}</div>
                     <div>{proj.owner}</div>
