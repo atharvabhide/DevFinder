@@ -322,9 +322,9 @@ class SimilarUserView(ListAPIView):
         # Retrieve other users with similar skills
         similar_users = Profile.objects.filter(
             Q(skills__in=current_user_skills) & ~Q(user=self.request.user)
-        )
+        )[:6]
 
-        return similar_users[:6]
+        return similar_users
 
 class CurrentUser(RetrieveAPIView):
     """ 
