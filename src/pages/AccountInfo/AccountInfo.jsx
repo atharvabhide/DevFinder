@@ -66,8 +66,10 @@ export const AccountInfo = (props) => {
       fetchSkills();
     }, [])
 
+    const [newSkill, setNewSkill] = useState("Test");
+
     const dummySkill = {
-      name: "Django",
+      name: newSkill,
     }
 
     const addSkill = async () => {
@@ -160,7 +162,7 @@ export const AccountInfo = (props) => {
                 <div className={styles.skillHeader}>
                 <h2 >SKILLS</h2>
                 <button onClick={() =>  setShow(true)} className={styles.addSkill}><BsPlus size={22} /></button>
-                <AddSkillModal onClose={()=> setShow(false)} show={show} />
+                <AddSkillModal onClose={()=> setShow(false)} onAdd={() => addSkill()} setNewSkill={setNewSkill} show={show} />
                 
                 </div>
                 {skills?.map((skill) => (
