@@ -23,8 +23,11 @@ export const Projects = () => {
   const itemsPerPage =6;
   const totalPages = Math.ceil(data.length / itemsPerPage);
 
-  // Using Promises
+  const [searchQuery, setSearchQuery] = useState('');
 
+  const filteredProjects = data.filter((project) =>
+  project.title.toLowerCase().includes(searchQuery.toLowerCase())
+);
 
   useEffect(() => {
     axios
@@ -72,6 +75,24 @@ export const Projects = () => {
   }));
 };
 
+  const renderFiltered = () => {
+    return (
+      <>
+        {filteredProjects.map((project) => (
+          <Link to="/projects/project" state={{url: project.url}}>
+          <ProjectCard
+            image={project.featuredImage}
+            projectName={project.title}
+            projectDeveloper={project.owner}
+            // projectFeedback={project.voteRatio}
+            // voteCount={project.voteTotal}
+            
+          />
+          </Link>
+        ))}
+      </>
+    )
+  }
 
 
   return (
@@ -79,7 +100,7 @@ export const Projects = () => {
       <div className={styles.wrapper}>
         <div className={styles.header}>
             Search For Projects
-            <SearchBar />
+            <SearchBar setSearchQuery={setSearchQuery}/>
         </div>
           
 
@@ -88,12 +109,17 @@ export const Projects = () => {
         
 
       
-      <div className={styles.projects}>{renderData()}</div>
-      <Pagination
+      <div className={styles.projects}>
+      {(searchQuery === "") ? renderData() : renderFiltered()}
+      </div>
+
+      { (searchQuery === "") &&
+        <Pagination
         currentPage={currentPage}
         totalPages={totalPages}
         onPageChange={handlePageChange}
         />
+        }
       
       <Footer />
         </div>
