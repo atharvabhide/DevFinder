@@ -5,10 +5,13 @@ import { createContext } from 'react';
 import { GoogleLogin } from '@react-oauth/google';
 import { googleLogout, useGoogleLogin } from '@react-oauth/google'; 
 import { baseURL } from '../utils/config';
+import { useNavigate } from 'react-router-dom';
 
 export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
+    const navigate = useNavigate();
+
     const [authTokens, setAuthTokens] = useState(() =>
     localStorage.getItem("authTokens")
       ? JSON.parse(localStorage.getItem("authTokens"))
@@ -44,7 +47,6 @@ export const AuthProvider = ({ children }) => {
         localStorage.setItem("authTokens", JSON.stringify(response.data));
         setAuthTokens(response.data);
         getUser(response.data.access);
-        
       }
       else (
         alert("oopsie daisy")
@@ -95,6 +97,7 @@ export const AuthProvider = ({ children }) => {
       console.log(response);
       localStorage.setItem("user", JSON.stringify(response.data.uuid));
       setCurrentUUID(response.data.uuid);
+      navigate('/account')
     }
 
     const contextData = {

@@ -108,7 +108,7 @@ export const EditProfile = () => {
     // const profileUrl = location.state.url;
     // const response = await api.post(`${profileUrl}update/`, formData);
     // console.log(response);
-    navigate(`/account/`);
+    // navigate(`/account/`);
   }
 
   return (

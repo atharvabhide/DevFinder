@@ -56,6 +56,29 @@ export const UpdateProjectForm = () => {
     if (selectedFile != null)
     {
       formData.append("featuredImage", selectedFile);
+      const imageData = new FormData();
+      imageData.append("image", selectedFile);
+  
+      const responseNSFW = await api.post(`${baseURL}project-api/image/mod/`, imageData);
+      console.log(responseNSFW);
+      
+      if (responseNSFW.data.prediction != "image is nsfw")
+      {
+        const response = await api.patch(`${location.state.url}update/`, formData);
+        console.log(response);
+        if (response.status == 200)
+        {
+          navigate(`/account`);
+        }
+        else
+        {
+          console.log("error: couldn't update project");
+        }
+      }
+      else {
+        alert("No NSFW images allowed")
+        return;
+      }
     }
 
     const response = await api.patch(`${location.state.url}update/`, formData);
