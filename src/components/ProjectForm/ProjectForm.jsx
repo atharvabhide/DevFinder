@@ -42,12 +42,29 @@ export const ProjectForm = () => {
     formData.append("tags", tags);
     console.log(tags);
 
-    const response = await api.post(`${baseURL}project-api/projects/create/`, formData);
-    console.log(response);
-    if (response.status === 201)
+    const imageData = new FormData();
+    imageData.append("image", selectedFile);
+
+    const responseNSFW = await api.post(`${baseURL}project-api/image/mod/`, imageData);
+    console.log(responseNSFW);
+
+    if (responseNSFW.data.prediction != "image is nsfw")
     {
-      navigate(`/account`);
+      const response = await api.post(`${baseURL}project-api/projects/create/`, formData);
+      console.log(response);
+      if (response.status === 201)
+      {
+        navigate(`/account`);
+      }
+      else
+      {
+        console.log("error: couldn't login");
+      }
     }
+    else {
+      alert("No NSFW images allowed")
+    }
+  
   }
 
   return (
