@@ -20,6 +20,7 @@ export const IndividualProject = (props) => {
     const [show, setShow] = useState(false);
     const [reviews, setReviews] = useState([]);
     const [reviewProfiles, setReviewProfiles] = useState([]);
+    const [tags, setTags] = useState([]);
 
     // console.log(location);
     const url = location.state?.url;
@@ -35,6 +36,7 @@ export const IndividualProject = (props) => {
       console.log(response);
       const project = response.data;
       setMyData(project);
+      setTags(project.tags.map((tag) => (tag.name)));
   
       console.log(`${url}reviews/`);
       try {
@@ -89,6 +91,11 @@ export const IndividualProject = (props) => {
                 <div className={styles.projectTools}>
                     <h1>Tools And Stacks</h1><br />
                     <div className={styles.toolSection}>
+                        {tags.map((tag) => (
+                          <>
+                            <button className={styles.toolBtn}>{tag}</button>
+                          </>
+                        ))}
                         <button className={styles.toolBtn}>React</button>
                         <button className={styles.toolBtn}>React</button>
                         <button className={styles.toolBtn}>React</button>
