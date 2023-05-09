@@ -6,6 +6,8 @@ import { GoogleLogin } from '@react-oauth/google';
 import { googleLogout, useGoogleLogin } from '@react-oauth/google'; 
 import { baseURL } from '../utils/config';
 import { useNavigate } from 'react-router-dom';
+import toast, {Toaster} from 'react-hot-toast'
+
 
 export const AuthContext = createContext();
 
@@ -47,10 +49,12 @@ export const AuthProvider = ({ children }) => {
         localStorage.setItem("authTokens", JSON.stringify(response.data));
         setAuthTokens(response.data);
         getUser(response.data.access);
+        toast.success('Welcome to DevFinder!');
       }
-      else (
-        alert("oopsie daisy")
-      )
+      else {
+        toast.error('Cannot log in. Please try again');
+        
+      }
     }
 
     const logoutUser = () => {
@@ -58,6 +62,8 @@ export const AuthProvider = ({ children }) => {
         setCurrentUUID(null);
         localStorage.removeItem("authTokens");
         localStorage.removeItem("user");
+        toast.success('You are logged out');
+        
     }
 
     
@@ -114,8 +120,11 @@ export const AuthProvider = ({ children }) => {
     }
 
     return (
+      <>
         <AuthContext.Provider value={contextData}>
             {children}
         </AuthContext.Provider>
+        <Toaster />
+      </>
     )
 }

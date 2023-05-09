@@ -29,8 +29,10 @@ export const Navbar = () => {
     const {logoutUser, isLoggedIn} = useContext(AuthContext);
 
     const handleLogout = () => {
-        alert("You have logged out!")
-        logoutUser()
+        
+        logoutUser();
+        navigate('/login')
+        
     }
 
     return (

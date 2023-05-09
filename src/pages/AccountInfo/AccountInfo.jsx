@@ -14,6 +14,7 @@ import {BsPlus} from 'react-icons/bs'
 import { AddSkillModal } from '../../components/AddSkillModal/AddSkillModal'
 import defaultImage from '../../assets/default-image.svg'
 import {RxCrossCircled} from 'react-icons/rx'
+import toast, { Toaster } from 'react-hot-toast';
 
 
 export const AccountInfo = (props) => {
@@ -29,6 +30,13 @@ export const AccountInfo = (props) => {
 
     const api = useAxios();
     const navigate = useNavigate();
+
+    const notifySuccess = () => {
+      toast.success('Skill added successfully');
+    }
+    const notifyDeletion = () => {
+      toast.error('Your project has been removed')
+    }
 
     const fetchProfile = async () => {
       // const response = await api.get("/user-api/current-user/");
@@ -62,6 +70,7 @@ export const AccountInfo = (props) => {
       {
         setOperatedProject(true);
       }
+      toast.error('Your project has been removed')
 
     }
 
@@ -108,6 +117,7 @@ export const AccountInfo = (props) => {
     }
 
   return (
+    <>
     <div className={styles.wrapper}>
           <div className={styles.developer}>
             <div className={styles.developerProfile}>
@@ -140,7 +150,7 @@ export const AccountInfo = (props) => {
                 <div style={{marginBottom: '1em'}} className={styles.skillHeader}>
                 <h2 >SKILLS</h2>
                 <button onClick={() =>  setShow(true)} className={styles.addSkill}><BsPlus size={22} /></button>
-                <AddSkillModal onClose={()=> setShow(false)} onAdd={() => {addSkill(); setShow(false)}} setNewSkill={setNewSkill} show={show} />
+                <AddSkillModal onClose={()=> setShow(false)} onAdd={() => {addSkill(); setShow(false); notifySuccess();}} setNewSkill={setNewSkill} show={show} />
                 
                 </div>
                 <div style={{display: 'flex', justifyContent: 'start', gap: '0.75em'}}>
@@ -220,6 +230,8 @@ export const AccountInfo = (props) => {
             </div>
 
           </div>
+          <Toaster />
+    </>
   )
 }
 
