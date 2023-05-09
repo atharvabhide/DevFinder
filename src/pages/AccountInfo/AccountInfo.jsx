@@ -227,7 +227,10 @@ export const AccountInfo = (props) => {
                       owner={proj.owner} 
                       title={proj.title}
                       image={proj.featuredImage}
-              
+                      projectUrl={proj.url}
+                      deleteProject={deleteProject}
+                      sourceLink={proj.sourceLink}
+                      demoLink={proj.demoLink}
                     />
                   </>
                 ))}

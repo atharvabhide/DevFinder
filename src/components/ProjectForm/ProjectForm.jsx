@@ -23,10 +23,10 @@ export const ProjectForm = () => {
   const addProject = async () => {
     const formData = new FormData();
 
-    formData.append("title", dummyData.title);
-    formData.append("description", dummyData.description);
-    formData.append("demoLink", dummyData.demoLink);
-    formData.append("sourceLink", dummyData.sourceLink);
+    formData.append("title", title);
+    formData.append("description", description);
+    formData.append("demoLink", demoLink);
+    formData.append("sourceLink", sourceLink);
     formData.append("featuredImage", selectedFile);
 
     const response = await api.post(`${baseURL}project-api/projects/create/`, formData);
