@@ -12,11 +12,19 @@ export const UpdateProjectForm = () => {
   const navigate = useNavigate();
 
   const [project, setProject] = useState();
+  const [tags, setTags] = useState([]);
+  const [newTag, setNewTag] = useState('');
+
+  const handleAddTag = async () => {
+    setTags([...tags, newTag]);
+    setNewTag('');
+  };
 
   const fetchProject = async () => {
     const response = await api.get(`${location.state.url}`)
     console.log(response);
     setProject(response.data);
+    setTags(response.data.tags)
   }
 
   useEffect(() => {
@@ -31,23 +39,8 @@ export const UpdateProjectForm = () => {
   }
 
   const [selectedFile, setSelectedFile] = useState(null); 
-  const [title, settitle] = useState("");
-  const [description, setdescription] = useState("");
-  const [demoLink, setDemoLink] = useState("");
-  const [sourceLink, setSourceLink] = useState("");
 
-  // const addProject = async () => {
-  //   const formData = new FormData();
 
-  //   formData.append("title", dummyData.title);
-  //   formData.append("description", dummyData.description);
-  //   formData.append("demoLink", dummyData.demoLink);
-  //   formData.append("sourceLink", dummyData.sourceLink);
-  //   formData.append("featuredImage", selectedFile);
-
-  //   const response = await api.post(`${baseURL}project-api/projects/create/`, formData);
-  //   console.log(response);
-  // }
 
   const updateProject = async () => {
     const formData = new FormData();
@@ -56,6 +49,7 @@ export const UpdateProjectForm = () => {
     formData.append("description", project.description);
     formData.append("demoLink", project.demoLink);
     formData.append("sourceLink", project.sourceLink);
+    formData.append("tags", tags);
 
     if (selectedFile != null)
     {
@@ -84,6 +78,28 @@ export const UpdateProjectForm = () => {
             </div>
             <input type="url" className={styles.inputField} placeholder='Demo Link' onChange={ (e) => {setProject({...project, demoLink: e.target.value,})} } value={project?.demoLink}/>
             <input type="url" className={styles.inputField} placeholder='Source Code' onChange={ (e) => {setProject({...project, sourceLink: e.target.value,})} } value={project?.sourceLink} /><br />
+
+            <div>
+              <label htmlFor="newTag">Tags:</label>
+              <input
+                type="text"
+                id="newTag"
+                value={newTag}
+                onChange={(e) => (setNewTag(e.target.value))}
+              />
+              <button type="button" onClick={handleAddTag}>
+                Add Tag
+              </button>
+            </div>
+
+            <div>
+              {tags.map((tag, index) => (
+                <span key={index} className="tag" style={{marginLeft: "0.5rem"}}>
+                  {tag}
+                </span>
+              ))}
+            </div>
+
             <input type="submit" className={styles.submitButton} value="Submit" onClick={updateProject}  />
             
 

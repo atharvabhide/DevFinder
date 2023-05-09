@@ -39,12 +39,13 @@ export const ProjectForm = () => {
     formData.append("sourceLink", sourceLink);
     formData.append("featuredImage", selectedFile);
     formData.append("tags", tags);
+    console.log(tags);
 
     const response = await api.post(`${baseURL}project-api/projects/create/`, formData);
     console.log(response);
     if (response.status === 201)
     {
-      navigate(`/account`);
+      // navigate(`/account`);
     }
   }
 
