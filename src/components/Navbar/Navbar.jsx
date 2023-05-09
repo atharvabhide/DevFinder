@@ -13,6 +13,7 @@ import Logo from '../../assets/logo-dark.png'
 import { SearchBar } from '../SearchBar/SearchBar'
 import { AuthContext } from '../../context/AuthContext'
 import {FiUser} from 'react-icons/fi'
+import {TbHeartHandshake} from 'react-icons/tb'
 
 
 export const Navbar = () => {
@@ -88,6 +89,11 @@ export const Navbar = () => {
                             <Link to="/" className="navLink " >
                                 <HiOutlineHome className="navIcon"/>
                                 <span className="navName">Home</span>
+                            </Link>
+
+                            <Link to="/recommended-developers" className="navLink">
+                                <TbHeartHandshake className="navIcon" />
+                                <span className="navName">Recommendations</span>
                             </Link>
 
                             <Link to="/developers" className="navLink">
