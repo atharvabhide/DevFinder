@@ -119,8 +119,8 @@ export const EditProfile = () => {
             <input type="email" className={styles.inputField} placeholder='Email' onChange={ (e) => {setProfileData({...profileData, email: e.target.value,})} } value={profileData?.email} />
             <input type="text" className={styles.inputField} placeholder='Username' onChange={ (e) => {setProfileData({...profileData, username: e.target.value,})} } value={profileData?.username} />
             <input type="text" className={styles.inputField} placeholder='Location' onChange={ (e) => {setProfileData({...profileData, location: e.target.value,})} } value={ (profileData?.location === "null") ? null : profileData?.location } />
-            <textarea className={styles.bio} name="Bio" id="" cols="30" rows="10" placeholder='Bio' onChange={ (e) => {setProfileData({...profileData, bio: e.target.value,})} } value={ (profileData?.bio=== "null") ? null : profileData?.bio}></textarea>
-            <input type="text" className={styles.inputField} placeholder='Short Intro' onChange={ (e) => {setProfileData({...profileData, shortIntro: e.target.value,})} } value={profileData?.shortIntro} />
+            <textarea className={styles.bio} name="Bio" id="" cols="30" rows="10" placeholder='Bio' onChange={ (e) => {setProfileData({...profileData, bio: e.target.value,})} } value={ (profileData?.bio === "null") ? null : profileData?.bio}></textarea>
+            <input type="text" className={styles.inputField} placeholder='Short Intro' onChange={ (e) => {setProfileData({...profileData, shortIntro: e.target.value,})} } value={ (profileData?.shortIntro === "null") ? null : profileData?.shortIntro} />
             <div className={styles.upload_container}>
               <label>Profile Image</label>
               <input type="file" onChange={(e) => {console.log(e.target.files[0]); setSelectedFile(e.target.files[0]);} }/> 
