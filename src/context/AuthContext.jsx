@@ -44,6 +44,7 @@ export const AuthProvider = ({ children }) => {
         localStorage.setItem("authTokens", JSON.stringify(response.data));
         setAuthTokens(response.data);
         getUser(response.data.access);
+        
       }
       else (
         alert("oopsie daisy")
