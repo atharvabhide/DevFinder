@@ -48,9 +48,6 @@ And finally run the frontend server with
 ```
 DevFinder's frontend should be up and running on port 5173
 
-## Backend Architecture
-  ![](https://github.com/atharvabhide/DevFinder/assets/67187699/c6deba19-e95e-4506-a88e-9d8c2fd4c556)
-
 ## Tech Stack
 
 **Client:** 
@@ -68,6 +65,9 @@ DevFinder's frontend should be up and running on port 5173
 <li>Tensorflow </li>
 <li>Custom recommendation engine</li>
 <ul>
+  
+## Backend Architecture
+  ![](https://github.com/atharvabhide/DevFinder/blob/dev/backend/architecture.jpg)
 
 ## Demo
   ![](https://github.com/atharvabhide/DevFinder/blob/dev/backend/cover%20image.png)
