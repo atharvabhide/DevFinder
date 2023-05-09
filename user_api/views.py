@@ -311,19 +311,17 @@ class CreateMessageAPIView(generics.CreateAPIView):
 class SimilarUserView(ListAPIView):
     """ 
     API endpoint that allows a user to be viewed.
-    
+
     Authentication required."""
-    serializer_class = UserSerializer
+    serializer_class = ProfileSerializer
 
     def get_queryset(self):
         # Retrieve the current user's skills
         current_user_skills = self.request.user.profile.skills.all()
-
         # Retrieve other users with similar skills
         similar_users = Profile.objects.filter(
-            Q(skills__in=current_user_skills) & ~Q(user=self.request.user)
+            Q(skillsnamein=[s.name for s in current_user_skills]) & ~Q(user=self.request.user)
         )[:6]
-
         return similar_users
 
 class CurrentUser(RetrieveAPIView):
