@@ -69,7 +69,8 @@ DevFinder's frontend should be up and running on port 5173
 <li>Custom recommendation engine</li>
 <ul>
 
-
+## Demo
+  ![](https://github.com/atharvabhide/DevFinder/blob/dev/backend/cover%20image.png)
 
 
 ## Authors
