@@ -47,6 +47,10 @@ And finally run the frontend server with
   npm run dev
 ```
 DevFinder's frontend should be up and running on port 5173
+
+## Backend Architecture
+![image](https://github.com/atharvabhide/DevFinder/assets/67187699/8521633f-dcfc-4d4b-ac7d-3c74a2e88b5b)
+
 ## Tech Stack
 
 **Client:** 
