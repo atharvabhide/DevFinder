@@ -29,7 +29,7 @@ export const ProjectLongCard = (props) => {
 
       </div>
       <button className={styles.editButton} onClick={ () => navigate('/update-project', {state: {url: props.projectUrl}}) }><MdEdit size={16} /></button>
-      <button className={styles.editButton2} onClick={() => deleteProject(projectUrl)} ><MdDelete size={16} /></button>
+      <button className={styles.editButton2} onClick={() => props.deleteProject(props.projectUrl)} ><MdDelete size={16} /></button>
 
     </div>
   )

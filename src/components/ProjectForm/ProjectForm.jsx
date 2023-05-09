@@ -2,10 +2,12 @@ import React, { useState } from 'react'
 import styles from './ProjectForm.module.css'
 import { useAxios } from "../../utils/useAxios"
 import { baseURL } from '../../utils/config'
+import { useNavigate } from 'react-router-dom'
 
 export const ProjectForm = () => {
 
   const api = useAxios();
+  const navigate = useNavigate();
 
   const dummyData = {
     title: "Title of my asdasdlife",
@@ -20,6 +22,14 @@ export const ProjectForm = () => {
   const [demoLink, setDemoLink] = useState("");
   const [sourceLink, setSourceLink] = useState("");
 
+  const [tags, setTags] = useState([]);
+  const [newTag, setNewTag] = useState('');
+
+  const handleAddTag = async () => {
+    setTags([...tags, newTag]);
+    setNewTag('');
+  };
+
   const addProject = async () => {
     const formData = new FormData();
 
@@ -28,9 +38,14 @@ export const ProjectForm = () => {
     formData.append("demoLink", demoLink);
     formData.append("sourceLink", sourceLink);
     formData.append("featuredImage", selectedFile);
+    formData.append("tags", tags);
 
     const response = await api.post(`${baseURL}project-api/projects/create/`, formData);
     console.log(response);
+    if (response.status === 201)
+    {
+      navigate(`/account`);
+    }
   }
 
   return (
@@ -38,17 +53,39 @@ export const ProjectForm = () => {
         <div className={styles.wrapper}>
         <form className={styles.form} action="" onSubmit={(e) => {e.preventDefault();}}>
             <p className={styles.formTitle}>Add Project</p>
-            <input type="text" className={styles.inputField} placeholder='Title' onChange={(e) => {setTitle(e.target.value)}} />
+            <input type="text" className={styles.inputField} placeholder='Title' onChange={(e) => {setTitle(e.target.value)}} required/>
             <textarea className={styles.bio} name="Bio" id="" cols="30" rows="10" placeholder='About' onChange={(e) => {setDescription(e.target.value)}} ></textarea>
             
             <div className={styles.uploadContainer}>
               <label>Project Image</label>
-              <input type="file" onChange={(e) => {console.log(e.target.files[0]); setSelectedFile(e.target.files[0]);}}/> 
+              <input type="file" onChange={(e) => {console.log(e.target.files[0]); setSelectedFile(e.target.files[0]);}} required/> 
             </div>
             <input type="url" className={styles.inputField} placeholder='Demo Link' onChange={(e) => {setDemoLink(e.target.value)}} />
             <input type="url" className={styles.inputField} placeholder='Source Code' onChange={(e) => {setSourceLink(e.target.value)}}  /><br />
-            <input type="submit" className={styles.submitButton} value="Submit" onClick={addProject}   />
-            
+
+            <div>
+              <label htmlFor="newTag">Tags:</label>
+              <input
+                type="text"
+                id="newTag"
+                value={newTag}
+                onChange={(e) => (setNewTag(e.target.value))}
+              />
+              <button type="button" onClick={handleAddTag}>
+                Add Tag
+              </button>
+            </div>
+
+            <div>
+              {tags.map((tag, index) => (
+                <span key={index} className="tag" style={{marginLeft: "0.5rem"}}>
+                  {tag}
+                </span>
+              ))}
+            </div>
+
+
+            <input type="submit" className={styles.submitButton} value="Submit" onClick={addProject}   />        
 
 
         </form>

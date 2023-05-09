@@ -23,6 +23,7 @@ export const AccountInfo = (props) => {
     const [project, setProject] = useState([]);
     const [show, setShow] = useState(false);
     const [operatedSkill, setOperatedSkill] = useState(false);
+    const [operatedProject, setOperatedProject] = useState(false);
 
     const api = useAxios();
     const navigate = useNavigate();
@@ -49,11 +50,17 @@ export const AccountInfo = (props) => {
 
     useEffect(() => {
       fetchProfile();
-      // fetchProjects();
-    }, [])
+      setOperatedProject(false);
+    }, [operatedProject])
 
     const deleteProject = async (url) => {
-      const response = await api.delete(`${url}delete/`)
+      const response = await api.delete(`${url}delete/`);
+      console.log(response);
+      if (response.status === 204)
+      {
+        setOperatedProject(true);
+      }
+
     }
 
     const [skills, setSkills] = useState(props.skills);
@@ -79,7 +86,7 @@ export const AccountInfo = (props) => {
     const addSkill = async () => {
       const response = await api.post(`/user-api/profiles/${currentUUID}/skills/create/`, dummySkill);
       console.log(response);
-      if (response.status = 201)
+      if (response.status === 201)
       {
         setOperatedSkill(true);
       }
@@ -88,59 +95,11 @@ export const AccountInfo = (props) => {
     const deleteSkill = async (skillId) => {
       const response = await api.delete(`/user-api/profiles/${currentUUID}/skills/${skillId}/delete/`)
       console.log(response);
-      if (response.status = 204)
+      if (response.status === 204)
       {
         setOperatedSkill(true);
       }
     }
-
-    // const [isEditing, setIsEditing] = useState(false);
-    // const [about, setAbout] = useState(props.about);
-    // const [skills, setSkills] = useState(props.skills);
-    // const [newSkill, setNewSkill] = useState({ name: '', description: '' });
-    // const [isAddingSkill, setIsAddingSkill] = useState(false);
-
-    // function handleEdit() {
-    //     setIsEditing(true);
-    //   }
-    
-    //   function handleSave() {
-    //     // Make API call to save changes to backend
-
-    //     setIsEditing(false);
-    //   }
-    
-    //   function handleCancel() {
-    //     setIsEditing(false);
-    //     setAbout(props.about); // Reset to original about text
-    //   }
-    
-    //   function handleAboutChange(event) {
-    //     setAbout(event.target.value);
-    //   }
-
-    //   function handleAddSkill() {
-    //     setIsAddingSkill(true);
-    //   }
-    
-    //   function handleSaveSkill() {
-    //     // setSkills([...skills, newSkill]);
-    //     setIsAddingSkill(false);
-    //     setNewSkill({ name: '', description: '' });
-    //   }
-    
-    //   function handleCancelSkill() {
-    //     setIsAddingSkill(false);
-    //     setNewSkill({ name: '', description: '' });
-    //   }
-
-    //   function handleNewSkillNameChange(event) {
-    //     setNewSkill({ ...newSkill, name: event.target.value });
-    //   }
-    
-    //   function handleNewSkillDescriptionChange(event) {
-    //     setNewSkill({ ...newSkill, description: event.target.value });
-    //   }
 
   return (
     <div className={styles.wrapper}>
