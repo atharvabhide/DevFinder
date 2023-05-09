@@ -17,6 +17,8 @@ export const UpdateProjectForm = () => {
 
   const handleAddTag = async () => {
     setTags([...tags, newTag]);
+    const response = await api.post(`${location.state.url}tags/create/`, {name: newTag})
+    console.log(response);
     setNewTag('');
   };
 
@@ -49,7 +51,6 @@ export const UpdateProjectForm = () => {
     formData.append("description", project.description);
     formData.append("demoLink", project.demoLink);
     formData.append("sourceLink", project.sourceLink);
-    formData.append("tags", tags);
 
     if (selectedFile != null)
     {
@@ -95,7 +96,7 @@ export const UpdateProjectForm = () => {
             <div>
               {tags.map((tag, index) => (
                 <span key={index} className="tag" style={{marginLeft: "0.5rem"}}>
-                  {tag}
+                  {tag.name}
                 </span>
               ))}
             </div>
