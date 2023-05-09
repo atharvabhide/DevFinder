@@ -42,11 +42,13 @@ export const Navbar = () => {
 
                 {/* SearchBar */}
 
+                <div className='jugaad'>
+
                 {isLoggedIn ? 
                 (
                 
                     <ul className="account">
-                        <li className   ="dropdown">
+                        <li className ="dropdown">
                             <FiUser className="accountImage" size={40} />
                             <ul className="dropdownList">
                             <li className="option">
@@ -69,6 +71,7 @@ export const Navbar = () => {
 
                     {navbarOpen ? <MdClose style={IconstyleMenu} size={25} /> : <HiMenuAlt3 style={IconstyleMenu} size={25} />}
                 </button>
+                </div>
 
             </div>
         </header>

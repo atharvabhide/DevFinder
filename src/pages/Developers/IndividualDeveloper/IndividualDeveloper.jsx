@@ -25,6 +25,9 @@ export const IndividualDeveloper = () => {
   const api = useAxios();
 
   const location = useLocation();
+
+  const defaultText = "No projects"
+  
   
 
   const fetchProfile = async () => {
@@ -86,26 +89,7 @@ export const IndividualDeveloper = () => {
                 <h2><b>ABOUT ME</b></h2>
                 <p>{profile?.bio}</p>
               </div><hr />
-              <div className={styles.skillSection}>
-                <h2>SKILLS</h2>
-                <div className={styles.skill}>
-                  <p className={styles.skillName}>Django</p>
-                  <p className={styles.skillInfo}>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Velit maxime magni numquam enim aut dolorum ducimus, mollitia, molestias impedit obcaecati totam veritatis aliquid ut illo amet fuga pariatur, quidem harum!</p>
-
-                </div>
-                <div className={styles.skill}>
-                  <p className={styles.skillName}>Django</p>
-                  <p className={styles.skillInfo}>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Velit maxime magni numquam enim aut dolorum ducimus, mollitia, molestias impedit obcaecati totam veritatis aliquid ut illo amet fuga pariatur, quidem harum!</p>
-
-                </div>
-                <div className={styles.skill}>
-                  <p className={styles.skillName}>Django</p>
-                  <p className={styles.skillInfo}>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Velit maxime magni numquam enim aut dolorum ducimus, mollitia, molestias impedit obcaecati totam veritatis aliquid ut illo amet fuga pariatur, quidem harum!</p>
-
-                </div>
-
-
-              </div><hr />
+              
               <h2>OTHER SKILLS</h2><br />
               <div className={styles.otherSkills}>
                 <button className={styles.otherSkillsBtn}>Communication</button>
@@ -122,8 +106,10 @@ export const IndividualDeveloper = () => {
                 image={proj.featuredImage}
                 projectName={proj.title}
                 projectDeveloper={proj.owner}
+                
               />
-              ))}
+              
+              ) ) }
 
               {/* <ShortProjectCard
                 image={ProjectImage}
