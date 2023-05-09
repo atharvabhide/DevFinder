@@ -7,3 +7,4 @@ social-auth-app-django
 alt-profanity-check
 opennsfw2
 Pillow
+python-dotenv
