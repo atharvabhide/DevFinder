@@ -9,7 +9,7 @@ from .views import (
     SkillCreateView, SkillRetrieveView, CurrentUser,
     SkillUpdateView, SkillDestroyView, 
     ListMessageAPIView, RetrieveMessageAPIView,CreateMessageAPIView,
-    register_by_access_token, authentication_test, ImageModView,
+    register_by_access_token, authentication_test, ImageModView, SimilarUserView,
     ProjectRetrieveView,
 )
 
@@ -48,7 +48,7 @@ urlpatterns = [
     path('authentication-test/', authentication_test),
 
     path('current-user/', CurrentUser.as_view(), name='current-user'),
-
+    path('profiles/similar/', SimilarUserView.as_view(), name='similar-list'),
     path('profiles/', ProfileListView.as_view(), name='profile-list'),
     path('profiles/create/', ProfileCreateView.as_view(), name='profile-create'),
 
