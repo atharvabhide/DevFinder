@@ -26,7 +26,7 @@ export const UpdateProjectForm = () => {
     const response = await api.get(`${location.state.url}`)
     console.log(response);
     setProject(response.data);
-    setTags(response.data.tags)
+    setTags(response.data.tags.map((tag) => (tag.name)))
   }
 
   useEffect(() => {
@@ -85,7 +85,7 @@ export const UpdateProjectForm = () => {
               <input
                 type="text"
                 id="newTag"
-                value={newTag}
+                // value={newTag}
                 onChange={(e) => (setNewTag(e.target.value))}
               />
               <button type="button" onClick={handleAddTag}>
@@ -96,7 +96,7 @@ export const UpdateProjectForm = () => {
             <div>
               {tags.map((tag, index) => (
                 <span key={index} className="tag" style={{marginLeft: "0.5rem"}}>
-                  {tag.name}
+                  {tag}
                 </span>
               ))}
             </div>
