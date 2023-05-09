@@ -58,7 +58,7 @@ export const ProjectForm = () => {
       }
       else
       {
-        console.log("error: couldn't login");
+        console.log("error: couldn't add project");
       }
     }
     else {
