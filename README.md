@@ -49,7 +49,7 @@ And finally run the frontend server with
 DevFinder's frontend should be up and running on port 5173
 
 ## Backend Architecture
-![image](https://github.com/atharvabhide/DevFinder/assets/67187699/8521633f-dcfc-4d4b-ac7d-3c74a2e88b5b)
+![image](https://github.com/atharvabhide/DevFinder/assets/67187699/c6deba19-e95e-4506-a88e-9d8c2fd4c556)
 
 ## Tech Stack
 
