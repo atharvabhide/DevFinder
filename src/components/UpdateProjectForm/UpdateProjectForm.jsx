@@ -3,6 +3,7 @@ import styles from './UpdateProjectForm.module.css'
 import { useAxios } from "../../utils/useAxios"
 import { baseURL } from '../../utils/config'
 import { useNavigate, useLocation } from 'react-router-dom'
+import { TiTick } from 'react-icons/ti'
 import { locale } from 'dayjs'
 
 export const UpdateProjectForm = () => {
@@ -74,22 +75,23 @@ export const UpdateProjectForm = () => {
             <textarea className={styles.bio} name="Bio" id="" cols="30" rows="10" placeholder='About' onChange={ (e) => {setProject({...project, description: e.target.value,})} } value={project?.description} ></textarea>
             
             <div className={styles.uploadContainer}>
-              <label>Project Image</label>
+              <label style={{marginLeft: '-0.5em'}}>Project Image</label>
               <input type="file" onChange={(e) => {console.log(e.target.files[0]); setSelectedFile(e.target.files[0]);}}/> 
             </div>
             <input type="url" className={styles.inputField} placeholder='Demo Link' onChange={ (e) => {setProject({...project, demoLink: e.target.value,})} } value={project?.demoLink}/>
-            <input type="url" className={styles.inputField} placeholder='Source Code' onChange={ (e) => {setProject({...project, sourceLink: e.target.value,})} } value={project?.sourceLink} /><br />
+            <input type="url" className={styles.inputField} placeholder='Source Code' onChange={ (e) => {setProject({...project, sourceLink: e.target.value,})} } value={project?.sourceLink} />
 
-            <div>
-              <label htmlFor="newTag">Tags:</label>
+            <div style={{display: 'flex', width: '100%'}}>        
               <input
                 type="text"
-                id="newTag"
+                id={styles.newTag}
                 // value={newTag}
+                className={styles.inputField}
+                placeholder='Add Tags (React, Django, Flutter, etc)'
                 onChange={(e) => (setNewTag(e.target.value))}
               />
-              <button type="button" onClick={handleAddTag}>
-                Add Tag
+              <button className={styles.tagButton} type="button" onClick={handleAddTag}>
+                <TiTick size={22} style={{color: '#fff'}} />
               </button>
             </div>
 
@@ -99,7 +101,7 @@ export const UpdateProjectForm = () => {
                   {tag}
                 </span>
               ))}
-            </div>
+            </div><br />
 
             <input type="submit" className={styles.submitButton} value="Submit" onClick={updateProject}  />
             

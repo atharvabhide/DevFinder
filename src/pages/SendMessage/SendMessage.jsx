@@ -41,7 +41,7 @@ export const SendMessage = () => {
     <div className={styles.wrapper}>
         <div className={styles.msgContainer}>
             <div className={styles.header}>
-              <h1>To <i>{receiverUsername}</i>,</h1>
+              <h1 className={styles.title}>To <i>{receiverUsername}</i>,</h1>
               <h3 htmlFor="" style={{marginTop: '1em'}}>Subject</h3>
               <input type="text" className={styles.inputField} placeholder='Enter the subject' onChange={(e) => {setSubject(e.target.value)}} />
               <h3 htmlFor="" style={{marginTop: '1em'}}>Message</h3>
@@ -49,7 +49,7 @@ export const SendMessage = () => {
 
               <button className={styles.sendButton} onClick={() => sendMessage()}>Send</button>
               <RxCross2 onClick={()=>navigate('/developers')} size={22} className={styles.closeButton} />
-
+            
             </div>
 
         </div>

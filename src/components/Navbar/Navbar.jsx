@@ -22,7 +22,7 @@ export const Navbar = () => {
     const [navbarOpen, setNavbarOpen] = useState(false);
     const handleToggleClick = () => {
         setNavbarOpen((prev) => !prev)
-        console.log("click ho gaya");
+        // console.log("click ho gaya");
     }
 
     const {logoutUser, isLoggedIn} = useContext(AuthContext);

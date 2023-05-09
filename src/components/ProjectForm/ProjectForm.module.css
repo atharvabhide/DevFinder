@@ -60,3 +60,41 @@
     border-radius: 4px;
     margin: 1em 0;
 }
+#newTag{
+    width: 70%;
+    
+}
+.tagButton{
+    padding: 0.75em;
+    margin: 1em;
+    background-color: #333;
+    border: none;
+    outline: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+.tagButton:hover{
+    background-color: #2367b9;
+    
+}
+.displayTags{
+    width: 100%;
+    text-align: left;
+}
+
+@media screen and (max-width: 850px) {
+    .form{
+        margin: 0 2em;
+        /* padding: 1em 2em; */
+    }
+}
+@media screen and (max-width: 570px){
+    .wrapper{
+        padding: 0;
+        
+    }
+    .form{
+       margin: 0;
+       padding: 2em;
+    }
+}

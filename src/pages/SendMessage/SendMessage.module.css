@@ -57,3 +57,13 @@
     right: 2%;
     cursor: pointer;
 }
+
+@media screen and (max-width: 780px) {
+    .msgContainer{
+        width: 100%;
+    }
+    .title{
+        font-size: 2em;
+    }
+    
+}
