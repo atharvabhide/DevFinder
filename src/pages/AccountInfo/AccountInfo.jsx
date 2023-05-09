@@ -22,6 +22,8 @@ export const AccountInfo = (props) => {
     const [profile, setProfile] = useState([]); 
     const [project, setProject] = useState([]);
     const [show, setShow] = useState(false);
+    const [operatedSkill, setOperatedSkill] = useState(false);
+
     const api = useAxios();
     const navigate = useNavigate();
 
@@ -40,14 +42,14 @@ export const AccountInfo = (props) => {
       setProject(projectsResponse.data)
     }
 
-    const fetchProjects = async() => {
-      const projectResponse = await api.get("/project-api/projects/");
-      setProject(projectResponse.data);
-    }
+    // const fetchProjects = async() => {
+    //   const projectResponse = await api.get("/project-api/projects/");
+    //   setProject(projectResponse.data);
+    // }
 
     useEffect(() => {
       fetchProfile();
-      fetchProjects
+      // fetchProjects();
     }, [])
 
     const deleteProject = async (url) => {
@@ -64,7 +66,9 @@ export const AccountInfo = (props) => {
 
     useEffect(() => {
       fetchSkills();
-    }, [])
+      setOperatedSkill(false);
+
+    }, [operatedSkill])
 
     const [newSkill, setNewSkill] = useState("Test");
 
@@ -75,11 +79,19 @@ export const AccountInfo = (props) => {
     const addSkill = async () => {
       const response = await api.post(`/user-api/profiles/${currentUUID}/skills/create/`, dummySkill);
       console.log(response);
+      if (response.status = 201)
+      {
+        setOperatedSkill(true);
+      }
     }
 
     const deleteSkill = async (skillId) => {
       const response = await api.delete(`/user-api/profiles/${currentUUID}/skills/${skillId}/delete/`)
       console.log(response);
+      if (response.status = 204)
+      {
+        setOperatedSkill(true);
+      }
     }
 
     // const [isEditing, setIsEditing] = useState(false);
