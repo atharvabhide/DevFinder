@@ -2,8 +2,7 @@ import React from 'react'
 import styles from './IndividualDeveloper.module.css'
 import {ProjectCard} from '../../../components/ProjectCard/ProjectCard'
 // import {ShortProjectCard} from '../IndividualDeveloper/ShortProjectCard'
-import ProjectImage from '../../../assets/banner5.jpg'
-import ProfileImage from '../../../assets/nalla.jpg'
+
 import {TiLocation} from 'react-icons/ti'
 import { useState, useEffect, useContext } from 'react'
 import axios from 'axios'
@@ -11,6 +10,7 @@ import { useAxios } from '../../../utils/useAxios'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { Modal } from '../../../components/Modal/Modal'
 import { AuthContext } from '../../../context/AuthContext'
+import defaultImage from '../../../assets/default-image.svg'
 
 export const IndividualDeveloper = () => {
 
@@ -57,6 +57,8 @@ export const IndividualDeveloper = () => {
     fetchSkills();
   }, [])
 
+ 
+
   return (
     <>
         <div className={styles.wrapper}>
@@ -64,7 +66,7 @@ export const IndividualDeveloper = () => {
             <div className={styles.developerProfile}>
               <div className={styles.developerCard}>
                 <div>
-                <img src={profile?.profileImage} className={styles.developerImage} alt="" />
+                <img src={profile?.profileImage || defaultImage}  className={styles.developerImage} alt="" />
                 </div>
                 <div>
                 <p className={styles.developerName}><b>{profile?.username}</b></p>

@@ -108,7 +108,7 @@ export const EditProfile = () => {
     // const profileUrl = location.state.url;
     // const response = await api.post(`${profileUrl}update/`, formData);
     // console.log(response);
-    // navigate(`/account/`);
+    navigate(`/account/`);
   }
 
   return (
@@ -129,7 +129,7 @@ export const EditProfile = () => {
             <input type="url" className={styles.inputField} placeholder='LinkedIn Profile' onChange={ (e) => {setProfileData({...profileData, socialLinkedIn: e.target.value,})} } value={ (profileData?.socialLinkedIn === "null") ? null : profileData?.socialLinkedIn } />
             <input type="url" className={styles.inputField} placeholder='Twitter Profile' onChange={ (e) => {setProfileData({...profileData, socialTwitter: e.target.value,})} } value={ (profileData?.socialTwitter === "null") ? null : profileData?.social } />
             <input type="url" className={styles.inputField} placeholder='Youtube Page' onChange={ (e) => {setProfileData({...profileData, socialYoutube: e.target.value,})} } value={ (profileData?.socialYoutube === "null") ? null : profileData?.socialYoutube } />
-            <input type="url" className={styles.inputField} placeholder='Portfolio Website' onChange={ (e) => {setProfileData({...profileData, socialWebsite: e.target.value,})} } value={ (profileData?.socialWebsite === "null") ? null : profileData?.location } /><br />
+            <input type="text" className={styles.inputField} placeholder='Portfolio Website' onChange={ (e) => {setProfileData({...profileData, socialWebsite: e.target.value,})} } value={ (profileData?.socialWebsite === "null") ? null : profileData?.location } /><br />
             <input type="submit" className={styles.submitButton} onClick={updateProfile} />
 
 

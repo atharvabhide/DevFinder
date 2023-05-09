@@ -45,7 +45,7 @@ export const ProjectForm = () => {
     console.log(response);
     if (response.status === 201)
     {
-      // navigate(`/account`);
+      navigate(`/account`);
     }
   }
 
