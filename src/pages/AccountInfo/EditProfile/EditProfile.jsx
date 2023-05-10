@@ -73,7 +73,7 @@ export const EditProfile = () => {
 
     const imageData = new FormData();
     imageData.append("image", selectedFile);
-
+      
     if (selectedFile == null)
     {
       formData.append("profileImage", userImage);
