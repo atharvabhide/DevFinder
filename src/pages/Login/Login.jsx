@@ -55,7 +55,6 @@ export const Login = () => {
     const response = await registerUser(registerFirstName, registerUsername, registerEmail, registerPassword);
     console.log(response);
     toggle(true);
-    navigate('/account/edit');
   }
 
   const api = useAxios();
