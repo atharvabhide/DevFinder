@@ -55,6 +55,7 @@ DevFinder's frontend should be up and running on port 5173
 <li>React </li>
 <li>Modular CSS</li>
 <li>Axios</li>
+<li>Netlify</li>
 </ul>
 
 **Server:** 
@@ -64,6 +65,9 @@ DevFinder's frontend should be up and running on port 5173
 <li>opennsfw2 </li>
 <li>Tensorflow </li>
 <li>Custom recommendation engine</li>
+<li>AWS EC2</li>
+<li>Nginx</li>
+<li>Gunicorn</li>
 <ul>
   
 ## Backend Architecture
