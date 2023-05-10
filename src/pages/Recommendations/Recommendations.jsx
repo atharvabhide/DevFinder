@@ -6,6 +6,7 @@ import { AuthContext } from '../../context/AuthContext';
 import { useContext, useState } from 'react';
 import { baseURL } from '../../utils/config';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 export const Recommendations = () => {
     const {currentUUID} = useContext(AuthContext);
@@ -33,39 +34,18 @@ export const Recommendations = () => {
     <div className={styles.developers}>
         {users?.map((user) => (
             <>
-                <div>{user.username}</div>
+            <Link to="/developers/developer" key={user.url} state={{url: user.url}}>
+                <DevCard 
+                    name={user.username}
+                    position={user.shortIntro}
+                    bio={user.bio}
+                    image={user.profileImage}
+                />
+            </Link>
             </>
         ))}
-        <DevCard 
-            name="ak"
-            position="Frontend developer"
-            bio="Another productive way to use this tool to begin a daily writing routine. One way is to generate a random paragraph with the intention to try to rewrite it while still keeping the original meaning. The purpose here is to just get the writing started so that when the writer goes onto their day's writing projects, words are already flowing from their fingers."
-        />
-        <DevCard 
-            name="ak"
-            position="Frontend developer"
-            bio="Another productive way to use this tool to begin a daily writing routine. One way is to generate a random paragraph with the intention to try to rewrite it while still keeping the original meaning. The purpose here is to just get the writing started so that when the writer goes onto their day's writing projects, words are already flowing from their fingers."
-        />
-        <DevCard 
-            name="ak"
-            position="Frontend developer"
-            bio="Another productive way to use this tool to begin a daily writing routine. One way is to generate a random paragraph with the intention to try to rewrite it while still keeping the original meaning. The purpose here is to just get the writing started so that when the writer goes onto their day's writing projects, words are already flowing from their fingers."
-        />
-        <DevCard 
-            name="ak"
-            position="Frontend developer"
-            bio="Another productive way to use this tool to begin a daily writing routine. One way is to generate a random paragraph with the intention to try to rewrite it while still keeping the original meaning. The purpose here is to just get the writing started so that when the writer goes onto their day's writing projects, words are already flowing from their fingers."
-        />
-        <DevCard 
-            name="ak"
-            position="Frontend developer"
-            bio="Another productive way to use this tool to begin a daily writing routine. One way is to generate a random paragraph with the intention to try to rewrite it while still keeping the original meaning. The purpose here is to just get the writing started so that when the writer goes onto their day's writing projects, words are already flowing from their fingers."
-        />
-        <DevCard 
-            name="ak"
-            position="Frontend developer"
-            bio="Another productive way to use this tool to begin a daily writing routine. One way is to generate a random paragraph with the intention to try to rewrite it while still keeping the original meaning. The purpose here is to just get the writing started so that when the writer goes onto their day's writing projects, words are already flowing from their fingers."
-        />
+        
+        
         
     </div>
     </>
