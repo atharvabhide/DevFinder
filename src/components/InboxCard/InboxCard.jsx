@@ -11,10 +11,10 @@ export const InboxCard = (props) => {
           </div>
           <div className={styles.messageInfo}>
             <div className={styles.messageSubject}>
-              {props.subject}
+              <b>{props.subject}</b>
             </div>
             <div className={styles.username}>
-              <i>{props.username}</i>
+              <i>From {props.username}</i>
             </div>
             <div className={styles.messageContent}>
               <p>{props.content}</p>

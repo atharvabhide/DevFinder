@@ -1,5 +1,6 @@
 .wrapper{
     color: #fff;
+    min-height: 100vh;
 }
 
 .developer{
@@ -114,11 +115,11 @@
     /* height: 10em; */
 }
 .developerImage{
-    background: url('../../../assets/bg-img.png');
+    /* background: url('../../../assets/bg-img.png'); */
     display: block;
     height: 10em;
     margin: 0 auto;
-    border: 4px solid lightseagreen;
+    border: 6px solid var(--first-color);
     border-radius: 50%;
     
 }

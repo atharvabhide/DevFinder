@@ -7,6 +7,7 @@ import {GoMarkGithub} from 'react-icons/go'
 import {FiUser} from 'react-icons/fi'
 import Banner from '../../assets/banner4.jpg'
 import Dp from '../../assets/nalla.jpg'
+import defaultImage from '../../assets/default-image.svg'
 
 export const DevCard = (props) => {
     
@@ -18,8 +19,8 @@ export const DevCard = (props) => {
                 {/* <img src={Banner} className={styles.bannerImg} alt="" /> */}
             </div>
             <div className={styles.photo}>
-                <img src={props.image} className={styles.profileImg} alt="" />
-                <div className={styles.defaultImage}><FiUser size={50} /></div>
+                <img src={props.image || defaultImage} className={styles.profileImg} alt="" />
+                <div className={styles.defaultImage}></div>
                 
             </div>
             

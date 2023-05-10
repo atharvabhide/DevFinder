@@ -13,6 +13,7 @@ import Logo from '../../assets/logo-dark.png'
 import { SearchBar } from '../SearchBar/SearchBar'
 import { AuthContext } from '../../context/AuthContext'
 import {FiUser} from 'react-icons/fi'
+import {TbHeartHandshake} from 'react-icons/tb'
 
 
 export const Navbar = () => {
@@ -22,14 +23,16 @@ export const Navbar = () => {
     const [navbarOpen, setNavbarOpen] = useState(false);
     const handleToggleClick = () => {
         setNavbarOpen((prev) => !prev)
-        console.log("click ho gaya");
+        // console.log("click ho gaya");
     }
 
     const {logoutUser, isLoggedIn} = useContext(AuthContext);
 
     const handleLogout = () => {
-        alert("You have logged out!")
-        logoutUser()
+        
+        logoutUser();
+        navigate('/login')
+        
     }
 
     return (
@@ -42,11 +45,13 @@ export const Navbar = () => {
 
                 {/* SearchBar */}
 
+                <div className='jugaad'>
+
                 {isLoggedIn ? 
                 (
                 
                     <ul className="account">
-                        <li className   ="dropdown">
+                        <li className ="dropdown">
                             <FiUser className="accountImage" size={40} />
                             <ul className="dropdownList">
                             <li className="option">
@@ -69,6 +74,7 @@ export const Navbar = () => {
 
                     {navbarOpen ? <MdClose style={IconstyleMenu} size={25} /> : <HiMenuAlt3 style={IconstyleMenu} size={25} />}
                 </button>
+                </div>
 
             </div>
         </header>
@@ -85,6 +91,11 @@ export const Navbar = () => {
                             <Link to="/" className="navLink " >
                                 <HiOutlineHome className="navIcon"/>
                                 <span className="navName">Home</span>
+                            </Link>
+
+                            <Link to="/recommended-developers" className="navLink">
+                                <TbHeartHandshake className="navIcon" />
+                                <span className="navName">Recommendations</span>
                             </Link>
 
                             <Link to="/developers" className="navLink">

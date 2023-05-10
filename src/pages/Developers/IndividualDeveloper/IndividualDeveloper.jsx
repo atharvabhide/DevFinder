@@ -2,8 +2,7 @@ import React from 'react'
 import styles from './IndividualDeveloper.module.css'
 import {ProjectCard} from '../../../components/ProjectCard/ProjectCard'
 // import {ShortProjectCard} from '../IndividualDeveloper/ShortProjectCard'
-import ProjectImage from '../../../assets/banner5.jpg'
-import ProfileImage from '../../../assets/nalla.jpg'
+
 import {TiLocation} from 'react-icons/ti'
 import { useState, useEffect, useContext } from 'react'
 import axios from 'axios'
@@ -11,6 +10,7 @@ import { useAxios } from '../../../utils/useAxios'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { Modal } from '../../../components/Modal/Modal'
 import { AuthContext } from '../../../context/AuthContext'
+import defaultImage from '../../../assets/default-image.svg'
 
 export const IndividualDeveloper = () => {
 
@@ -25,6 +25,9 @@ export const IndividualDeveloper = () => {
   const api = useAxios();
 
   const location = useLocation();
+
+  const defaultText = "No projects"
+  
   
 
   const fetchProfile = async () => {
@@ -57,6 +60,8 @@ export const IndividualDeveloper = () => {
     fetchSkills();
   }, [])
 
+ 
+
   return (
     <>
         <div className={styles.wrapper}>
@@ -64,7 +69,7 @@ export const IndividualDeveloper = () => {
             <div className={styles.developerProfile}>
               <div className={styles.developerCard}>
                 <div>
-                <img src={profile?.profileImage} className={styles.developerImage} alt="" />
+                <img src={profile?.profileImage || defaultImage}  className={styles.developerImage} alt="" />
                 </div>
                 <div>
                 <p className={styles.developerName}><b>{profile?.username}</b></p>
@@ -84,26 +89,7 @@ export const IndividualDeveloper = () => {
                 <h2><b>ABOUT ME</b></h2>
                 <p>{profile?.bio}</p>
               </div><hr />
-              <div className={styles.skillSection}>
-                <h2>SKILLS</h2>
-                <div className={styles.skill}>
-                  <p className={styles.skillName}>Django</p>
-                  <p className={styles.skillInfo}>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Velit maxime magni numquam enim aut dolorum ducimus, mollitia, molestias impedit obcaecati totam veritatis aliquid ut illo amet fuga pariatur, quidem harum!</p>
-
-                </div>
-                <div className={styles.skill}>
-                  <p className={styles.skillName}>Django</p>
-                  <p className={styles.skillInfo}>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Velit maxime magni numquam enim aut dolorum ducimus, mollitia, molestias impedit obcaecati totam veritatis aliquid ut illo amet fuga pariatur, quidem harum!</p>
-
-                </div>
-                <div className={styles.skill}>
-                  <p className={styles.skillName}>Django</p>
-                  <p className={styles.skillInfo}>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Velit maxime magni numquam enim aut dolorum ducimus, mollitia, molestias impedit obcaecati totam veritatis aliquid ut illo amet fuga pariatur, quidem harum!</p>
-
-                </div>
-
-
-              </div><hr />
+              
               <h2>OTHER SKILLS</h2><br />
               <div className={styles.otherSkills}>
                 <button className={styles.otherSkillsBtn}>Communication</button>
@@ -120,8 +106,10 @@ export const IndividualDeveloper = () => {
                 image={proj.featuredImage}
                 projectName={proj.title}
                 projectDeveloper={proj.owner}
+                
               />
-              ))}
+              
+              ) ) }
 
               {/* <ShortProjectCard
                 image={ProjectImage}

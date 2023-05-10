@@ -1,5 +1,5 @@
 .wrapper{
-    background-color: #2367b9;
+    background-color: #2e2c2c;
     width: 100%;
     height: 100%;
     padding: 2em;
@@ -10,22 +10,23 @@
 }
 
 .form{
-    background-color:#fff;
+    background-color:#000;
     margin: 0 5em;
     padding: 3em 4em;
     border-radius: 8px;
     
 }
 .inputField{
-    background-color: #eee;
+    background-color: #2e2c2c;
  border: none;
  padding: 16px 15px;
  margin: 1em 0;
  width: 100%;
  border-radius: 4px;
+ color: #fff;
 }
 .bio{
-    background-color: #eee;
+    background-color: #2e2c2c;
  border: none;
  padding: 12px 15px;
  margin: 8px 0;
@@ -33,9 +34,10 @@
  border-radius: 4px;
  font-family: sans-serif;
  resize: none;
+ color: #fff;
 }
 .submitButton{
-    background-color: #05445E;
+    background-color: #eb7724;
     /* opacity: 0.7; */
     border: none;
     padding: 18px 34px;
@@ -46,12 +48,12 @@
     cursor: pointer;
 }
 .submitButton:hover{
-    background-color: #75E6DA;
-    color: #333;
+    background-color: #fff;
+    color: #eb7724;
 }
 
 .upload_container{
-    background-color: #eee;
+    background-color: #2e2c2c;
     width: 100%;
     display: flex;
     justify-content: space-between;
@@ -59,4 +61,20 @@
     padding: 16px 15px;
     border-radius: 4px;
     margin: 1em 0;
+}
+@media screen and (max-width: 850px) {
+    .form{
+        margin: 0 2em;
+        /* padding: 1em 2em; */
+    }
+}
+@media screen and (max-width: 570px){
+    .wrapper{
+        padding: 0;
+        
+    }
+    .form{
+       margin: 0;
+       padding: 2em;
+    }
 }

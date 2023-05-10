@@ -34,12 +34,12 @@
     /* width: 30px; */
     /* height: 7vh; */
     /* display: block; */
-    border: 4px solid #fff;
+    /* border: 1px solid #fff; */
     height: 4.5em;
     width: 4.5em;
     
     border-radius: 50%;
-    background: #fff;
+    background: #333;
     margin-top: -2.5rem;
     z-index: 2;
     

@@ -13,6 +13,7 @@ import { useAxios } from "../../utils/useAxios"
 import { ForgotPassword } from '../ForgotPassword/ForgotPassword';
 import { baseURL } from '../../utils/config';
 import dayjs from 'dayjs';
+import toast, { Toaster } from 'react-hot-toast';
 
 export const Login = () => {
 
@@ -32,7 +33,15 @@ export const Login = () => {
 
   const handleLogin = () => {
     loginUser(signInUsername, signInPassword);
-    // navigate('/account');
+    toast.promise(
+      saveSettings(settings),
+       {
+         loading: 'Saving...',
+         success: <b>Welcome to DevFinder!</b>,
+         error: <b>Cannot log in. Please try again</b>,
+       }
+     );
+    
   }
 
   console.log("Tokens", authTokens);
@@ -41,6 +50,7 @@ export const Login = () => {
     const response = await registerUser(registerFirstName, registerUsername, registerEmail, registerPassword);
     console.log(response);
     toggle(true);
+    navigate('/account/edit');
   }
 
   const api = useAxios();
@@ -150,6 +160,7 @@ export const Login = () => {
       </div>
       </div>
       </main>
+      <Toaster />
     </>
   )
 }

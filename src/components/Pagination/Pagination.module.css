@@ -1,8 +1,8 @@
 .wrapper{
     display: flex;
-    gap: 0.875em;
+    /* gap: 0.875em; */
     justify-content: center;
-    margin-top: 4em;
+    margin: 4em 0;
 }
 .btn{
     padding: 0 8px;
@@ -12,6 +12,7 @@
     transition: 0.3s;
     border-radius: 4px;
     background-color: var(--first-color);
+    margin: 0 0.875em;
 }
 .btn:hover{
     background-color: #fff;

@@ -1,13 +1,14 @@
 import React from 'react'
 import styles from './ProjectCard.module.css'
 import Banner from '../../assets/banner2.jpg'
+import defaultImage from '../../assets/default-project-image.png'
 
 export const ProjectCard = (props) => {
   return (
     <>
         <div className={styles.card}>
             <div className={styles.banner}>
-                <img className={styles.projectImage} src={props.image} alt="" />
+                <img className={styles.projectImage} src={props.image || defaultImage} alt="" />
             </div>
             <ul>
                 <li className={styles.projectTitle}><b>{props.projectName}</b></li>

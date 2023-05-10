@@ -12,6 +12,9 @@ import Image from '../../assets/banner2.jpg'
 import { AuthContext } from '../../context/AuthContext';
 import {BsPlus} from 'react-icons/bs'
 import { AddSkillModal } from '../../components/AddSkillModal/AddSkillModal'
+import defaultImage from '../../assets/default-image.svg'
+import {RxCrossCircled} from 'react-icons/rx'
+import toast, { Toaster } from 'react-hot-toast';
 
 
 export const AccountInfo = (props) => {
@@ -27,6 +30,13 @@ export const AccountInfo = (props) => {
 
     const api = useAxios();
     const navigate = useNavigate();
+
+    const notifySuccess = () => {
+      toast.success('Skill added successfully');
+    }
+    const notifyDeletion = () => {
+      toast.error('Your project has been removed')
+    }
 
     const fetchProfile = async () => {
       // const response = await api.get("/user-api/current-user/");
@@ -60,6 +70,7 @@ export const AccountInfo = (props) => {
       {
         setOperatedProject(true);
       }
+      toast.error('Your project has been removed')
 
     }
 
@@ -92,6 +103,10 @@ export const AccountInfo = (props) => {
       }
     }
 
+    const handleNavigate = () => {
+      navigate('/account');
+    }
+
     const deleteSkill = async (skillId) => {
       const response = await api.delete(`/user-api/profiles/${currentUUID}/skills/${skillId}/delete/`)
       console.log(response);
@@ -102,12 +117,13 @@ export const AccountInfo = (props) => {
     }
 
   return (
+    <>
     <div className={styles.wrapper}>
           <div className={styles.developer}>
             <div className={styles.developerProfile}>
               <div className={styles.developerCard}>
                 <div>
-                <img src={profile.profileImage} className={styles.developerImage} alt="" />
+                <img src={profile.profileImage || defaultImage} className={styles.developerImage} alt="" />
                 </div>
                 <div>
                 <p className={styles.developerName}><b>{profile.username}</b></p>
@@ -125,7 +141,7 @@ export const AccountInfo = (props) => {
             </div>
             <div className={styles.developerInfo}>
               <div className={styles.about}>
-                <h2><b>ABOUT ME</b></h2>
+                <h2><b>ABOUT ME</b></h2><br />
                 {profile.bio}
                 
                 
@@ -134,15 +150,15 @@ export const AccountInfo = (props) => {
                 <div style={{marginBottom: '1em'}} className={styles.skillHeader}>
                 <h2 >SKILLS</h2>
                 <button onClick={() =>  setShow(true)} className={styles.addSkill}><BsPlus size={22} /></button>
-                <AddSkillModal onClose={()=> setShow(false)} onAdd={() => addSkill()} setNewSkill={setNewSkill} show={show} />
+                <AddSkillModal onClose={()=> setShow(false)} onAdd={() => {addSkill(); setShow(false); notifySuccess();}} setNewSkill={setNewSkill} show={show} />
                 
                 </div>
                 <div style={{display: 'flex', justifyContent: 'start', gap: '0.75em'}}>
                 {skills?.map((skill) => (
                   <>
-                    <button className={styles.otherSkillsBtn}>{skill.name}</button>
+                    <button className={styles.skillsBtn}>{skill.name}</button>
 
-                    <div onClick={() => deleteSkill(skill.id)}>Delete</div>
+                    <div className={styles.removeSkill} onClick={() => deleteSkill(skill.id)}><RxCrossCircled /></div>
                     <br />
                   </>
                 ))} 
@@ -214,6 +230,8 @@ export const AccountInfo = (props) => {
             </div>
 
           </div>
+          <Toaster />
+    </>
   )
 }
 

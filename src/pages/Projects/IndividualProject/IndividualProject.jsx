@@ -96,10 +96,10 @@ export const IndividualProject = (props) => {
                             <button className={styles.toolBtn}>{tag}</button>
                           </>
                         ))}
+                        {/* <button className={styles.toolBtn}>React</button>
                         <button className={styles.toolBtn}>React</button>
                         <button className={styles.toolBtn}>React</button>
-                        <button className={styles.toolBtn}>React</button>
-                        <button className={styles.toolBtn}>React</button>
+                        <button className={styles.toolBtn}>React</button> */}
                     </div>
                     <div className={styles.projectLinks}>
                         <Link to="#" style={{color: '#eb7724'}}>Demo Link</Link><br /><br />
