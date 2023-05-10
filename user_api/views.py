@@ -320,7 +320,7 @@ class SimilarUserView(ListAPIView):
         current_user_skills = self.request.user.profile.skills.all()
         # Retrieve other users with similar skills
         similar_users = Profile.objects.filter(
-            Q(skillsnamein=[s.name for s in current_user_skills]) & ~Q(user=self.request.user)
+            Q(skills__name__in=[s.name for s in current_user_skills]) & ~Q(user=self.request.user)
         )[:6]
         return similar_users
 
