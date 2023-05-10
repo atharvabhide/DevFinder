@@ -37,6 +37,7 @@ export const SendMessage = () => {
       const response = await api.post(`${profileUrl}create-message/`, message);
       notifySuccess();
       console.log("send message", response);
+      navigate(-1);
     }
 
     const notifySuccess = () => {
