@@ -71,10 +71,23 @@ export const IndividualProject = (props) => {
 
   const createReview = async () => {
     console.log(reviewBody);
-    const response = await api.post(`${url}reviews/create/`, { "body": reviewBody });
-    console.log(response);
+    const reviewTest = {
+      "comment": reviewBody,
+    }
+    const responseNSFW = await api.post(`project-api/review/mod/`, reviewTest);
+    console.log("nsfw", responseNSFW);
+    if (responseNSFW.data.prediction === "Review is clean")
+    {
+      const response = await api.post(`${url}reviews/create/`, { "body": reviewBody });
+      console.log(response);
+      setShouldFetchProject(true);
 
-    setShouldFetchProject(true);
+    }
+    else
+    {
+      alert("NSFW comments not allowed")
+    }
+
   }
 
   useEffect(() => {
