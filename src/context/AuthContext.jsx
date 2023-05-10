@@ -6,7 +6,9 @@ import { GoogleLogin } from '@react-oauth/google';
 import { googleLogout, useGoogleLogin } from '@react-oauth/google'; 
 import { baseURL } from '../utils/config';
 import { useNavigate } from 'react-router-dom';
-import toast, {Toaster} from 'react-hot-toast'
+import toast, {Toaster} from 'react-hot-toast';
+// import { useState } from "react";
+import { BounceLoader } from 'react-spinners';
 
 
 export const AuthContext = createContext();
@@ -21,6 +23,8 @@ export const AuthProvider = ({ children }) => {
     );
 
     const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+    const [loading, setLoading] = useState(false);
     
     const [currentUUID, setCurrentUUID] = useState(() => {
       const storedUUID = localStorage.getItem("user");
@@ -41,19 +45,30 @@ export const AuthProvider = ({ children }) => {
     // console.log("Token state ", authTokens);
   
     const loginUser = async (username, password) => {
+      try{
+      setLoading(true);
+      setTimeout(()=> console.log('timepass'), 4000)
       const response = await axios.post(`${baseURL}api/token/`, {username: username, password: password});
       console.log(response);
+
+      
       // console.log(jwtDecode(response.data.access));
       if (response.status === 200)
       {
         localStorage.setItem("authTokens", JSON.stringify(response.data));
         setAuthTokens(response.data);
         getUser(response.data.access);
+
       }
       else {
         toast.error('Cannot log in. Please try again');
         
       }
+      }
+      catch(e){
+        toast.error(`Couldn't log in`)
+      }
+      
     }
 
     const logoutUser = () => {
@@ -99,11 +114,19 @@ export const AuthProvider = ({ children }) => {
           "Authorization": `Bearer ${access_token}`,
         }
       });
+      setLoading(false);
       console.log(response);
       localStorage.setItem("user", JSON.stringify(response.data.uuid));
       setCurrentUUID(response.data.uuid);
+      if (response.status === 200){
       toast.success('Welcome to DevFinder!');
       navigate(`/account`);
+
+      }
+      else{
+        toast.error(`Couldn't sign in`);
+      }
+
     }
 
     const contextData = {
@@ -125,6 +148,7 @@ export const AuthProvider = ({ children }) => {
             {children}
         </AuthContext.Provider>
         <Toaster />
+        
       </>
     )
 }
