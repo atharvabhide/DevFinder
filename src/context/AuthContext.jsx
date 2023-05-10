@@ -49,7 +49,6 @@ export const AuthProvider = ({ children }) => {
         localStorage.setItem("authTokens", JSON.stringify(response.data));
         setAuthTokens(response.data);
         getUser(response.data.access);
-        toast.success('Welcome to DevFinder!');
       }
       else {
         toast.error('Cannot log in. Please try again');
@@ -103,6 +102,7 @@ export const AuthProvider = ({ children }) => {
       console.log(response);
       localStorage.setItem("user", JSON.stringify(response.data.uuid));
       setCurrentUUID(response.data.uuid);
+      toast.success('Welcome to DevFinder!');
       navigate(`/account`);
     }
 
