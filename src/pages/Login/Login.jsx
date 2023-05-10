@@ -32,7 +32,7 @@ export const Login = () => {
 
   const handleLogin = () => {
     loginUser(signInUsername, signInPassword);
-    navigate('/account');
+    // navigate('/account');
   }
 
   console.log("Tokens", authTokens);
