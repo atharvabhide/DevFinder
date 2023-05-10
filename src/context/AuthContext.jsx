@@ -94,7 +94,7 @@ export const AuthProvider = ({ children }) => {
     }
 
     const getUser = async (access_token) => {
-      const response = await axios.get(`${baseURL}/user-api/current-user/`, {
+      const response = await axios.get(`${baseURL}user-api/current-user/`, {
         headers: {
           "Authorization": `Bearer ${access_token}`,
         }
