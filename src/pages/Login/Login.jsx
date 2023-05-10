@@ -14,11 +14,15 @@ import { ForgotPassword } from '../ForgotPassword/ForgotPassword';
 import { baseURL } from '../../utils/config';
 import dayjs from 'dayjs';
 import toast, { Toaster } from 'react-hot-toast';
+import { BounceLoader } from 'react-spinners';
+
 
 export const Login = () => {
 
   const [signIn, toggle] = useState(true);
   const [show, setShow] = useState(false);
+
+  const [loading, setLoading] = useState(false);
 
   const navigate = useNavigate();
   
@@ -32,6 +36,7 @@ export const Login = () => {
   const [registerPassword, setRegisterPassword] = useState("");
 
   const handleLogin = () => {
+    setLoading(true);
     loginUser(signInUsername, signInPassword);
     toast.promise(
       saveSettings(settings),
@@ -74,9 +79,11 @@ export const Login = () => {
 
   return (
     <>
+      
   
     <main>
     <div className={styles.wrapper}>
+    <BounceLoader loading={loading} color='#eb7724' size={70} style={{zIndex: '100000000000', position: 'absolute', top: '50%', left: '50%' }} />
       <div className={styles.container}>
 
         <div className={styles.formsWraps}>

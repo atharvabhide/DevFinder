@@ -5,6 +5,8 @@ import axios from 'axios';
 import { useLocation } from 'react-router-dom';
 import { baseURL } from '../../../utils/config';
 import { useNavigate } from 'react-router-dom';
+import {BounceLoader} from 'react-spinners'
+import toast, {Toaster} from 'react-hot-toast'
 
 export const EditProfile = () => { 
 
@@ -14,6 +16,8 @@ export const EditProfile = () => {
 
   const [profileData, setProfileData] = useState();
   const [userImage, setUserImage] = useState(null);
+
+  const [loading, setLoading] = useState(false);
 
   const fetchProfile = async () => {
     const response = await api.get(`${location.state.url}`);
@@ -52,6 +56,7 @@ export const EditProfile = () => {
   const [socialWebsite, setSocialWebsite] = useState("");
 
   const updateProfile = async () => {
+    setLoading(true);
     const formData = new FormData();
 
     formData.append("name", profileData.name);
@@ -102,7 +107,9 @@ export const EditProfile = () => {
       navigate(`/account/`);
     }
     else {
-      alert("No NSFW images allowed")
+      // alert("No NSFW images allowed")
+      setLoading(false);
+      toast.error('No NSFW images allowed')
     }
   
     // const profileUrl = location.state.url;
@@ -112,7 +119,9 @@ export const EditProfile = () => {
   }
 
   return (
+    <>
     <div className={styles.wrapper}>
+      <BounceLoader loading={loading} color='#eb7724' size={70} style={{zIndex: '100000000000', position: 'absolute', top: '50%', left: '50%' }} />
         <form className={styles.form} action="#" method='' onSubmit={(e) => {e.preventDefault();}}>
             <p className={styles.formTitle}>Edit Profile</p>
             <input type="text" className={styles.inputField} placeholder='Name' onChange={ (e) => {setProfileData({...profileData, name: e.target.value,})} } value={profileData?.name} />
@@ -135,5 +144,7 @@ export const EditProfile = () => {
 
         </form>
     </div>
+    <Toaster />
+    </>
   )
 }

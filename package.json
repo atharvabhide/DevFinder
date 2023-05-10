@@ -19,6 +19,7 @@
     "react-hot-toast": "^2.4.1",
     "react-icons": "^4.8.0",
     "react-router-dom": "^6.10.0",
+    "react-spinners": "^0.13.8",
     "react-typed": "^1.2.0",
     "xterm": "^5.1.0",
     "xterm-addon-fit": "^0.7.0",
