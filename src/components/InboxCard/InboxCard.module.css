@@ -54,7 +54,7 @@
 }
 
 .imageContainer {
-  flex: 1;
+  width: 20%;
   position: relative;
   display: flex;
   flex-direction: column;
@@ -69,7 +69,7 @@
 }
 
 .contentContainer {
-  flex: 5;
+  width: 80%;
   padding-top: 2rem;
   padding-right: 1rem;
 }
