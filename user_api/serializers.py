@@ -41,6 +41,7 @@ class MessageSerializer(serializers.ModelSerializer):
     recipient = serializers.HyperlinkedRelatedField(view_name='profile-detail', read_only=True)
     name = serializers.SerializerMethodField()
     email = serializers.SerializerMethodField()
+    pfp = serializers.SerializerMethodField()
 
     class Meta:
         model = Message
@@ -51,6 +52,9 @@ class MessageSerializer(serializers.ModelSerializer):
 
     def get_email(self, obj):
         return obj.sender.user.email if obj.sender else None
+
+    def get_pfp(self, obj):
+        return obj.sender.profileImage.url if obj.sender else None
     
     def perform_create(self, serializer):
         profile_pk = self.kwargs.get("pk")
