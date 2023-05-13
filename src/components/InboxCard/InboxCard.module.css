@@ -1,47 +1,98 @@
-.userImage{
-    width: 30em;
-    /* height: auto; */
+.userImage {
+  width: 30em;
+  /* height: auto; */
 }
-.message{
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    width: 20em;
-    height: 9em;
-    padding: 1em;
-    display: flex;
-    gap: 1em;
-    justify-content: start;
-    align-items: center;
-    cursor: pointer;
-    position: relative;
+.message {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  width: 20em;
+  height: 9em;
+  padding: 1em;
+  display: flex;
+  gap: 1em;
+  justify-content: start;
+  align-items: center;
+  cursor: pointer;
+  position: relative;
 }
-.messageInfo{
-    /* margin-top: 1em; */
-    color: #fff;
+.messageInfo {
+  /* margin-top: 1em; */
+  color: #fff;
 }
-.username{
-    font-size: 0.8rem;
-    margin: 0.3em;
+.username {
+  font-size: 0.8rem;
+  margin: 0.3em;
 }
-.messageContent{
-    /* display: inline-block; */
-    height: 60px;
-    /* white-space: nowrap; */
-    overflow: hidden !important;
-    text-overflow: ellipsis;
-    font-size: 0.75rem;
-   
+.messageContent {
+  /* display: inline-block; */
+  height: 60px;
+  /* white-space: nowrap; */
+  overflow: hidden !important;
+  text-overflow: ellipsis;
+  font-size: 0.75rem;
 }
-.messageSubject{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    
+.messageSubject {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
-.messageTime{
-    font-size: 0.6em;
-    position:absolute;
-    top: 1%;
-    right: 2%;
-    padding-top: 1em;
+.messageTime {
+  font-size: 0.6em;
+  position: absolute;
+  top: 1%;
+  right: 2%;
+  padding-top: 1em;
+}
+
+.messageContainer {
+  display: flex;
+  width: 80%;
+  height: 9rem;
+  border: 1px solid #ccc;
+  justify-content: space-between;
+  color: #fff;
+}
+
+.imageContainer {
+  flex: 1;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.profileImg {
+  border-radius: 50%;
+  width: 60%;
+  border: 6px solid #333;
+}
+
+.contentContainer {
+  flex: 5;
+  padding-top: 2rem;
+  padding-right: 1rem;
+}
+
+.subject {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+  /* padding: 0.5rem 1rem; */
+}
+
+.timestamp {
+  font-size: 0.6rem;
+}
+
+.body {
+  font-size: 0.75rem;
+  overflow: hidden;
+  max-height: 40%;
+  /* background-color: antiquewhite; */
+}
+
+.usernameLine {
+  font-size: 0.8rem;
+  margin-top: 0.2rem;
 }

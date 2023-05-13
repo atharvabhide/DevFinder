@@ -1,10 +1,27 @@
-.messageList{
-    display: grid;
+.messageList {
+  /* display: grid;
     grid-template-columns: auto auto auto;
-    gap: 1em;
+    gap: 1em; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  /* background-color: blanchedalmond; */
 }
-.wrapper{
-    width: 100%;
-   padding: 1em 2em;
-   min-height: 100vh;
+
+.messageList > * {
+  margin-bottom: 2rem;
+}
+
+.cardContainer {
+  width: 100%;
+  /* background-color: azure; */
+  display: flex;
+  justify-content: center;
+}
+
+.wrapper {
+  width: 100%;
+  padding: 1em 2em;
+  min-height: 100vh;
 }
