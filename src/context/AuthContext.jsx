@@ -1,154 +1,147 @@
-import axios from 'axios';
-import React, { useContext, useEffect, useState } from 'react'
-import jwtDecode from 'jwt-decode';
-import { createContext } from 'react';
-import { GoogleLogin } from '@react-oauth/google';
-import { googleLogout, useGoogleLogin } from '@react-oauth/google'; 
-import { baseURL } from '../utils/config';
-import { useNavigate } from 'react-router-dom';
-import toast, {Toaster} from 'react-hot-toast';
+import axios from "axios";
+import React, { useContext, useEffect, useState } from "react";
+import jwtDecode from "jwt-decode";
+import { createContext } from "react";
+import { GoogleLogin } from "@react-oauth/google";
+import { googleLogout, useGoogleLogin } from "@react-oauth/google";
+import { baseURL } from "../utils/config";
+import { useNavigate } from "react-router-dom";
+import toast, { Toaster } from "react-hot-toast";
 // import { useState } from "react";
-import { BounceLoader } from 'react-spinners';
-
+import { BounceLoader } from "react-spinners";
 
 export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
-    const navigate = useNavigate();
+  const navigate = useNavigate();
 
-    const [authTokens, setAuthTokens] = useState(() =>
+  const [authTokens, setAuthTokens] = useState(() =>
     localStorage.getItem("authTokens")
       ? JSON.parse(localStorage.getItem("authTokens"))
       : null
-    );
+  );
 
-    const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-    const [loading, setLoading] = useState(false);
-    
-    const [currentUUID, setCurrentUUID] = useState(() => {
-      const storedUUID = localStorage.getItem("user");
-      return storedUUID ? JSON.parse(storedUUID) : null;
-    });
+  const [loading, setLoading] = useState(false);
 
-    useEffect(() => {
-      if(authTokens === null)
-      {
-        setIsLoggedIn(false);
-      }
-      else
-      {
-        setIsLoggedIn(true);
-      }
-    }, [authTokens])
+  const [currentUUID, setCurrentUUID] = useState(() => {
+    const storedUUID = localStorage.getItem("user");
+    return storedUUID ? JSON.parse(storedUUID) : null;
+  });
 
-    // console.log("Token state ", authTokens);
-  
-    const loginUser = async (username, password) => {
-      try{
+  useEffect(() => {
+    if (authTokens === null) {
+      setIsLoggedIn(false);
+    } else {
+      setIsLoggedIn(true);
+    }
+  }, [authTokens]);
+
+  // console.log("Token state ", authTokens);
+
+  const loginUser = async (username, password) => {
+    try {
       setLoading(true);
-      setTimeout(()=> console.log('timepass'), 4000)
-      const response = await axios.post(`${baseURL}api/token/`, {username: username, password: password});
-      console.log(response);
-
-      
-      // console.log(jwtDecode(response.data.access));
-      if (response.status === 200)
-      {
-        localStorage.setItem("authTokens", JSON.stringify(response.data));
-        setAuthTokens(response.data);
-        getUser(response.data.access);
-
-      }
-      else {
-        toast.error('Cannot log in. Please try again');
-        
-      }
-      }
-      catch(e){
-        toast.error(`Couldn't log in`)
-      }
-      
-    }
-
-    const logoutUser = () => {
-        setAuthTokens(null);
-        setCurrentUUID(null);
-        localStorage.removeItem("authTokens");
-        localStorage.removeItem("user");
-        toast.success('You are logged out');
-        
-    }
-
-    
-    const registerUser = async (first_name, username, email, password) => {
-        const response = await axios.post(`${baseURL}user-api/profiles/create/`, {first_name, username, email, password});
-        console.log(response);
-        return response;
-    }
-
-    const googleLogin = useGoogleLogin({
-      onSuccess: (codeResponse) => {console.log(codeResponse); handleGoogleLogin(codeResponse.access_token)},
-      // flow: 'auth-code',
-      onError: (error) => console.log('Login Failed:', error),
-    });
-
-    const handleGoogleLogin = async (access_token) => {
-      console.log(access_token);
-      const response = await axios.post(`${baseURL}user-api/register-by-access-token/social/google-oauth2/`, {"access_token": access_token});
-      console.log(response);
-      if (response.status === 200)
-      {
-        localStorage.setItem("authTokens", JSON.stringify(response.data));
-        setAuthTokens(response.data);
-        getUser(response.data.access);
-      }
-      else (
-        alert("oopsie daisy")
-      )
-    }
-
-    const getUser = async (access_token) => {
-      const response = await axios.get(`${baseURL}user-api/current-user/`, {
-        headers: {
-          "Authorization": `Bearer ${access_token}`,
-        }
+      setTimeout(() => console.log("timepass"), 4000);
+      const response = await axios.post(`${baseURL}api/token/`, {
+        username: username,
+        password: password,
       });
-      setLoading(false);
       console.log(response);
-      localStorage.setItem("user", JSON.stringify(response.data.uuid));
-      setCurrentUUID(response.data.uuid);
-      if (response.status === 200){
-      toast.success('Welcome to DevFinder!');
+
+      // console.log(jwtDecode(response.data.access));
+      if (response.status === 200) {
+        localStorage.setItem("authTokens", JSON.stringify(response.data));
+        setAuthTokens(response.data);
+        getUser(response.data.access);
+      } else {
+        toast.error("Cannot log in. Please try again");
+      }
+    } catch (e) {
+      toast.error(`Couldn't log in`);
+    }
+  };
+
+  const logoutUser = () => {
+    setAuthTokens(null);
+    setCurrentUUID(null);
+    localStorage.removeItem("authTokens");
+    localStorage.removeItem("user");
+    toast.success("You are logged out");
+  };
+
+  const registerUser = async (first_name, username, email, password) => {
+    const response = await axios.post(`${baseURL}user-api/profiles/create/`, {
+      first_name,
+      username,
+      email,
+      password,
+    });
+    console.log(response);
+    return response;
+  };
+
+  const googleLogin = useGoogleLogin({
+    onSuccess: (codeResponse) => {
+      console.log(codeResponse);
+      handleGoogleLogin(codeResponse.access_token);
+    },
+    // flow: 'auth-code',
+    onError: (error) => console.log("Login Failed:", error),
+  });
+
+  const handleGoogleLogin = async (access_token) => {
+    console.log(access_token);
+    const response = await axios.post(
+      `${baseURL}user-api/register-by-access-token/social/google-oauth2/`,
+      { access_token: access_token }
+    );
+    console.log(response);
+    if (response.status === 200) {
+      localStorage.setItem("authTokens", JSON.stringify(response.data));
+      setAuthTokens(response.data);
+      getUser(response.data.access);
+    } else alert("oopsie daisy");
+  };
+
+  const getUser = async (access_token) => {
+    const response = await axios.get(`${baseURL}user-api/current-user/`, {
+      headers: {
+        Authorization: `Bearer ${access_token}`,
+      },
+    });
+    setLoading(false);
+    console.log(response);
+    localStorage.setItem("user", JSON.stringify(response.data.uuid));
+    setCurrentUUID(response.data.uuid);
+    if (response.status === 200) {
+      toast.success("Welcome to DevFinder!");
       navigate(`/account`);
-
-      }
-      else{
-        toast.error(`Couldn't sign in`);
-      }
-
+    } else {
+      toast.error(`Couldn't sign in`);
     }
+  };
 
-    const contextData = {
-        authTokens,
-        setAuthTokens,
-        loginUser,
-        logoutUser,
-        registerUser,
-        googleLogin,
-        handleGoogleLogin,
-        isLoggedIn,
-        getUser,
-        currentUUID,
-    }
+  const contextData = {
+    authTokens,
+    setAuthTokens,
+    loginUser,
+    logoutUser,
+    registerUser,
+    googleLogin,
+    handleGoogleLogin,
+    isLoggedIn,
+    getUser,
+    currentUUID,
+  };
 
-    return (
-      <>
-        <AuthContext.Provider value={contextData}>
-            {children}
-        </AuthContext.Provider>
-        <Toaster />
-        
-      </>
-    )
-}
+  return (
+    <>
+      <AuthContext.Provider value={contextData}>
+        {children}
+      </AuthContext.Provider>
+      <Toaster />
+    </>
+  );
+};
