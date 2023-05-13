@@ -1,67 +1,68 @@
-.wrapper{
-    
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 100;
-    position: fixed;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background-color: rgba(0,0,0,0.7);
-    transition: 0.5s all;
-    
+.wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  transition: 0.5s all;
 }
-.msgContainer{
-    min-height: 50vh;
-    width: 50vw;
-    background: #fff;
-    margin: 0 auto;
-    margin-top: 1em;
-    padding:1em 2em;
-    border-radius: 8px;
-    position: relative;
-    
+.msgContainer {
+  min-height: 50vh;
+  width: 50vw;
+  background: #fff;
+  margin: 0 auto;
+  margin-top: 1em;
+  padding: 1em 2em;
+  border-radius: 8px;
+  position: relative;
 }
-.inputField{
-    background-color: none;
- border-bottom: 1px solid #333;
- border-top: none;
- border-left: none;
- border-right: none;
- outline: none;
- padding: 12px 1px;
- /* margin: 1em 0; */
- width: 100%;
- /* border-radius: 4px; */
+.inputField {
+  background-color: none;
+  border-bottom: 1px solid #333;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  outline: none;
+  padding: 12px 1px;
+  /* margin: 1em 0; */
+  width: 100%;
+  /* border-radius: 4px; */
 }
-#message{
-    height: 140px;
-    border: 1px solid #333;
-    margin: 0.75em 0;
-    padding: 4px 6px;
-    border-radius: 4px;
-    resize: none;
+#message {
+  height: 140px;
+  border: 1px solid #333;
+  margin: 0.75em 0;
+  padding: 4px 6px;
+  border-radius: 4px;
+  resize: none;
 }
-.sendButton{
-    background-color: #05445E;
-    border: none;
-    padding: 12px 28px;
-    margin: 1em 0;
-    color: aliceblue;
-    font-size: var(--header-font);
-    border-radius: 10vmax;
-    cursor: pointer;
-   
+
+.sendButton {
+  background-color: #05445e;
+  border: none;
+  padding: 12px 28px;
+  margin: 1em 0;
+  color: aliceblue;
+  font-size: var(--header-font);
+  border-radius: 10vmax;
+  cursor: pointer;
 }
-.sendButton:hover{
-    background-color: #75E6DA;
-    color: #333;
+.sendButton:hover {
+  background-color: #75e6da;
+  color: #333;
 }
-.closeButton{
-    position: absolute;
-    top: 3%;
-    right: 2%;
-    cursor: pointer;
+.closeButton {
+  position: absolute;
+  top: 3%;
+  right: 2%;
+  cursor: pointer;
+}
+
+.messageBody {
+  word-wrap: break-word;
 }
