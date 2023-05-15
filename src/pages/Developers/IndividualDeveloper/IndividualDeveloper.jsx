@@ -78,7 +78,7 @@ export const IndividualDeveloper = () => {
                 </p>
 
                 <p className={styles.developerLocation}>
-                  <TiLocation size={22} />:{" "}
+                  <TiLocation size={22} />:{profile?.location}
                 </p>
 
                 <button
