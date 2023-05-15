@@ -51,10 +51,11 @@
   border: 1px solid #ccc;
   justify-content: space-between;
   color: #fff;
+  gap: 10px;
 }
 
 .imageContainer {
-  width: 20%;
+  width: 40%;
   position: relative;
   display: flex;
   flex-direction: column;
@@ -64,7 +65,7 @@
 
 .profileImg {
   border-radius: 50%;
-  width: 60%;
+  width: 4em;
   border: 6px solid #333;
 }
 
@@ -93,6 +94,6 @@
 }
 
 .usernameLine {
-  font-size: 0.8rem;
+  font-size: 1.75vw;
   margin-top: 0.2rem;
 }

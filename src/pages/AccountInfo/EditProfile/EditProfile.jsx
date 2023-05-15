@@ -117,11 +117,19 @@ export const EditProfile = () => {
     // console.log(response);
     // navigate(`/account/`);
   }
+  
+  // if (!loading){
+  //   return(
+  //     <BounceLoader loading={loading} color='#eb7724' size={70} style={{zIndex: '100000000000', position: 'absolute', top: '50%', left: '50%' }} />
+  //   )
+  // }
+  
 
   return (
     <>
+
     <div className={styles.wrapper}>
-      <BounceLoader loading={loading} color='#eb7724' size={70} style={{zIndex: '100000000000', position: 'absolute', top: '50%', left: '50%' }} />
+      
         <form className={styles.form} action="#" method='' onSubmit={(e) => {e.preventDefault();}}>
             <p className={styles.formTitle}>Edit Profile</p>
             <input type="text" className={styles.inputField} placeholder='Name' onChange={ (e) => {setProfileData({...profileData, name: e.target.value,})} } value={profileData?.name} />
