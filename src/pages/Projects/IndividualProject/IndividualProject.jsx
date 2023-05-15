@@ -142,9 +142,9 @@ export const IndividualProject = (props) => {
             <p className={styles.feedback}>
               <b>Feedback</b>
             </p>
-            <p className={styles.feedbackInfo}>
+            {/* <p className={styles.feedbackInfo}>
               {myData.voteRatio}% Positive Feedback ({myData.voteTotal} votes)
-            </p>
+            </p> */}
 
             <textarea
               className={styles.commentSection}
