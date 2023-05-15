@@ -56,7 +56,7 @@ export const Recommendations = () => {
             {users && users.length === 0 ? (
               <>
                 <p>
-                  You currently have no recommendations. Please add/update your
+                  You currently have no recommendations. Please add/update skills to your
                   profile
                 </p>
                 <button
@@ -66,9 +66,8 @@ export const Recommendations = () => {
                   Update Profile
                 </button>
               </>
-            ) : (
-              <p>Loading...</p>
-            )}
+            ) : (null)
+            }
           </div>
         )}
       </div>
