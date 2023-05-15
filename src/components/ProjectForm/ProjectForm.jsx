@@ -4,6 +4,7 @@ import { useAxios } from "../../utils/useAxios"
 import { baseURL } from '../../utils/config'
 import { useNavigate } from 'react-router-dom'
 import {TiTick} from 'react-icons/ti'
+import toast, {Toaster} from 'react-hot-toast'
 
 export const ProjectForm = () => {
 
@@ -62,7 +63,7 @@ export const ProjectForm = () => {
       }
     }
     else {
-      alert("No NSFW images allowed")
+      toast.error('No NSFW images allowed')
     }
   
   }
@@ -114,6 +115,7 @@ export const ProjectForm = () => {
 
         </form>
     </div>
+    <Toaster />
     </>
   )
 }

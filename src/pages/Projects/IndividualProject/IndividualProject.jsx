@@ -11,6 +11,7 @@ import { useAxios } from '../../../utils/useAxios'
 
 import { ProjectReview } from '../../../components/ProjectReview/ProjectReview'
 import { baseURL } from '../../../utils/config';
+import toast, {Toaster} from 'react-hot-toast'
 
 export const IndividualProject = (props) => {
 
@@ -85,7 +86,7 @@ export const IndividualProject = (props) => {
     }
     else
     {
-      alert("NSFW comments not allowed")
+      toast.error('No NSFW images allowed')
     }
 
   }
@@ -164,6 +165,7 @@ export const IndividualProject = (props) => {
             </div>
 
         </div>
+        <Toaster />
     </>
   )
 }
