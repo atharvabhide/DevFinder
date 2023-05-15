@@ -21,7 +21,16 @@ export const Recommendations = () => {
   const fetchReccommended = async () => {
     const response = await api.get(`user-api/similar/`);
     console.log(response);
-    setUsers(response.data);
+    // const fetchedUsers = response.data.results; #for deployed
+    const fetchedUsers = response.data;
+    const filteredUsers = fetchedUsers.filter(
+      (elem, index) =>
+        fetchedUsers.findIndex((obj) => obj.username === elem.username) ===
+        index
+    );
+    console.log("filtered", filteredUsers);
+    setUsers(filteredUsers);
+    // setUsers(response.data.results);
   };
 
   useEffect(() => {
@@ -56,8 +65,8 @@ export const Recommendations = () => {
             {users && users.length === 0 ? (
               <>
                 <p>
-                  You currently have no recommendations. Please add/update skills to your
-                  profile
+                  You currently have no recommendations. Please add/update
+                  skills to your profile
                 </p>
                 <button
                   onClick={() => navigate("/account")}
@@ -66,8 +75,7 @@ export const Recommendations = () => {
                   Update Profile
                 </button>
               </>
-            ) : (null)
-            }
+            ) : null}
           </div>
         )}
       </div>

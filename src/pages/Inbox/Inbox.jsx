@@ -9,7 +9,7 @@ import { useAxios } from "../../utils/useAxios";
 import { OpenMessage } from "./OpenMessage/OpenMessage";
 import { Link } from "react-router-dom";
 import dhanya from "../../assets/dhanya2.jpg";
-import {baseURL} from '../../utils/config'
+import { baseURL } from "../../utils/config";
 
 export const Inbox = () => {
   const { currentUUID } = useContext(AuthContext);
@@ -73,12 +73,10 @@ export const Inbox = () => {
                 }}
                 className={styles.cardContainer}
               >
-              
                 <InboxCard
                   key={items.id}
                   imageURL={`${baseURL}${items.pfp}`}
                   username={items.name}
-                  
                   subject={items.subject}
                   content={items.body}
                   time={items.createdAt}

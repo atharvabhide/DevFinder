@@ -40,8 +40,13 @@ export const OpenMessage = (props) => {
       <div className={styles.msgContainer} onClick={(e) => e.stopPropagation()}>
         <div className={styles.header}>
           <h1>
-            {/* From <i onClick={()=> navigate('/developer/developer')  }>{props.name}</i>, */}
-            From <i><Link to="/developers/developer" state={{url: props.senderURL}}>{props.name}</Link></i>,
+            From{" "}
+            <i>
+              <Link to="/developers/developer" state={{ url: props.senderURL }}>
+                {props.name}
+              </Link>
+            </i>
+            ,
           </h1>
           <h3 htmlFor="" style={{ marginTop: "1em" }}>
             Subject
