@@ -5,6 +5,7 @@ import { baseURL } from '../../utils/config'
 import { useNavigate, useLocation } from 'react-router-dom'
 import { TiTick } from 'react-icons/ti'
 import { locale } from 'dayjs'
+import toast, {Toaster} from 'react-hot-toast'
 
 export const UpdateProjectForm = () => {
 
@@ -76,7 +77,7 @@ export const UpdateProjectForm = () => {
         }
       }
       else {
-        alert("No NSFW images allowed")
+        toast.error('No NSFW images allowed')
         return;
       }
     }
@@ -132,6 +133,7 @@ export const UpdateProjectForm = () => {
 
         </form>
     </div>
+    <Toaster />
     </>
   )
 }

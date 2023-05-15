@@ -16,12 +16,33 @@
     margin: 2em;
     gap: 2em;
     grid-template-columns: repeat(3, 1fr);
+    min-height: 70vh;
     /* grid-template-columns: auto auto auto; */
     /* display: flex;
     flex-direction: row;
     gap: 1em;
     flex-wrap: wrap; */
 }
+
+.updateProfile{
+    background-color: #05445E;
+    /* opacity: 0.7; */
+    border: none;
+    padding: 18px 28px;
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 4px;
+    cursor: pointer;
+}
+.updateProfile:hover{
+    background-color: #75E6DA;
+    color: #333;
+}
+.default{
+    display: none;
+}
+
 @media screen and (max-width: 1120px) {
     .developers{
         grid-template-columns: repeat(2, 1fr);

@@ -9,8 +9,14 @@ import Profile from "../../../assets/dhanya2.jpg";
 import { Modal } from "../../../components/Modal/Modal";
 import { useAxios } from "../../../utils/useAxios";
 
+<<<<<<< HEAD
 import { ProjectReview } from "../../../components/ProjectReview/ProjectReview";
 import { baseURL } from "../../../utils/config";
+=======
+import { ProjectReview } from '../../../components/ProjectReview/ProjectReview'
+import { baseURL } from '../../../utils/config';
+import toast, {Toaster} from 'react-hot-toast'
+>>>>>>> e7b791dcd532de2f9287a17dc1502049b9360796
 
 export const IndividualProject = (props) => {
   const [myData, setMyData] = useState([]);
@@ -81,7 +87,16 @@ export const IndividualProject = (props) => {
     } else {
       alert("NSFW comments not allowed");
     }
+<<<<<<< HEAD
   };
+=======
+    else
+    {
+      toast.error('No NSFW images allowed')
+    }
+
+  }
+>>>>>>> e7b791dcd532de2f9287a17dc1502049b9360796
 
   useEffect(() => {
     fetchProject();
@@ -177,7 +192,11 @@ export const IndividualProject = (props) => {
                     <Modal onClose={() => setShow(false)} show={show} /> */}
           </div>
         </div>
+<<<<<<< HEAD
       </div>
+=======
+        <Toaster />
+>>>>>>> e7b791dcd532de2f9287a17dc1502049b9360796
     </>
   );
 };

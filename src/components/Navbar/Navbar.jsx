@@ -88,6 +88,15 @@ export const Navbar = () => {
                         <div className="navItems"  >
                             <h3 className="navSubTitle">Menu</h3>
 
+                            
+
+                            {/* <Link to="/logout" className="navLink" onClick={handleLogout}>
+                                <MdOutlineLogout className="navIcon" />
+                                <span className="navName">Logout</span>
+                            </Link>  */}
+                            {isLoggedIn ? (
+                                <>
+
                             <Link to="/" className="navLink " >
                                 <HiOutlineHome className="navIcon"/>
                                 <span className="navName">Home</span>
@@ -97,6 +106,8 @@ export const Navbar = () => {
                                 <TbHeartHandshake className="navIcon" />
                                 <span className="navName">Recommendations</span>
                             </Link>
+
+                            
 
                             <Link to="/developers" className="navLink">
                                 <FiUsers className="navIcon" />
@@ -113,21 +124,40 @@ export const Navbar = () => {
                                 <span className="navName">Inbox</span>
                             </Link>
 
-                            <Link to="/login" className="navLink">
-                                <MdOutlineLogin className="navIcon" />
-                                <span className="navName">Login/Signup</span>
-                            </Link> 
-
-                            {/* <Link to="/logout" className="navLink" onClick={handleLogout}>
-                                <MdOutlineLogout className="navIcon" />
-                                <span className="navName">Logout</span>
-                            </Link>  */}
-                            {isLoggedIn &&
+                            
+                                
                                 <Link to="" className="navLink" onClick={handleLogout}>
                                     <MdOutlineLogout className="navIcon" />
                                     <span className="navName">Logout</span>
                                 </Link> 
-                            }
+                                </>
+                            ) : (
+                            <>
+                                <Link to="/" className="navLink " >
+                                <HiOutlineHome className="navIcon"/>
+                                <span className="navName">Home</span>
+                            </Link>
+
+                            
+
+                            <Link to="/developers" className="navLink">
+                                <FiUsers className="navIcon" />
+                                <span className="navName">Developers</span>
+                            </Link>
+
+                            <Link to="/projects" className="navLink">
+                                <HiCode className="navIcon"/>
+                                <span className="navName">Projects</span>
+                            </Link>
+
+                            <Link to="/login" className="navLink">
+                                <MdOutlineLogin className="navIcon" />
+                                <span className="navName">Login/Signup</span>
+                            </Link>
+
+                            </>
+                            )
+                            }  
 
                         </div>
                     </div>
