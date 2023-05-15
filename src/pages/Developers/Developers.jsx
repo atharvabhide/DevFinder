@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, {useContext, useEffect, useState } from 'react'
 import styles from './Developers.module.css'
 import { DevCard } from '../../components/DevCard/DevCard'
 import Atharva from '../../assets/nalla.jpg'
@@ -10,12 +10,18 @@ import { SearchBar } from '../../components/SearchBar/SearchBar'
 import axios from 'axios'
 import { baseURL } from '../../utils/config'
 import { Pagination } from '../../components/Pagination/Pagination'
+import { AuthContext } from '../../context/AuthContext'
+import { useNavigate } from 'react-router-dom'
 
 
 export const Developers = () => {
 
   const [users, setUsers] = useState([]);
   const [searchQuery, setSearchQuery] = useState('');
+
+  const {logoutUser, isLoggedIn} = useContext(AuthContext);
+
+  const navigate = useNavigate();
 
   const filteredUsers = users.filter((user) =>
     user.username.toLowerCase().includes(searchQuery.toLowerCase())
@@ -52,6 +58,22 @@ export const Developers = () => {
     return (
       // render each item
       <>
+      {!isLoggedIn ? (
+        <Link to="/login" key={item.url} state={{url: item.url}} >
+          <DevCard
+              
+              name={item.username}
+              position={item.shortIntro}
+              image={item.profileImage}
+              bio={item.bio}
+              hashnodeLink={item.socialHashnode}
+              twitterLink={item.socialTwitter}
+              githubLink={item.socialGithub}
+ 
+            />
+            </Link>
+
+      ) : (
       <Link to="/developers/developer" key={item.url} state={{url: item.url}}>
             <DevCard
               
@@ -59,12 +81,15 @@ export const Developers = () => {
               position={item.shortIntro}
               image={item.profileImage}
               bio={item.bio}
+              hashnodeLink={item.socialHashnode}
+              twitterLink={item.socialTwitter}
+              githubLink={item.socialGithub}
  
             />
             </Link>
          
       
-
+         )}
       </>
     );
   

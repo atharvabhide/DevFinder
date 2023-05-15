@@ -73,10 +73,12 @@ export const Inbox = () => {
                 }}
                 className={styles.cardContainer}
               >
+              
                 <InboxCard
                   key={items.id}
                   imageURL={`${baseURL}${items.pfp}`}
                   username={items.name}
+                  
                   subject={items.subject}
                   content={items.body}
                   time={items.createdAt}
@@ -88,6 +90,7 @@ export const Inbox = () => {
                   newModalState[index] = false;
                   setShowModal(newModalState);
                 }}
+                senderURL={items.sender}
                 show={showModal[index]}
                 name={items.name}
                 subject={items.subject}

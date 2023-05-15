@@ -7,6 +7,8 @@ import { useAxios } from "../../../utils/useAxios";
 import { RxCross2 } from "react-icons/rx";
 import { useContext } from "react";
 import { AuthContext } from "../../../context/AuthContext";
+import { Link } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 
 export const OpenMessage = (props) => {
   if (!props.show) {
@@ -15,6 +17,8 @@ export const OpenMessage = (props) => {
 
   const { currentUUID } = useContext(AuthContext);
   console.log(currentUUID);
+
+  const navigate = useNavigate();
 
   // const [message, setMessage] = useState();
 
@@ -36,7 +40,8 @@ export const OpenMessage = (props) => {
       <div className={styles.msgContainer} onClick={(e) => e.stopPropagation()}>
         <div className={styles.header}>
           <h1>
-            From <i>{props.name}</i>,
+            {/* From <i onClick={()=> navigate('/developer/developer')  }>{props.name}</i>, */}
+            From <i><Link to="/developers/developer" state={{url: props.senderURL}}>{props.name}</Link></i>,
           </h1>
           <h3 htmlFor="" style={{ marginTop: "1em" }}>
             Subject
