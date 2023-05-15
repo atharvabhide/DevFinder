@@ -83,6 +83,21 @@ export const IndividualDeveloper = () => {
 
               </div>
 
+                <p className={styles.developerLocation}>
+                  <TiLocation size={22} />:{profile?.location}
+                </p>
+
+                <button
+                  className={styles.sendBtn}
+                  onClick={() => {
+                    navigate("/send-message", {
+                      state: { url: location.state.url },
+                    });
+                  }}
+                >
+                  Send Message
+                </button>
+              </div>
             </div>
             <div className={styles.developerInfo}>
               <div className={styles.about}>
@@ -130,7 +145,7 @@ export const IndividualDeveloper = () => {
 
             </div>
 
-          </div>
+          
 
         
     </>
