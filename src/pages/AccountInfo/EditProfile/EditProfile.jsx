@@ -49,7 +49,7 @@ export const EditProfile = () => {
   const [bio, setBio] = useState("");
   const [shortIntro, setShortIntro] = useState("");
   const [socialGithub, setSocialGithub] = useState("");
-  const [socialLinkedIn, setSocialLinkedIn] = useState("");
+  const [SocialHashnode, setSocialHashnode] = useState("");
   const [socialTwitter, setSocialTwitter] = useState("");
   const [socialYoutube, setSocialYoutube] = useState("");
   const [socialWebsite, setSocialWebsite] = useState("");
@@ -65,7 +65,7 @@ export const EditProfile = () => {
     formData.append("bio", profileData.bio);
     formData.append("shortIntro", profileData.shortIntro);
     formData.append("socialGithub", profileData.socialGithub);
-    formData.append("socialLinkedIn", profileData.socialLinkedIn);
+    formData.append("SocialHashnode", profileData.SocialHashnode);
     formData.append("socialTwitter", profileData.socialTwitter);
     formData.append("socialYoutube", profileData.socialYoutube);
     formData.append("socialWebsite", profileData.socialWebsite);
@@ -140,7 +140,7 @@ export const EditProfile = () => {
             onChange={(e) => {
               setProfileData({ ...profileData, name: e.target.value });
             }}
-            value={profileData?.name}
+            value={profileData?.name === "null" ? null : profileData?.name}
           />
           <input
             type="email"
@@ -149,7 +149,7 @@ export const EditProfile = () => {
             onChange={(e) => {
               setProfileData({ ...profileData, email: e.target.value });
             }}
-            value={profileData?.email}
+            value={profileData?.email === "null" ? null : profileData?.email}
           />
           <input
             type="text"
@@ -158,7 +158,9 @@ export const EditProfile = () => {
             onChange={(e) => {
               setProfileData({ ...profileData, username: e.target.value });
             }}
-            value={profileData?.username}
+            value={
+              profileData?.username === "null" ? null : profileData?.username
+            }
           />
           <input
             type="text"
@@ -214,25 +216,25 @@ export const EditProfile = () => {
               setProfileData({ ...profileData, socialGithub: e.target.value });
             }}
             value={
-              profileData?.socialLinkedIn === "null"
+              profileData?.socialGithub === "null"
                 ? null
-                : profileData?.socialLinkedIn
+                : profileData?.socialGithub
             }
           />
           <input
             type="url"
             className={styles.inputField}
-            placeholder="LinkedIn Profile"
+            placeholder="Hashnode Profile"
             onChange={(e) => {
               setProfileData({
                 ...profileData,
-                socialLinkedIn: e.target.value,
+                SocialHashnode: e.target.value,
               });
             }}
             value={
-              profileData?.socialLinkedIn === "null"
+              profileData?.SocialHashnode === "null"
                 ? null
-                : profileData?.socialLinkedIn
+                : profileData?.SocialHashnode
             }
           />
           <input
