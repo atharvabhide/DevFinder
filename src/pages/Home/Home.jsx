@@ -118,8 +118,7 @@ export const Home = () => {
             your career to the next level.
             <br />
             <br />
-            Join our community today and start connecting with developers from
-            around the world. With DevFinder, you're never alone on your journey
+            Join our community today and start connecting with developers within your college. With DevFinder, you're never alone on your journey
             towards success.
           </p>
         </div>
