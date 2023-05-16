@@ -45,6 +45,10 @@ export const Developers = () => {
     setCurrentPage(pageNumber);
   };
 
+  const handleClick = (profileUrl) => {
+    navigate("/developers/developer", { state: { url: profileUrl } });
+  };
+
   const renderData = () => {
     const startIndex = (currentPage - 1) * itemsPerPage;
     const endIndex = startIndex + itemsPerPage;
@@ -68,11 +72,7 @@ export const Developers = () => {
               />
             </Link>
           ) : (
-            <Link
-              to="/developers/developer"
-              key={item.url}
-              state={{ url: item.url }}
-            >
+            <div key={item.url}>
               <DevCard
                 name={item.username}
                 position={item.shortIntro}
@@ -81,8 +81,10 @@ export const Developers = () => {
                 hashnodeLink={item.socialHashnode}
                 twitterLink={item.socialTwitter}
                 githubLink={item.socialGithub}
+                profileUrl={item.url}
+                handleClick={handleClick}
               />
-            </Link>
+            </div>
           )}
         </>
       );
