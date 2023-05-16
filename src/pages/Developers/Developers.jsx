@@ -94,22 +94,20 @@ export const Developers = () => {
   const renderFiltered = () => {
     return (
       <>
-        {filteredUsers.map((items) => (
-          <Link
-            to="/developers/developer"
-            key={items.url}
-            state={{ url: items.url }}
-          >
+        {filteredUsers.map((item) => (
+          <div key={item.url}>
             <DevCard
-              name={items.username}
-              position={items.shortIntro}
-              image={items.profileImage}
-              bio={items.bio}
-              hashnodeLink={items.socialHashnode}
-              twitterLink={items.socialTwitter}
-              githubLink={items.socialGithub}
+              name={item.username}
+              position={item.shortIntro}
+              image={item.profileImage}
+              bio={item.bio}
+              hashnodeLink={item.socialHashnode}
+              twitterLink={item.socialTwitter}
+              githubLink={item.socialGithub}
+              profileUrl={item.url}
+              handleClick={handleClick}
             />
-          </Link>
+          </div>
         ))}
       </>
     );
