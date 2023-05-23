@@ -70,6 +70,8 @@ DevFinder's frontend should be up and running on port 5173
 <li>Gunicorn</li>
 <ul>
   
+  ## Postman Documentation: <a href="https://documenter.getpostman.com/view/19369668/2s93eYTrtf" target="_blank">Link</a>
+  
 ## Backend Architecture
   ![](https://github.com/atharvabhide/DevFinder/blob/dev/backend/architecture.jpg)
 
