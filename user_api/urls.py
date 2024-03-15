@@ -9,7 +9,7 @@ from .views import (
     SkillCreateView, SkillRetrieveView, CurrentUser,
     SkillUpdateView, SkillDestroyView, 
     ListMessageAPIView, RetrieveMessageAPIView,CreateMessageAPIView,
-    register_by_access_token, authentication_test, ImageModView, SimilarUserView,
+    register_by_access_token, authentication_test, SimilarUserView,
     ProjectRetrieveView,
 )
 
@@ -37,7 +37,7 @@ class UserRootAPIView(APIView):
         'current-user': 'current-user/',
         'register-by-access-token': 'register-by-access-token/',
         'authentication-test': 'authentication-test/',
-        'image-moderation': 'image/mod/',
+        # 'image-moderation': 'image/mod/',
         })
 
 router = routers.DefaultRouter()
@@ -65,5 +65,5 @@ urlpatterns = [
     path('profiles/<str:pk>/messages/', ListMessageAPIView.as_view(), name='message-list'),
     path('profiles/<str:pk>/create-message/', CreateMessageAPIView.as_view(), name='message-create'),
     path('profiles/<str:pk>/messages/<str:sk>/', RetrieveMessageAPIView.as_view(), name='view-message'),
-    path('image/mod/', ImageModView.as_view(), name = 'image-moderation'),
+    # path('image/mod/', ImageModView.as_view(), name = 'image-moderation'),
 ]
