@@ -21,7 +21,7 @@ class ProjectAPIRootView(APIView):
         'projects-reviews-create': 'projects/<str:pk>/reviews/create/',
         'projects-reviews': 'projects/<str:pk>/reviews/',
         'review-moderation': 'review/mod/',
-        'image-moderation': 'image/mod/',
+        # 'image-moderation': 'image/mod/',
         })
 
 urlpatterns = [
@@ -36,5 +36,5 @@ urlpatterns = [
     path('projects/<str:pk>/reviews/create/', views.ReviewCreateView.as_view(), name = 'review-create'),
     path('projects/<str:pk>/reviews/', views.ReviewListView.as_view(), name = 'review-list'),
     path('review/mod/', views.ReviewModView.as_view(), name = 'review-moderation'),
-    path('image/mod/', views.ImageModView.as_view(), name = 'image-moderation'),
+    # path('image/mod/', views.ImageModView.as_view(), name = 'image-moderation'),
 ]
