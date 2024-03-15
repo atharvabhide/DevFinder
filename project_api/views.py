@@ -12,7 +12,7 @@ from rest_framework.views import APIView
 from profanity_check import predict
 from rest_framework.parsers import MultiPartParser
 from PIL import Image
-import opennsfw2 as nsfw
+# import opennsfw2 as nsfw
 from io import BytesIO
 from user_api.models import Profile
 
@@ -182,19 +182,19 @@ class ReviewModView(APIView):
         else:
             return Response({"prediction": "Review is clean"})
 
-class ImageModView(APIView):
-    """ 
-    API endpoint that checks if an image is NSFW.
+# class ImageModView(APIView):
+#     """ 
+#     API endpoint that checks if an image is NSFW.
     
-    No authentication required."""
-    parser_classes = (MultiPartParser,)
-    def post(self, request, format=None):
-        if 'image' not in request.data:
-            return Response({'error': 'Image not found'}, status=400)
-        image = request.data['image']
-        pil_image = Image.open(BytesIO(image.read()))
-        prediction = nsfw.predict_image(pil_image)
-        if prediction > 0.7:
-            return Response({'prediction': 'image is nsfw'})
-        else:
-            return Response({'prediction': 'image is not nsfw'})
+#     No authentication required."""
+#     parser_classes = (MultiPartParser,)
+#     def post(self, request, format=None):
+#         if 'image' not in request.data:
+#             return Response({'error': 'Image not found'}, status=400)
+#         image = request.data['image']
+#         pil_image = Image.open(BytesIO(image.read()))
+#         prediction = nsfw.predict_image(pil_image)
+#         if prediction > 0.7:
+#             return Response({'prediction': 'image is nsfw'})
+#         else:
+#             return Response({'prediction': 'image is not nsfw'})
